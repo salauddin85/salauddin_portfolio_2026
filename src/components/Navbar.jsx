@@ -1,10 +1,9 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import Image from "next/image";
 import Link from "next/link";
 import { useTheme } from "next-themes";
-import { ArrowUpRight, Sun, Moon, Menu, X } from "lucide-react";
+import { ArrowUpRight, Sun, Moon, Menu, X, FileText } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
 const NAV_LINKS = [
@@ -12,6 +11,7 @@ const NAV_LINKS = [
   { name: "Tech Stack", badge: "7", href: "#tech-stack" },
   { name: "Work", badge: "10", href: "#work" },
   { name: "Experience", badge: "2y+", href: "#experience" },
+  { name: "Resume", href: "/resume.pdf", isExternal: true },
   { name: "Contact", href: "#contact" },
 ];
 
@@ -60,10 +60,16 @@ export default function Navbar() {
     };
   }, []);
 
-  const scrollTo = (e, href) => {
+  const handleLinkClick = (e, link) => {
+    if (link.isExternal) {
+      // Let browser open the PDF in new tab
+      setMobileMenuOpen(false);
+      return;
+    }
+
     e.preventDefault();
     setMobileMenuOpen(false);
-    const target = document.querySelector(href);
+    const target = document.querySelector(link.href);
     if (target) {
       target.scrollIntoView({ behavior: "smooth" });
     }
@@ -79,29 +85,11 @@ export default function Navbar() {
         }`}
       >
         <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
-          {/* Left: Brand Logo & Availability Pill */}
-          <div className="flex items-center gap-3">
-            <Link
-              href="#hero"
-              onClick={(e) => scrollTo(e, "#hero")}
-              className="flex items-center gap-2 group focus:outline-none"
-              aria-label="Home"
-            >
-              <div className="relative w-8 h-8 rounded-lg overflow-hidden border border-[var(--border-default)] bg-[var(--bg-surface)] p-0.5 shadow-xs group-hover:border-[var(--border-accent)] transition-all">
-                <Image
-                  src="/images/logo.png"
-                  alt="MD. Salauddin Logo"
-                  width={32}
-                  height={32}
-                  className="object-cover w-full h-full rounded-md"
-                  priority
-                />
-              </div>
-            </Link>
-
+          {/* Left: Availability Badge (Logo removed as requested) */}
+          <div className="flex items-center">
             {isAvailable && (
               <div
-                className="relative hidden sm:flex items-center"
+                className="relative flex items-center"
                 onMouseEnter={() => setShowTooltip(true)}
                 onMouseLeave={() => setShowTooltip(false)}
               >
@@ -130,27 +118,33 @@ export default function Navbar() {
             )}
           </div>
 
-          {/* Center: Nav links with superscript brackets */}
+          {/* Center: Nav links with Resume included */}
           <nav className="hidden md:flex items-center gap-1 lg:gap-2">
             {NAV_LINKS.map((link) => {
-              const isActive = activeSection === link.href.replace("#", "");
+              const isActive = !link.isExternal && activeSection === link.href.replace("#", "");
               return (
                 <a
                   key={link.name}
                   href={link.href}
-                  onClick={(e) => scrollTo(e, link.href)}
+                  target={link.isExternal ? "_blank" : undefined}
+                  rel={link.isExternal ? "noopener noreferrer" : undefined}
+                  onClick={(e) => handleLinkClick(e, link)}
                   className={`relative px-3.5 py-1.5 text-[13.5px] font-medium transition-colors ${
                     isActive
                       ? "text-[var(--text-primary)] font-semibold"
                       : "text-[var(--text-secondary)] hover:text-[var(--text-primary)]"
                   }`}
                 >
-                  <span className="inline-flex items-center gap-0.5">
-                    {link.name}
+                  <span className="inline-flex items-center gap-1">
+                    {link.name === "Resume" && <FileText className="w-3.5 h-3.5 text-indigo-500" />}
+                    <span>{link.name}</span>
                     {link.badge && (
                       <span className="text-[10px] font-mono text-[var(--text-muted)] -top-1 relative ml-0.5">
                         [{link.badge}]
                       </span>
+                    )}
+                    {link.isExternal && (
+                      <ArrowUpRight className="w-3 h-3 text-[var(--text-muted)] opacity-70" />
                     )}
                   </span>
                   {isActive && (
@@ -169,7 +163,7 @@ export default function Navbar() {
           <div className="flex items-center gap-2 sm:gap-3">
             <button
               onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}
-              className="w-9 h-9 flex items-center justify-center rounded-full border border-[var(--border-default)] bg-[var(--bg-surface)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:border-[var(--border-accent)] transition-all focus:outline-none"
+              className="w-9 h-9 flex items-center justify-center rounded-full border border-[var(--border-default)] bg-[var(--bg-surface)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:border-[var(--border-accent)] transition-all focus:outline-none cursor-pointer"
               aria-label="Toggle dark/light theme"
               type="button"
             >
@@ -182,7 +176,10 @@ export default function Navbar() {
 
             <a
               href="#contact"
-              onClick={(e) => scrollTo(e, "#contact")}
+              onClick={(e) => {
+                e.preventDefault();
+                document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" });
+              }}
               className="inline-flex items-center gap-1.5 px-4 lg:px-5 py-2 rounded-full text-[13px] font-semibold bg-[var(--btn-pill-bg)] text-[var(--btn-pill-text)] hover:opacity-90 active:scale-95 transition-all shadow-xs group"
             >
               <span>Let&apos;s Talk</span>
@@ -224,26 +221,34 @@ export default function Navbar() {
 
               <nav className="flex flex-col gap-1">
                 {NAV_LINKS.map((link, index) => {
-                  const isActive = activeSection === link.href.replace("#", "");
+                  const isActive = !link.isExternal && activeSection === link.href.replace("#", "");
                   return (
                     <motion.a
                       key={link.name}
                       href={link.href}
-                      onClick={(e) => scrollTo(e, link.href)}
+                      target={link.isExternal ? "_blank" : undefined}
+                      rel={link.isExternal ? "noopener noreferrer" : undefined}
+                      onClick={(e) => handleLinkClick(e, link)}
                       initial={{ opacity: 0, x: -15 }}
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ delay: index * 0.04 + 0.04 }}
-                      className={`flex items-center justify-between py-3 px-4 rounded-xl text-lg font-medium transition-all ${
+                      className={`flex items-center justify-between py-3 px-4 rounded-xl text-base font-medium transition-all ${
                         isActive
                           ? "bg-[var(--bg-surface)] text-[var(--text-primary)] font-semibold border border-[var(--border-default)]"
                           : "text-[var(--text-secondary)] hover:bg-[var(--bg-surface)]/50 hover:text-[var(--text-primary)]"
                       }`}
                     >
-                      <span>{link.name}</span>
+                      <span className="flex items-center gap-2">
+                        {link.name === "Resume" && <FileText className="w-4 h-4 text-indigo-500" />}
+                        <span>{link.name}</span>
+                      </span>
                       {link.badge && (
                         <span className="text-xs font-mono text-[var(--text-muted)] bg-[var(--bg-surface)] px-2 py-0.5 rounded-full border border-[var(--border-default)]">
                           [{link.badge}]
                         </span>
+                      )}
+                      {link.isExternal && (
+                        <ArrowUpRight className="w-4 h-4 text-[var(--text-muted)]" />
                       )}
                     </motion.a>
                   );
@@ -254,7 +259,11 @@ export default function Navbar() {
             <div className="pt-6 pb-4 border-t border-[var(--border-default)] flex flex-col gap-3">
               <a
                 href="#contact"
-                onClick={(e) => scrollTo(e, "#contact")}
+                onClick={(e) => {
+                  e.preventDefault();
+                  setMobileMenuOpen(false);
+                  document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" });
+                }}
                 className="w-full flex items-center justify-center gap-2 py-3 px-5 rounded-full text-base font-semibold bg-[var(--btn-pill-bg)] text-[var(--btn-pill-text)] shadow-md"
               >
                 <span>Let&apos;s Talk</span>

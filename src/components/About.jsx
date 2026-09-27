@@ -29,7 +29,7 @@ export default function About() {
   return (
     <section id="about" className="relative w-full py-24 sm:py-32 overflow-hidden bg-[var(--bg-deep)]">
       {/* Background Watermark Title (Screenshot 1) */}
-      <div className="section-watermark text-[clamp(60px,14vw,220px)]">
+      <div className="section-watermark text-[clamp(38px,9vw,150px)]">
         ABOUT ME
       </div>
 
@@ -40,7 +40,7 @@ export default function About() {
             <span className="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
             <span>GET TO KNOW ME</span>
           </div>
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-[var(--text-primary)] max-w-2xl">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-[var(--text-primary)] max-w-3xl">
             I love building simple, reliable, and scalable systems that solve real problems.
           </h2>
         </div>

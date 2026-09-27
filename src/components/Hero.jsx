@@ -30,6 +30,8 @@ export default function Hero() {
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const [isTouchDevice, setIsTouchDevice] = useState(false);
   const [phoneHovered, setPhoneHovered] = useState(false);
+  const [imageHovered, setImageHovered] = useState(false);
+  const [hasScrolled, setHasScrolled] = useState(false);
   const containerRef = useRef(null);
 
   useEffect(() => {
@@ -49,8 +51,18 @@ export default function Hero() {
       setMousePos({ x, y });
     };
 
+    const handleScroll = () => {
+      setHasScrolled(window.scrollY > 25);
+    };
+
     window.addEventListener("mousemove", handleMouseMove, { passive: true });
-    return () => window.removeEventListener("mousemove", handleMouseMove);
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll();
+
+    return () => {
+      window.removeEventListener("mousemove", handleMouseMove);
+      window.removeEventListener("scroll", handleScroll);
+    };
   }, [isTouchDevice]);
 
   const handleScrollTo = (id) => {
@@ -62,65 +74,60 @@ export default function Hero() {
 
   const photoParallax = isTouchDevice
     ? { x: 0, y: 0 }
-    : { x: mousePos.x * 7, y: mousePos.y * 7 };
-  const textParallax = isTouchDevice
-    ? { x: 0, y: 0 }
-    : { x: mousePos.x * -3.5, y: mousePos.y * -3.5 };
+    : { x: mousePos.x * 5, y: mousePos.y * 5 };
+
+  const isColor = imageHovered || hasScrolled;
 
   return (
     <div className="relative w-full flex flex-col justify-between">
-      {/* 4.2 Hero Section — Centered Photo Layout */}
       <section
         id="hero"
         ref={containerRef}
-        className="relative w-full min-h-[90vh] lg:min-h-[100dvh] overflow-hidden flex flex-col justify-between pt-20 sm:pt-24 pb-4 sm:pb-6 hero-mesh-gradient select-none"
+        className="relative w-full h-[100dvh] max-h-[100dvh] min-h-[600px] overflow-hidden flex flex-col justify-between pt-16 sm:pt-20 pb-4 sm:pb-6 lg:pb-7 bg-[var(--bg-deep)] select-none"
       >
-        {/* Main Center Typographic & Photo Stage */}
-        <div className="relative flex-1 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-center">
-          {/* Layer 1: Giant Typographic Centerpiece */}
-          <motion.div
-            animate={textParallax}
-            transition={{ type: "spring", stiffness: 120, damping: 20 }}
-            className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none z-0 px-2 sm:px-4"
+        {/* Layer 1: Giant Outlined "MD." & Solid "SALAUDDIN" (Moved slightly upward as requested) */}
+        <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none z-0 px-2 sm:px-4 -translate-y-12 sm:-translate-y-16 md:-translate-y-20 lg:-translate-y-24">
+          {/* "Hi, I'm" greeting */}
+          <motion.p
+            initial={{ opacity: 0, y: 6 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4, delay: 0 }}
+            className="text-xs sm:text-sm md:text-base font-mono tracking-widest text-[var(--text-muted)] uppercase mb-1 sm:mb-2"
           >
-            {/* "Hi, I'm" */}
-            <motion.p
-              initial={{ opacity: 0, y: 8 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0 }}
-              className="text-xs sm:text-sm md:text-base font-mono tracking-widest text-[var(--text-muted)] uppercase mb-1 sm:mb-2"
-            >
-              Hi, I&apos;m
-            </motion.p>
+            Hi, I&apos;m
+          </motion.p>
 
-            {/* Outlined FIRST NAME */}
-            <motion.div
-              initial={{ opacity: 0, y: 12 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.15, ease: "easeOut" }}
-              className="w-full text-center"
-            >
-              <h1 className="hero-stroke-text font-display font-black tracking-tighter uppercase leading-[0.9] text-[clamp(32px,8.5vw,145px)] select-none">
-                MD. SALAUDDIN
-              </h1>
-            </motion.div>
-
-            {/* Solid LAST NAME */}
-            <motion.div
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.5, ease: "easeOut" }}
-              className="w-full text-center -mt-1 sm:-mt-3 md:-mt-6 lg:-mt-10"
-            >
-              <h2 className="font-display font-black tracking-tighter uppercase leading-[0.9] text-[var(--hero-name-fill)] opacity-95 text-[clamp(38px,10vw,170px)] select-none">
-                SALAUDDIN
-              </h2>
-            </motion.div>
+          {/* Line 1 (Outlined): "MD." */}
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.1, ease: "easeOut" }}
+            className="w-full text-center"
+          >
+            <h1 className="hero-stroke-text font-display font-black tracking-widest uppercase leading-[0.88] text-[clamp(54px,9.5vw,135px)] select-none">
+              MD.
+            </h1>
           </motion.div>
 
-          {/* Layer 2: Centered Profile Photo Cutout */}
+          {/* Line 2 (Solid): "SALAUDDIN" */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.92 }}
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.35, ease: "easeOut" }}
+            className="w-full text-center -mt-2 sm:-mt-4 md:-mt-6 lg:-mt-8"
+          >
+            <h2 className="font-display font-black tracking-normal uppercase leading-[0.88] text-[var(--hero-name-fill)] opacity-95 text-[clamp(56px,10.5vw,155px)] select-none">
+              SALAUDDIN
+            </h2>
+          </motion.div>
+        </div>
+
+        {/* 
+          Layer 2: Profile Photo - Kept in exact position
+        */}
+        <div className="absolute inset-0 flex items-end justify-center pointer-events-none z-10 overflow-hidden">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
             animate={{
               opacity: 1,
               scale: 1,
@@ -128,82 +135,75 @@ export default function Hero() {
               y: photoParallax.y,
             }}
             transition={{
-              opacity: { duration: 0.7, delay: 0.4 },
-              scale: { duration: 0.7, delay: 0.4, ease: "easeOut" },
+              opacity: { duration: 0.5, delay: 0.25 },
+              scale: { duration: 0.5, delay: 0.25, ease: "easeOut" },
               x: { type: "spring", stiffness: 100, damping: 18 },
               y: { type: "spring", stiffness: 100, damping: 18 },
             }}
-            className="relative z-10 flex items-center justify-center pointer-events-none mt-2 sm:mt-4 md:mt-6"
+            onMouseEnter={() => setImageHovered(true)}
+            onMouseLeave={() => setImageHovered(false)}
+            className="relative pointer-events-auto cursor-pointer"
           >
-            {/* Ambient soft glow */}
-            <div className="absolute w-56 h-56 sm:w-72 sm:h-72 md:w-96 md:h-96 rounded-full bg-gradient-to-tr from-indigo-500/15 via-violet-500/10 to-transparent blur-3xl -z-10 pointer-events-none" />
-
-            {/* Salauddin's Cutout Portrait */}
-            <div className="relative w-[clamp(210px,32vw,420px)] aspect-[3/4] max-h-[56vh] sm:max-h-[60vh] filter drop-shadow-[0_12px_28px_rgba(0,0,0,0.3)] dark:drop-shadow-[0_16px_36px_rgba(0,0,0,0.65)]">
+            <div
+              style={{
+                WebkitMaskImage: "linear-gradient(to bottom, black 65%, transparent 100%)",
+                maskImage: "linear-gradient(to bottom, black 65%, transparent 100%)",
+              }}
+              className={`relative w-[clamp(280px,36vw,500px)] h-[58vh] sm:h-[64vh] md:h-[68vh] filter drop-shadow-[0_12px_28px_rgba(0,0,0,0.2)] dark:drop-shadow-[0_16px_36px_rgba(0,0,0,0.65)] transition-all duration-700 ease-in-out ${
+                isColor
+                  ? "grayscale-0 contrast-100"
+                  : "grayscale contrast-110"
+              }`}
+            >
               <Image
                 src="/images/salauddin.png"
                 alt="MD. Salauddin — Full-Stack Software Engineer"
                 fill
                 priority
-                sizes="(max-width: 640px) 240px, (max-width: 1024px) 340px, 420px"
+                sizes="(max-width: 640px) 280px, (max-width: 1024px) 380px, 500px"
                 className="object-contain object-bottom"
               />
             </div>
           </motion.div>
         </div>
 
-        {/* Layer 3 & 4: Overlay Controls & Content Blocks */}
-        <div className="relative z-20 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-2 sm:pb-4 flex flex-col md:flex-row items-center md:items-end justify-between gap-6 pointer-events-auto">
-          {/* Layer 3 (Bottom-Left): Role & CTA Button */}
+        {/* Spacer for top flex */}
+        <div className="w-full pointer-events-none" />
+
+        {/* 
+          Layer 3 & 4: Bottom Overlay Controls & Content Blocks
+          Kept exactly in their current position.
+        */}
+        <div className="relative z-20 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-2 sm:pb-3 lg:pb-4 flex flex-col md:flex-row items-center md:items-end justify-between gap-5 pointer-events-auto">
+          {/* Bottom-Left: Role & CTA (Kept exactly where it is) */}
           <motion.div
             initial={{ opacity: 0, x: -16 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6, delay: 0.65, ease: "easeOut" }}
-            className="flex flex-col items-center md:items-start text-center md:text-left max-w-xs sm:max-w-sm"
+            transition={{ duration: 0.5, delay: 0.45, ease: "easeOut" }}
+            className="flex flex-col items-center md:items-start text-center md:text-left max-w-sm sm:max-w-md"
           >
-            <h3 className="text-lg sm:text-xl font-bold tracking-tight text-[var(--text-primary)]">
-              Full Stack Software Engineer
+            <h3 className="text-xl sm:text-2xl md:text-3xl font-extrabold tracking-tight text-[var(--text-primary)] leading-[1.15]">
+              Full Stack Software<br className="hidden sm:inline" /> Engineer
             </h3>
-            <p className="mt-1 text-xs sm:text-sm text-[var(--text-secondary)] leading-relaxed max-w-[280px]">
-              I build scalable APIs and polished interfaces — from database to deployment.
+            <p className="mt-2 text-xs sm:text-sm md:text-[15px] text-[var(--text-secondary)] leading-relaxed max-w-sm font-normal">
+              I build websites and scalable systems that are simple, reliable, and fast.
             </p>
-            <div className="mt-3">
+            <div className="mt-3.5">
               <button
                 onClick={() => handleScrollTo("work")}
-                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-xs sm:text-sm font-semibold bg-[var(--btn-pill-bg)] text-[var(--btn-pill-text)] hover:opacity-90 active:scale-95 transition-all shadow-xs group"
+                className="inline-flex items-center gap-2 px-6 py-2.5 sm:py-3 rounded-full text-xs sm:text-sm font-semibold bg-[var(--btn-pill-bg)] text-[var(--btn-pill-text)] hover:opacity-90 active:scale-95 transition-all shadow-sm cursor-pointer group"
               >
                 <span>View Projects</span>
-                <ArrowUpRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                <ArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
               </button>
             </div>
           </motion.div>
 
-          {/* Layer 5 (Center Bottom): Scroll Indicator */}
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.9 }}
-            onClick={() => handleScrollTo("about")}
-            className="cursor-pointer hidden lg:flex flex-col items-center gap-1.5 group pb-1"
-            aria-label="Scroll down"
-          >
-            <div className="w-5 h-8 rounded-full border border-[var(--text-muted)] group-hover:border-[var(--text-primary)] p-1 flex justify-center transition-colors">
-              <motion.div
-                animate={{ y: [0, 9, 0] }}
-                transition={{ repeat: Infinity, duration: 1.6, ease: "easeInOut" }}
-                className="w-1.5 h-1.5 rounded-full bg-[var(--text-primary)]"
-              />
-            </div>
-            <span className="text-[10px] font-mono tracking-[0.2em] text-[var(--text-muted)] uppercase group-hover:text-[var(--text-primary)] transition-colors">
-              SCROLL
-            </span>
-          </motion.div>
-
-          {/* Layer 4 (Bottom-Right): Social Link Buttons Vertical Stack */}
+          {/* Bottom-Right: 4 Social Pills Stack (Kept exactly where it is) */}
           <motion.div
             initial={{ opacity: 0, x: 16 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6, delay: 0.75, ease: "easeOut" }}
+            transition={{ duration: 0.5, delay: 0.5, ease: "easeOut" }}
             className="flex flex-wrap md:flex-col items-center md:items-end justify-center gap-2 sm:gap-2.5"
           >
             {/* GitHub */}
@@ -211,18 +211,18 @@ export default function Hero() {
               href="https://github.com/salauddin85"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-[var(--border-default)] bg-[var(--bg-surface)] text-xs sm:text-[13px] font-medium text-[var(--text-secondary)] shadow-xs hover:border-[var(--border-accent)] hover:text-[var(--text-primary)] hover:scale-105 active:scale-95 transition-all"
+              className="flex items-center gap-2.5 px-5 sm:px-6 py-2 sm:py-2.5 rounded-full border border-[var(--border-default)] bg-[var(--bg-surface)] text-xs sm:text-sm font-medium text-[var(--text-primary)] shadow-xs hover:border-[var(--border-accent)] hover:scale-105 active:scale-95 transition-all min-w-[125px] justify-center md:justify-start"
             >
-              <GithubIcon className="w-3.5 h-3.5 text-[var(--text-primary)]" />
+              <GithubIcon className="w-4 h-4" />
               <span>GitHub</span>
             </a>
 
             {/* Email */}
             <a
               href="mailto:ahmedsalauddin677785@gmail.com"
-              className="flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-[var(--border-default)] bg-[var(--bg-surface)] text-xs sm:text-[13px] font-medium text-[var(--text-secondary)] shadow-xs hover:border-[var(--border-accent)] hover:text-[var(--text-primary)] hover:scale-105 active:scale-95 transition-all"
+              className="flex items-center gap-2.5 px-5 sm:px-6 py-2 sm:py-2.5 rounded-full border border-[var(--border-default)] bg-[var(--bg-surface)] text-xs sm:text-sm font-medium text-[var(--text-primary)] shadow-xs hover:border-[var(--border-accent)] hover:scale-105 active:scale-95 transition-all min-w-[125px] justify-center md:justify-start"
             >
-              <Mail className="w-3.5 h-3.5 text-[var(--text-primary)]" />
+              <Mail className="w-4 h-4 text-indigo-500" />
               <span>Email</span>
             </a>
 
@@ -234,39 +234,67 @@ export default function Hero() {
             >
               <a
                 href="tel:+8801902061020"
-                className="flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-[var(--border-default)] bg-[var(--bg-surface)] text-xs sm:text-[13px] font-medium text-[var(--text-secondary)] shadow-xs hover:border-[var(--border-accent)] hover:text-[var(--text-primary)] hover:scale-105 active:scale-95 transition-all"
+                className="flex items-center gap-2.5 px-5 sm:px-6 py-2 sm:py-2.5 rounded-full border border-[var(--border-default)] bg-[var(--bg-surface)] text-xs sm:text-sm font-medium text-[var(--text-primary)] shadow-xs hover:border-[var(--border-accent)] hover:scale-105 active:scale-95 transition-all min-w-[125px] justify-center md:justify-start"
               >
-                <Phone className="w-3.5 h-3.5 text-emerald-500" />
+                <Phone className="w-4 h-4 text-emerald-500" />
                 <span>{phoneHovered ? "+8801902061020" : "Phone"}</span>
               </a>
             </div>
 
             {/* Location */}
-            <div className="flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-[var(--border-default)] bg-[var(--bg-surface)] text-xs sm:text-[13px] font-medium text-[var(--text-secondary)] shadow-xs hover:border-[var(--border-accent)] hover:text-[var(--text-primary)] transition-all cursor-default">
-              <MapPin className="w-3.5 h-3.5 text-indigo-500" />
-              <span>Dhaka, Bangladesh</span>
+            <div className="flex items-center gap-2.5 px-5 sm:px-6 py-2 sm:py-2.5 rounded-full border border-[var(--border-default)] bg-[var(--bg-surface)] text-xs sm:text-sm font-medium text-[var(--text-primary)] shadow-xs hover:border-[var(--border-accent)] transition-all cursor-default min-w-[125px] justify-center md:justify-start">
+              <MapPin className="w-4 h-4 text-rose-500" />
+              <span>Location</span>
             </div>
           </motion.div>
         </div>
+
+        {/* 
+          Subtle, Minimal Scroll Indicator (100% Mirroring Reference Image):
+          Thin horizontal lines, clean mouse outline, and spaced monospace SCROLL label.
+        */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.5, delay: 0.65 }}
+          onClick={() => handleScrollTo("about")}
+          className="absolute bottom-3 sm:bottom-4 lg:bottom-5 left-1/2 -translate-x-1/2 z-30 cursor-pointer hidden lg:flex flex-col items-center gap-1 group select-none"
+          aria-label="Scroll down to About section"
+        >
+          <div className="flex items-center gap-3">
+            <span className="w-10 sm:w-14 h-[1px] bg-neutral-400/40 dark:bg-neutral-600/40 transition-colors group-hover:bg-neutral-600 dark:group-hover:bg-neutral-300"></span>
+            <div className="w-3.5 h-6 rounded-full border border-neutral-700/60 dark:border-neutral-300/60 p-0.5 flex justify-center transition-colors group-hover:border-black dark:group-hover:border-white">
+              <motion.div
+                animate={{ y: [0, 6, 0] }}
+                transition={{ repeat: Infinity, duration: 1.6, ease: "easeInOut" }}
+                className="w-0.5 h-1.5 rounded-full bg-neutral-800 dark:bg-neutral-200"
+              />
+            </div>
+            <span className="w-10 sm:w-14 h-[1px] bg-neutral-400/40 dark:bg-neutral-600/40 transition-colors group-hover:bg-neutral-600 dark:group-hover:bg-neutral-300"></span>
+          </div>
+          <span className="text-[8.5px] font-mono font-bold tracking-[0.32em] text-neutral-500/80 dark:text-neutral-400/80 uppercase transition-colors group-hover:text-neutral-900 dark:group-hover:text-neutral-100 pl-1">
+            SCROLL
+          </span>
+        </motion.div>
       </section>
 
-      {/* Featured Stats Bar (Matches Screenshot 1 directly below hero) */}
+      {/* Stats Bar */}
       <div className="w-full border-y border-[var(--border-default)] bg-[var(--bg-surface)] py-8 sm:py-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8 text-center">
             {STATS.map((stat, i) => (
               <motion.div
                 key={stat.label}
-                initial={{ opacity: 0, y: 15 }}
+                initial={{ opacity: 0, y: 14 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: i * 0.1 }}
+                transition={{ duration: 0.4, delay: i * 0.08 }}
                 className="flex flex-col items-center"
               >
-                <span className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-[var(--text-primary)] font-display">
+                <span className="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight text-[var(--text-primary)] font-display">
                   {stat.value}
                 </span>
-                <span className="mt-1 text-[11px] sm:text-xs font-mono font-medium text-[var(--text-muted)] tracking-wider uppercase">
+                <span className="mt-1 text-[10px] sm:text-xs font-mono font-medium text-[var(--text-muted)] tracking-wider uppercase">
                   {stat.label}
                 </span>
               </motion.div>

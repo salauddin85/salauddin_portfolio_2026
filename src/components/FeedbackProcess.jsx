@@ -25,7 +25,7 @@ export default function FeedbackProcess() {
   return (
     <section className="relative w-full py-24 sm:py-32 overflow-hidden bg-[var(--bg-deep)] border-t border-[var(--border-default)]">
       {/* Background Watermark Title */}
-      <div className="section-watermark text-[clamp(55px,13vw,210px)]">
+      <div className="section-watermark text-[clamp(38px,9vw,150px)]">
         FEEDBACK
       </div>
 
@@ -36,7 +36,7 @@ export default function FeedbackProcess() {
             <span className="w-1.5 h-1.5 rounded-full bg-indigo-500"></span>
             <span>KIND WORDS</span>
           </div>
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-[var(--text-primary)] max-w-xl">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-[var(--text-primary)] max-w-2xl">
             What collaborators and managers say about working with me.
           </h2>
         </div>

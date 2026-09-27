@@ -66,7 +66,7 @@ export default function Experience() {
         {/* Inverted Dark Card Container (Screenshot 3) */}
         <div className="relative rounded-3xl p-8 sm:p-12 lg:p-16 bg-[#0E0E14] text-white border border-white/10 shadow-2xl overflow-hidden">
           {/* Faint Dark Watermark */}
-          <div className="absolute top-4 left-1/2 -translate-x-1/2 font-display font-black text-[clamp(50px,12vw,170px)] text-white/[0.03] select-none pointer-events-none whitespace-nowrap tracking-wider">
+          <div className="absolute top-4 left-1/2 -translate-x-1/2 font-display font-black text-[clamp(36px,9vw,140px)] text-white/[0.03] select-none pointer-events-none whitespace-nowrap tracking-wider max-w-[90vw] overflow-hidden">
             EXPERIENCE
           </div>
 
@@ -76,7 +76,7 @@ export default function Experience() {
                 <span className="w-1.5 h-1.5 rounded-full bg-indigo-400"></span>
                 <span>CAREER & EDUCATION</span>
               </div>
-              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-white max-w-xl">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-white max-w-2xl">
                 Where I&apos;ve worked and what I did, from architecture to production.
               </h2>
             </div>

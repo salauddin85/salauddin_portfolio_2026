@@ -40,7 +40,7 @@ export default function Contact() {
   return (
     <section id="contact" className="relative w-full py-24 sm:py-32 overflow-hidden bg-[var(--bg-deep)] border-t border-[var(--border-default)]">
       {/* Background Watermark Title */}
-      <div className="section-watermark text-[clamp(60px,14vw,220px)]">
+      <div className="section-watermark text-[clamp(38px,9vw,150px)]">
         CONTACT
       </div>
 
@@ -50,7 +50,7 @@ export default function Contact() {
             <span className="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
             <span>GET IN TOUCH</span>
           </div>
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-[var(--text-primary)] max-w-xl">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-[var(--text-primary)] max-w-2xl">
             Let&apos;s build something exceptional together.
           </h2>
         </div>

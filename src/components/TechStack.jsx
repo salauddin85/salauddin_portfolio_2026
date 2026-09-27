@@ -81,7 +81,7 @@ export default function TechStack() {
   return (
     <section id="tech-stack" className="relative w-full py-24 sm:py-32 overflow-hidden bg-[var(--bg-deep)] border-t border-[var(--border-default)]">
       {/* Background Watermark Title */}
-      <div className="section-watermark text-[clamp(55px,13vw,210px)]">
+      <div className="section-watermark text-[clamp(38px,9vw,150px)]">
         TECH STACK
       </div>
 
@@ -92,7 +92,7 @@ export default function TechStack() {
             <span className="w-1.5 h-1.5 rounded-full bg-indigo-500"></span>
             <span>TECHNOLOGIES I USE</span>
           </div>
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-[var(--text-primary)] max-w-2xl">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-[var(--text-primary)] max-w-3xl">
             The tools I use to build complete websites, apps, and scalable backends.
           </h2>
         </div>

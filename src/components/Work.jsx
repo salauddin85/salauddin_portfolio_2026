@@ -141,7 +141,7 @@ export default function Work() {
   return (
     <section id="work" className="relative w-full py-24 sm:py-32 overflow-hidden bg-[var(--bg-deep)] border-t border-[var(--border-default)]">
       {/* Background Watermark Title */}
-      <div className="section-watermark text-[clamp(65px,16vw,240px)]">
+      <div className="section-watermark text-[clamp(38px,9vw,150px)]">
         WORK
       </div>
 
@@ -153,7 +153,7 @@ export default function Work() {
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
               <span>FEATURED WORK</span>
             </div>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-[var(--text-primary)] max-w-xl">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-[var(--text-primary)] max-w-2xl">
               Live products and production builds across web, AI, SaaS, and fintech.
             </h2>
           </div>
