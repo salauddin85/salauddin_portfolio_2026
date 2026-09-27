@@ -1,26 +1,132 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Light Theme Palette (Matches Reference Screenshots) */
+  --bg-deep: #F7F7F4;
+  --bg-surface: #FFFFFF;
+  --bg-elevated: #EFEFEA;
+  --border-default: #E6E6DF;
+  --border-accent: #111111;
+  --primary-indigo: #111111;
+  --primary-light: #2A2A2A;
+  --primary-dark: #000000;
+  --accent-violet: #6366F1;
+  --accent-cyan: #0284C7;
+  --text-primary: #111111;
+  --text-secondary: #555555;
+  --text-muted: #888888;
+  --success-green: #10B981;
+  --error-red: #EF4444;
+  --hero-name-stroke: #111111;
+  --hero-name-fill: #111111;
+  --nav-bg: rgba(247, 247, 244, 0.85);
+  --btn-pill-bg: #111111;
+  --btn-pill-text: #FFFFFF;
+  --btn-pill-hover: #262626;
+  --watermark-color: rgba(0, 0, 0, 0.04);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+.dark {
+  /* Dark Theme Palette (SRS 5.2.1) */
+  --bg-deep: #0A0A0F;
+  --bg-surface: #12121A;
+  --bg-elevated: #1A1A26;
+  --border-default: #222232;
+  --border-accent: #6366F1;
+  --primary-indigo: #6366F1;
+  --primary-light: #818CF8;
+  --primary-dark: #4F46E5;
+  --accent-violet: #A78BFA;
+  --accent-cyan: #38BDF8;
+  --text-primary: #F8FAFC;
+  --text-secondary: #94A3B8;
+  --text-muted: #64748B;
+  --success-green: #34D399;
+  --error-red: #F87171;
+  --hero-name-stroke: #E5E7EB;
+  --hero-name-fill: #F8FAFC;
+  --nav-bg: rgba(10, 10, 15, 0.85);
+  --btn-pill-bg: #F8FAFC;
+  --btn-pill-text: #0A0A0F;
+  --btn-pill-hover: #E2E8F0;
+  --watermark-color: rgba(255, 255, 255, 0.035);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+@theme {
+  --font-sans: var(--font-inter), system-ui, -apple-system, sans-serif;
+  --font-display: var(--font-syne), var(--font-inter), sans-serif;
+  --font-mono: var(--font-mono), monospace;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--bg-deep);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+}
+
+/* Custom Outlined Text Stroke */
+.hero-stroke-text {
+  color: transparent !important;
+  -webkit-text-stroke: 2.2px var(--hero-name-stroke);
+}
+
+@media (max-width: 640px) {
+  .hero-stroke-text {
+    -webkit-text-stroke: 1.5px var(--hero-name-stroke);
+  }
+}
+
+/* Watermark Background Title (As in Jerwin Tenajura reference screenshots) */
+.section-watermark {
+  font-family: var(--font-display);
+  font-weight: 900;
+  text-transform: uppercase;
+  color: var(--watermark-color);
+  letter-spacing: -0.04em;
+  user-select: none;
+  pointer-events: none;
+  position: absolute;
+  top: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  line-height: 1;
+  z-index: 0;
+}
+
+/* Subtle Animated Ambient Mesh / Glow Background */
+.hero-mesh-gradient {
+  background-image: 
+    radial-gradient(circle at 50% 25%, rgba(99, 102, 241, 0.06) 0%, transparent 60%),
+    radial-gradient(circle at 80% 75%, rgba(167, 139, 250, 0.04) 0%, transparent 40%);
+}
+
+.dark .hero-mesh-gradient {
+  background-image: 
+    radial-gradient(circle at 50% 30%, rgba(99, 102, 241, 0.12) 0%, transparent 65%),
+    radial-gradient(circle at 85% 75%, rgba(167, 139, 250, 0.07) 0%, transparent 45%),
+    radial-gradient(circle at 15% 65%, rgba(34, 211, 238, 0.05) 0%, transparent 45%);
+}
+
+/* Glass navigation blur */
+.glass-nav {
+  background-color: var(--nav-bg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+/* Clean Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 7px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-deep);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border-default);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-muted);
 }
