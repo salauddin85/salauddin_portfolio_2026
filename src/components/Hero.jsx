@@ -39,7 +39,7 @@ export default function Hero() {
       setIsTouchDevice(
         "ontouchstart" in window ||
           navigator.maxTouchPoints > 0 ||
-          window.innerWidth < 768
+          window.innerWidth < 768,
       );
     }
 
@@ -97,26 +97,26 @@ export default function Hero() {
             Hi, I&apos;m
           </motion.p>
 
-          {/* Line 1 (Outlined): "MD." */}
+          {/* Line 1 (Outlined): "MD." (Moved slightly upward) */}
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1, ease: "easeOut" }}
-            className="w-full text-center"
+            className="w-full text-center -translate-y-1 sm:-translate-y-2 md:-translate-y-3"
           >
             <h1 className="hero-stroke-text font-display font-black tracking-widest uppercase leading-[0.88] text-[clamp(54px,9.5vw,135px)] select-none">
               MD.
             </h1>
           </motion.div>
 
-          {/* Line 2 (Solid): "SALAUDDIN" */}
+          {/* Line 2 (Solid): "SALAUDDIN" (Clear balanced gap from MD.) */}
           <motion.div
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.35, ease: "easeOut" }}
-            className="w-full text-center -mt-2 sm:-mt-4 md:-mt-6 lg:-mt-8"
+            className="w-full text-center mt-1 sm:mt-2 md:mt-3"
           >
-            <h2 className="font-display font-black tracking-normal uppercase leading-[0.88] text-[var(--hero-name-fill)] opacity-95 text-[clamp(56px,10.5vw,155px)] select-none">
+            <h2 className="font-display font-black tracking-normal uppercase leading-[0.88] text-[var(--hero-name-fill)] opacity-95 text-[clamp(48px,9vw,132px)] select-none">
               SALAUDDIN
             </h2>
           </motion.div>
@@ -146,17 +146,17 @@ export default function Hero() {
           >
             <div
               style={{
-                WebkitMaskImage: "linear-gradient(to bottom, black 65%, transparent 100%)",
-                maskImage: "linear-gradient(to bottom, black 65%, transparent 100%)",
+                WebkitMaskImage:
+                  "linear-gradient(to bottom, black 65%, transparent 100%)",
+                maskImage:
+                  "linear-gradient(to bottom, black 65%, transparent 100%)",
               }}
-              className={`relative w-[clamp(280px,36vw,500px)] h-[58vh] sm:h-[64vh] md:h-[68vh] filter drop-shadow-[0_12px_28px_rgba(0,0,0,0.2)] dark:drop-shadow-[0_16px_36px_rgba(0,0,0,0.65)] transition-all duration-700 ease-in-out ${
-                isColor
-                  ? "grayscale-0 contrast-100"
-                  : "grayscale contrast-110"
+              className={`relative w-[clamp(300px,40vw,560px)] h-[62vh] sm:h-[68vh] md:h-[66vh] filter drop-shadow-[0_12px_28px_rgba(0,0,0,0.2)] dark:drop-shadow-[0_16px_36px_rgba(0,0,0,0.65)] transition-all duration-700 ease-in-out ${
+                isColor ? "grayscale-0 contrast-100" : "grayscale contrast-110"
               }`}
             >
               <Image
-                src="/images/salauddin.png"
+                src="/images/salauddin1.png"
                 alt="MD. Salauddin — Full-Stack Software Engineer"
                 fill
                 priority
@@ -183,10 +183,12 @@ export default function Hero() {
             className="flex flex-col items-center md:items-start text-center md:text-left max-w-sm sm:max-w-md"
           >
             <h3 className="text-xl sm:text-2xl md:text-3xl font-extrabold tracking-tight text-[var(--text-primary)] leading-[1.15]">
-              Full Stack Software<br className="hidden sm:inline" /> Engineer
+              Full Stack Software
+              <br className="hidden sm:inline" /> Engineer
             </h3>
             <p className="mt-2 text-xs sm:text-sm md:text-[15px] text-[var(--text-secondary)] leading-relaxed max-w-sm font-normal">
-              I build websites and scalable systems that are simple, reliable, and fast.
+              I build websites and scalable systems that are simple, reliable,
+              and fast.
             </p>
             <div className="mt-3.5">
               <button
@@ -266,7 +268,11 @@ export default function Hero() {
             <div className="w-3.5 h-6 rounded-full border border-neutral-700/60 dark:border-neutral-300/60 p-0.5 flex justify-center transition-colors group-hover:border-black dark:group-hover:border-white">
               <motion.div
                 animate={{ y: [0, 6, 0] }}
-                transition={{ repeat: Infinity, duration: 1.6, ease: "easeInOut" }}
+                transition={{
+                  repeat: Infinity,
+                  duration: 1.6,
+                  ease: "easeInOut",
+                }}
                 className="w-0.5 h-1.5 rounded-full bg-neutral-800 dark:bg-neutral-200"
               />
             </div>
