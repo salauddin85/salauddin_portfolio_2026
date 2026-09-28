@@ -1,7 +1,7 @@
 "use client";
 
-import React from "react";
-import { motion } from "framer-motion";
+import React, { useRef } from "react";
+import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 import { 
   GraduationCap, 
   Code, 
@@ -12,8 +12,10 @@ import {
   Sparkles, 
   CheckCircle2, 
   ArrowUpRight,
-  TrendingUp,
-  Activity
+  Activity,
+  Building2,
+  Rocket,
+  Zap
 } from "lucide-react";
 
 const EXPERTISE = [
@@ -26,16 +28,51 @@ const EXPERTISE = [
 ];
 
 export default function About() {
+  const sectionRef = useRef(null);
+
+  // Directly link animation to the visitor's continuous scroll progress
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start end", "end start"],
+  });
+
+  // Smooth, physical spring configuration for buttery responsive scroll
+  const springConfig = { stiffness: 100, damping: 24, mass: 0.4 };
+
+  // As visitor scrolls downward, text continuously glides toward the left
+  // Initial position: 0 (stays exactly where it is initially)
+  // Deeper scroll: moves progressively further to the left (negative x)
+  const rawWatermarkX = useTransform(scrollYProgress, [0, 1], [0, -260]);
+  const smoothWatermarkX = useSpring(rawWatermarkX, springConfig);
+
+  const rawHeaderX = useTransform(scrollYProgress, [0, 1], [0, -90]);
+  const smoothHeaderX = useSpring(rawHeaderX, springConfig);
+
+  const rawJourneyX = useTransform(scrollYProgress, [0, 1], [0, -60]);
+  const smoothJourneyX = useSpring(rawJourneyX, springConfig);
+
   return (
-    <section id="about" className="relative w-full py-24 sm:py-32 overflow-hidden bg-[var(--bg-deep)]">
-      {/* Background Watermark Title (Screenshot 1) */}
-      <div className="section-watermark text-[clamp(38px,9vw,150px)]">
-        ABOUT ME
+    <section
+      id="about"
+      ref={sectionRef}
+      className="relative w-full py-24 sm:py-32 overflow-hidden bg-[var(--bg-deep)]"
+    >
+      {/* Background Section Title "ABOUT ME" — Scroll-linked continuous leftward movement */}
+      <div className="absolute top-[-10px] left-0 w-full flex justify-center pointer-events-none overflow-hidden z-0 select-none">
+        <motion.div
+          style={{ x: smoothWatermarkX }}
+          className="font-display font-black uppercase tracking-[-0.04em] whitespace-nowrap text-[clamp(38px,9vw,150px)] leading-none text-[var(--watermark-color)] [-webkit-text-stroke:var(--watermark-stroke,0px_transparent)] max-w-[95vw] overflow-hidden"
+        >
+          ABOUT ME
+        </motion.div>
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
-        <div className="flex flex-col items-start mb-12 sm:mb-16">
+        {/* Section Header: Scroll-linked continuous leftward movement */}
+        <motion.div
+          style={{ x: smoothHeaderX }}
+          className="flex flex-col items-start mb-12 sm:mb-16"
+        >
           <div className="flex items-center gap-2 text-xs font-mono tracking-widest uppercase font-semibold text-[var(--text-primary)] mb-3">
             <span className="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
             <span>ABOUT ME</span>
@@ -43,19 +80,22 @@ export default function About() {
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-[var(--text-primary)] max-w-3xl">
             I love building simple, reliable, and scalable systems that solve real problems.
           </h2>
-        </div>
+        </motion.div>
 
         {/* Two-Column Grid: Left Journey & Expertise / Right Education */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-start">
-          {/* Left Column: My Journey (7 Cols) */}
+          {/* Left Column: My Journey, Expertise & Metrics (7 Cols) */}
           <div className="lg:col-span-7 flex flex-col gap-8">
-            <div>
-              <h3 className="text-xs font-mono uppercase tracking-widest text-[var(--text-muted)] mb-4">
+            {/* My Journey: Scroll-linked continuous leftward movement */}
+            <motion.div
+              style={{ x: smoothJourneyX }}
+            >
+              <h3 className="text-xs font-mono uppercase tracking-widest text-[var(--text-muted)] font-semibold mb-4">
                 MY JOURNEY
               </h3>
               <div className="space-y-4 text-sm sm:text-base text-[var(--text-secondary)] leading-relaxed font-normal">
                 <p>
-                  I&apos;m <span className="font-semibold text-[var(--text-primary)]">MD. Salauddin</span>, a Full-Stack Software Engineer with nearly 2 years of production experience delivering maintainable software systems across the full SDLC at <span className="font-medium text-[var(--text-primary)]">PEPOLTEK LTD</span>.
+                  I&apos;m <span className="font-semibold text-[var(--text-primary)]">MD. Salauddin</span>, a Full-Stack Software Engineer with nearly 2 years of production experience delivering maintainable software systems across the full SDLC at <span className="font-semibold text-[var(--text-primary)]">PEPOLTEK LTD</span>.
                 </p>
                 <p>
                   My engineering journey began with a hands-on Diploma in Computer Science & Technology from Brahmanbaria Polytechnic (graduating with a 3.51 GPA), and I am currently pursuing my B.Sc. in Computer Science & Engineering at Northern University Bangladesh.
@@ -64,11 +104,16 @@ export default function About() {
                   I thrive on solving complex backend challenges — optimizing database latency by 30%, automating CI/CD release cycles from 4 hours to 30 minutes, and integrating autonomous LLM pipelines and RAG vector search into enterprise applications.
                 </p>
               </div>
-            </div>
+            </motion.div>
 
-            {/* Expertise Grid */}
-            <div>
-              <h3 className="text-xs font-mono uppercase tracking-widest text-[var(--text-muted)] mb-4">
+            {/* Expertise Grid with CTA-Style Inverted Hover Effect */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.7, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
+            >
+              <h3 className="text-xs font-mono uppercase tracking-widest text-[var(--text-muted)] font-semibold mb-4">
                 EXPERTISE
               </h3>
               <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
@@ -77,101 +122,216 @@ export default function About() {
                   return (
                     <div
                       key={item.name}
-                      className="flex items-center gap-2.5 p-3 rounded-xl border border-[var(--border-default)] bg-[var(--bg-surface)] text-xs font-medium text-[var(--text-primary)] shadow-xs hover:border-[var(--border-accent)] transition-all"
+                      className="group flex items-center gap-2.5 p-3 sm:p-3.5 rounded-xl border border-[var(--border-default)] bg-[var(--bg-surface)] text-xs sm:text-[13px] font-medium text-[var(--text-primary)] shadow-xs hover:bg-black hover:text-white hover:border-black dark:hover:bg-white dark:hover:text-black dark:hover:border-white hover:shadow-md hover:-translate-y-0.5 active:scale-95 transition-all duration-300 ease-out cursor-pointer select-none"
                     >
-                      <Icon className="w-4 h-4 text-indigo-500 shrink-0" />
-                      <span>{item.name}</span>
+                      <Icon className="w-4 h-4 text-indigo-500 group-hover:text-white dark:group-hover:text-black shrink-0 transition-colors duration-300" />
+                      <span className="transition-colors duration-300">{item.name}</span>
                     </div>
                   );
                 })}
               </div>
-            </div>
+            </motion.div>
 
-            {/* Live Metrics / System Preview Card (Matches dashboard preview in Screenshot 1) */}
-            <div className="p-5 rounded-2xl border border-[var(--border-default)] bg-[var(--bg-surface)] shadow-xs">
-              <div className="flex items-center justify-between pb-3 mb-3 border-b border-[var(--border-default)]">
-                <div className="flex items-center gap-2">
-                  <Activity className="w-4 h-4 text-emerald-500" />
-                  <span className="text-xs font-mono font-medium text-[var(--text-primary)]">
-                    PEPOLTEK Production Metrics
+            {/* PEPOLTEK Production Metrics — Modernized Telemetry Layout */}
+            <motion.div
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.7, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+              className="p-6 sm:p-7 rounded-2xl border border-[var(--border-default)] bg-[var(--bg-surface)] shadow-xs"
+            >
+              {/* Card Header */}
+              <div className="flex items-center justify-between pb-4 mb-5 border-b border-[var(--border-default)]">
+                <div className="flex items-center gap-3">
+                  <div className="w-9 h-9 rounded-xl bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 flex items-center justify-center shadow-xs">
+                    <Activity className="w-4.5 h-4.5" />
+                  </div>
+                  <div>
+                    <h4 className="text-xs sm:text-sm font-bold text-[var(--text-primary)] uppercase tracking-wider font-mono">
+                      PEPOLTEK LTD. Production Metrics
+                    </h4>
+                    <p className="text-[11px] text-[var(--text-muted)] font-medium">
+                      Real-world engineering impact & optimization
+                    </p>
+                  </div>
+                </div>
+                <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20 text-[11px] font-mono font-semibold">
+                  <span className="relative flex h-2 w-2">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                    <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
                   </span>
-                </div>
-                <span className="text-[11px] font-mono text-[var(--text-muted)]">
-                  Live Impact
-                </span>
-              </div>
-              <div className="grid grid-cols-3 gap-3 text-center">
-                <div className="p-2.5 rounded-lg bg-[var(--bg-deep)]">
-                  <div className="text-base sm:text-lg font-bold text-[var(--text-primary)]">4h → 30m</div>
-                  <div className="text-[10px] text-[var(--text-muted)] font-mono">CI/CD Deploy Time</div>
-                </div>
-                <div className="p-2.5 rounded-lg bg-[var(--bg-deep)]">
-                  <div className="text-base sm:text-lg font-bold text-emerald-500">+30%</div>
-                  <div className="text-[10px] text-[var(--text-muted)] font-mono">API Query Speed</div>
-                </div>
-                <div className="p-2.5 rounded-lg bg-[var(--bg-deep)]">
-                  <div className="text-base sm:text-lg font-bold text-[var(--text-primary)]">-20%</div>
-                  <div className="text-[10px] text-[var(--text-muted)] font-mono">Infra Cloud Cost</div>
+                  <span>Live Impact</span>
                 </div>
               </div>
-            </div>
+
+              {/* Metrics Grid */}
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3.5">
+                {/* Metric 1: CI/CD Deployment Time */}
+                <div className="group p-4 rounded-xl border border-[var(--border-default)] bg-[var(--bg-deep)]/70 hover:bg-[var(--bg-deep)] hover:border-[var(--border-accent)] hover:shadow-xs transition-all duration-300">
+                  <div className="flex items-center justify-between mb-2.5">
+                    <div className="w-8 h-8 rounded-lg bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 flex items-center justify-center group-hover:scale-110 transition-transform">
+                      <Rocket className="w-4 h-4" />
+                    </div>
+                    <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-indigo-500/10 text-indigo-600 dark:text-indigo-400">
+                      -87% Time
+                    </span>
+                  </div>
+                  <div className="text-xl sm:text-2xl font-black font-display text-[var(--text-primary)] tracking-tight">
+                    4h <span className="text-sm text-[var(--text-muted)] font-normal">→</span> 30m
+                  </div>
+                  <div className="text-xs font-semibold text-[var(--text-primary)] mt-1">
+                    CI/CD Deploy Time
+                  </div>
+                  <div className="text-[11px] text-[var(--text-muted)] mt-0.5 leading-snug">
+                    Automated Docker release cycle
+                  </div>
+                </div>
+
+                {/* Metric 2: API Query Speedup */}
+                <div className="group p-4 rounded-xl border border-[var(--border-default)] bg-[var(--bg-deep)]/70 hover:bg-[var(--bg-deep)] hover:border-[var(--border-accent)] hover:shadow-xs transition-all duration-300">
+                  <div className="flex items-center justify-between mb-2.5">
+                    <div className="w-8 h-8 rounded-lg bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 flex items-center justify-center group-hover:scale-110 transition-transform">
+                      <Zap className="w-4 h-4" />
+                    </div>
+                    <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-600 dark:text-emerald-400">
+                      Faster
+                    </span>
+                  </div>
+                  <div className="text-xl sm:text-2xl font-black font-display text-emerald-600 dark:text-emerald-400 tracking-tight">
+                    +30%
+                  </div>
+                  <div className="text-xs font-semibold text-[var(--text-primary)] mt-1">
+                    API Performance
+                  </div>
+                  <div className="text-[11px] text-[var(--text-muted)] mt-0.5 leading-snug">
+                    PostgreSQL indexing & Redis cache
+                  </div>
+                </div>
+
+                {/* Metric 3: Cloud Infrastructure Savings */}
+                <div className="group p-4 rounded-xl border border-[var(--border-default)] bg-[var(--bg-deep)]/70 hover:bg-[var(--bg-deep)] hover:border-[var(--border-accent)] hover:shadow-xs transition-all duration-300">
+                  <div className="flex items-center justify-between mb-2.5">
+                    <div className="w-8 h-8 rounded-lg bg-sky-500/10 text-sky-600 dark:text-sky-400 flex items-center justify-center group-hover:scale-110 transition-transform">
+                      <Server className="w-4 h-4" />
+                    </div>
+                    <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-sky-500/10 text-sky-600 dark:text-sky-400">
+                      Savings
+                    </span>
+                  </div>
+                  <div className="text-xl sm:text-2xl font-black font-display text-[var(--text-primary)] tracking-tight">
+                    -20%
+                  </div>
+                  <div className="text-xs font-semibold text-[var(--text-primary)] mt-1">
+                    Infra Cloud Cost
+                  </div>
+                  <div className="text-[11px] text-[var(--text-muted)] mt-0.5 leading-snug">
+                    Linux VPS & resource optimization
+                  </div>
+                </div>
+              </div>
+
+              {/* Card Footer */}
+              <div className="mt-5 pt-3.5 border-t border-[var(--border-default)] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 text-[11px] text-[var(--text-muted)] font-mono">
+                <span>Production Platforms: TalenTEK AI-HRM · Club Mgmt · Pepoltek.com</span>
+                <a
+                  href="#experience"
+                  className="inline-flex items-center gap-1 text-[var(--text-primary)] hover:text-indigo-600 dark:hover:text-indigo-400 font-semibold transition-colors"
+                >
+                  <span>View Timeline</span>
+                  <ArrowUpRight className="w-3.5 h-3.5" />
+                </a>
+              </div>
+            </motion.div>
           </div>
 
-          {/* Right Column: Education & Training (5 Cols) */}
+          {/* Right Column: Education & Qualifications (5 Cols) with Polished Cards & Smooth Hover Shadow */}
           <div className="lg:col-span-5 flex flex-col gap-6">
-            <h3 className="text-xs font-mono uppercase tracking-widest text-[var(--text-muted)]">
+            <h3 className="text-xs font-mono uppercase tracking-widest text-[var(--text-muted)] font-semibold">
               EDUCATION
             </h3>
 
-            {/* Degree 1 */}
-            <div className="p-6 rounded-2xl border border-[var(--border-default)] bg-[var(--bg-surface)] shadow-xs flex flex-col justify-between group hover:border-[var(--border-accent)] transition-all">
-              <div className="flex items-start justify-between gap-4">
-                <div className="w-10 h-10 rounded-xl bg-indigo-500/10 flex items-center justify-center text-indigo-500 shrink-0">
-                  <GraduationCap className="w-5 h-5" />
+            {/* Degree 1: B.Sc. in CSE */}
+            <motion.div
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+              className="group relative p-6 sm:p-7 rounded-2xl border border-[var(--border-default)] bg-[var(--bg-surface)] shadow-xs hover:shadow-[0_16px_36px_-10px_rgba(0,0,0,0.08)] dark:hover:shadow-[0_16px_36px_-10px_rgba(0,0,0,0.5)] hover:border-[var(--border-accent)] hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between overflow-hidden"
+            >
+              <div className="absolute -top-12 -right-12 w-28 h-28 rounded-full bg-indigo-500/5 group-hover:bg-indigo-500/10 blur-2xl transition-colors duration-300 pointer-events-none" />
+
+              <div>
+                <div className="flex items-center justify-between gap-3 mb-4">
+                  <div className="w-11 h-11 rounded-xl bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 flex items-center justify-center group-hover:scale-105 group-hover:bg-indigo-500 group-hover:text-white transition-all duration-300 shadow-xs">
+                    <GraduationCap className="w-5 h-5" />
+                  </div>
+                  <span className="px-3 py-1 rounded-full border border-[var(--border-default)] bg-[var(--bg-deep)] text-[11px] font-mono font-medium text-[var(--text-muted)]">
+                    2026 – Expected 2029
+                  </span>
                 </div>
-                <span className="text-xs font-mono text-[var(--text-muted)]">
-                  2026 to Expected 2029
-                </span>
-              </div>
-              <div className="mt-4">
-                <h4 className="text-base font-bold text-[var(--text-primary)]">
+
+                <h4 className="text-base sm:text-lg font-bold text-[var(--text-primary)] leading-snug group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
                   Bachelor of Science in Computer Science & Engineering
                 </h4>
-                <p className="mt-1 text-xs text-[var(--text-secondary)]">
-                  Northern University Bangladesh
-                </p>
-                <div className="mt-3 flex items-center gap-1.5 text-xs text-emerald-600 dark:text-emerald-400 font-mono">
-                  <CheckCircle2 className="w-3.5 h-3.5" />
+
+                <div className="flex items-center gap-1.5 mt-2 text-xs sm:text-sm text-[var(--text-secondary)] font-medium">
+                  <Building2 className="w-3.5 h-3.5 text-[var(--text-muted)] shrink-0" />
+                  <span>Northern University Bangladesh</span>
+                </div>
+              </div>
+
+              <div className="mt-5 pt-4 border-t border-[var(--border-default)] flex items-center justify-between">
+                <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20 text-xs font-mono font-medium">
+                  <span className="relative flex h-2 w-2">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                    <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                  </span>
                   <span>Currently Enrolled (Active Student)</span>
                 </div>
+                <span className="text-[11px] font-mono text-[var(--text-muted)]">Dhaka, BD</span>
               </div>
-            </div>
+            </motion.div>
 
-            {/* Degree 2 */}
-            <div className="p-6 rounded-2xl border border-[var(--border-default)] bg-[var(--bg-surface)] shadow-xs flex flex-col justify-between group hover:border-[var(--border-accent)] transition-all">
-              <div className="flex items-start justify-between gap-4">
-                <div className="w-10 h-10 rounded-xl bg-violet-500/10 flex items-center justify-center text-violet-500 shrink-0">
-                  <GraduationCap className="w-5 h-5" />
+            {/* Degree 2: Diploma in CST */}
+            <motion.div
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.6, delay: 0.12, ease: [0.16, 1, 0.3, 1] }}
+              className="group relative p-6 sm:p-7 rounded-2xl border border-[var(--border-default)] bg-[var(--bg-surface)] shadow-xs hover:shadow-[0_16px_36px_-10px_rgba(0,0,0,0.08)] dark:hover:shadow-[0_16px_36px_-10px_rgba(0,0,0,0.5)] hover:border-[var(--border-accent)] hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between overflow-hidden"
+            >
+              <div className="absolute -top-12 -right-12 w-28 h-28 rounded-full bg-violet-500/5 group-hover:bg-violet-500/10 blur-2xl transition-colors duration-300 pointer-events-none" />
+
+              <div>
+                <div className="flex items-center justify-between gap-3 mb-4">
+                  <div className="w-11 h-11 rounded-xl bg-violet-500/10 text-violet-600 dark:text-violet-400 flex items-center justify-center group-hover:scale-105 group-hover:bg-violet-500 group-hover:text-white transition-all duration-300 shadow-xs">
+                    <GraduationCap className="w-5 h-5" />
+                  </div>
+                  <span className="px-3 py-1 rounded-full border border-[var(--border-default)] bg-[var(--bg-deep)] text-[11px] font-mono font-medium text-[var(--text-muted)]">
+                    2021 – 2026
+                  </span>
                 </div>
-                <span className="text-xs font-mono text-[var(--text-muted)]">
-                  2021 to 2026
-                </span>
-              </div>
-              <div className="mt-4">
-                <h4 className="text-base font-bold text-[var(--text-primary)]">
+
+                <h4 className="text-base sm:text-lg font-bold text-[var(--text-primary)] leading-snug group-hover:text-violet-600 dark:group-hover:text-violet-400 transition-colors">
                   Diploma in Computer Science & Technology
                 </h4>
-                <p className="mt-1 text-xs text-[var(--text-secondary)]">
-                  Brahmanbaria Government Polytechnic Institute
-                </p>
-                <div className="mt-3 flex items-center gap-2">
-                  <span className="px-2 py-0.5 rounded-md bg-[var(--bg-deep)] text-xs font-mono font-medium text-[var(--text-primary)] border border-[var(--border-default)]">
-                    CGPA 3.51 / 4.00
-                  </span>
-                  <span className="text-xs text-[var(--text-muted)]">Completed</span>
+
+                <div className="flex items-center gap-1.5 mt-2 text-xs sm:text-sm text-[var(--text-secondary)] font-medium">
+                  <Building2 className="w-3.5 h-3.5 text-[var(--text-muted)] shrink-0" />
+                  <span>Brahmanbaria Government Polytechnic Institute</span>
                 </div>
               </div>
-            </div>
+
+              <div className="mt-5 pt-4 border-t border-[var(--border-default)] flex items-center justify-between">
+                <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[var(--bg-deep)] border border-[var(--border-default)] text-xs font-mono font-semibold text-[var(--text-primary)]">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500" />
+                  <span>CGPA 3.51 / 4.00</span>
+                </div>
+                <span className="text-[11px] font-mono font-medium text-emerald-600 dark:text-emerald-400">
+                  Academic Honors
+                </span>
+              </div>
+            </motion.div>
           </div>
         </div>
       </div>
