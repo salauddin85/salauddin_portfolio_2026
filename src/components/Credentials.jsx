@@ -149,7 +149,7 @@ export default function Credentials() {
         >
           <div className="flex flex-col items-start">
             <div className="flex items-center gap-2 text-xs font-mono tracking-widest uppercase font-normal text-[var(--text-muted)] mb-3">
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+              <span className="w-1.5 h-1.5 rounded-full bg-[var(--text-primary)]"></span>
               <span>CREDENTIALS</span>
             </div>
             <h2 className="text-base sm:text-lg font-normal text-[var(--text-secondary)] max-w-2xl leading-relaxed">
@@ -213,7 +213,7 @@ export default function Credentials() {
 
                     {/* Certificate Name & Details */}
                     <div>
-                      <h4 className="text-xs sm:text-sm font-semibold text-[var(--text-primary)] group-hover/card:text-indigo-600 dark:group-hover/card:text-indigo-400 transition-colors line-clamp-1">
+                      <h4 className="text-xs sm:text-sm font-semibold text-[var(--text-primary)] group-hover/card:text-black dark:group-hover/card:text-white transition-colors line-clamp-1">
                         {cert.title}
                       </h4>
                       <p className="text-[11px] font-mono text-[var(--text-muted)] uppercase tracking-wider truncate mt-0.5">
@@ -265,7 +265,7 @@ export default function Credentials() {
 
                     {/* Certificate Name & Details */}
                     <div>
-                      <h4 className="text-xs sm:text-sm font-semibold text-[var(--text-primary)] group-hover/card:text-indigo-600 dark:group-hover/card:text-indigo-400 transition-colors line-clamp-1">
+                      <h4 className="text-xs sm:text-sm font-semibold text-[var(--text-primary)] group-hover/card:text-black dark:group-hover/card:text-white transition-colors line-clamp-1">
                         {cert.title}
                       </h4>
                       <p className="text-[11px] font-mono text-[var(--text-muted)] uppercase tracking-wider truncate mt-0.5">
@@ -303,7 +303,7 @@ export default function Credentials() {
             >
               <div className="flex items-center justify-between gap-4 mb-4 pb-4 border-b border-[var(--border-default)]">
                 <div>
-                  <span className="text-xs font-mono uppercase text-indigo-500 font-semibold">
+                  <span className="text-xs font-mono uppercase text-[var(--text-muted)] font-semibold">
                     {selectedCert.category}
                   </span>
                   <h3 className="text-lg sm:text-xl font-bold text-[var(--text-primary)] mt-0.5">

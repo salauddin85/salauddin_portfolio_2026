@@ -142,8 +142,8 @@ export default function Experience() {
             className="relative z-10 flex flex-col md:flex-row md:items-end justify-between gap-6 mb-8 mt-2 sm:mt-4"
           >
             <div>
-              <div className="flex items-center gap-2 text-xs font-mono tracking-widest uppercase font-normal text-indigo-400 mb-3">
-                <span className="w-1.5 h-1.5 rounded-full bg-indigo-400"></span>
+              <div className="flex items-center gap-2 text-xs font-mono tracking-widest uppercase font-normal text-white/60 mb-3">
+                <span className="w-1.5 h-1.5 rounded-full bg-white"></span>
                 <span>CAREER & EDUCATION</span>
               </div>
               <h2 className="text-base sm:text-lg font-normal text-white/80 leading-relaxed">
@@ -173,7 +173,7 @@ export default function Experience() {
                   >
                     {/* Left text block: subtle horizontal hover animation from right to left */}
                     <div className="flex items-center gap-4 sm:gap-6 transition-transform duration-300 ease-out group-hover:-translate-x-2">
-                      <span className="text-xs sm:text-sm font-mono text-white/40 font-semibold group-hover:text-indigo-400 transition-colors duration-200">
+                      <span className="text-xs sm:text-sm font-mono text-white/40 font-semibold group-hover:text-white transition-colors duration-200">
                         {item.num}
                       </span>
                       <div>
@@ -182,7 +182,7 @@ export default function Experience() {
                             {item.company}
                           </h3>
                           <span className="inline-flex items-center gap-1 text-[10px] font-mono px-2 py-0.5 rounded-full bg-white/10 text-white/80 border border-white/10">
-                            <TypeIcon className="w-3 h-3 text-indigo-400" />
+                            <TypeIcon className="w-3 h-3 text-white/70" />
                             <span>{item.type}</span>
                           </span>
                         </div>
@@ -218,7 +218,7 @@ export default function Experience() {
                         transition={{ duration: 0.28, ease: "easeOut" }}
                         className="px-6 pb-6 sm:px-8 sm:pb-8 pt-0 border-t border-white/10"
                       >
-                        <div className="flex flex-wrap items-center gap-4 text-xs font-mono text-indigo-400 pt-4 pb-3">
+                        <div className="flex flex-wrap items-center gap-4 text-xs font-mono text-white/60 pt-4 pb-3">
                           <span className="flex items-center gap-1.5">
                             <Calendar className="w-3.5 h-3.5" />
                             {item.period}
@@ -243,14 +243,14 @@ export default function Experience() {
                           <div className="space-y-4 mt-2">
                             {item.sections.map((sec, sIdx) => (
                               <div key={sIdx} className="space-y-1.5">
-                                <h4 className="text-xs font-mono uppercase tracking-wider text-indigo-300 font-semibold flex items-center gap-2">
-                                  <span className="w-1.5 h-1.5 rounded-full bg-indigo-400"></span>
+                                <h4 className="text-xs font-mono uppercase tracking-wider text-white font-semibold flex items-center gap-2">
+                                  <span className="w-1.5 h-1.5 rounded-full bg-white"></span>
                                   <span>{sec.heading}</span>
                                 </h4>
                                 <div className="space-y-1.5 pl-2 sm:pl-3.5">
                                   {sec.points.map((pt, pIdx) => (
                                     <div key={pIdx} className="flex items-start gap-2.5 text-xs sm:text-sm text-white/85 leading-relaxed font-normal">
-                                      <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+                                      <CheckCircle2 className="w-4 h-4 text-white/70 shrink-0 mt-0.5" />
                                       <span>{pt}</span>
                                     </div>
                                   ))}
@@ -262,7 +262,7 @@ export default function Experience() {
                           <div className="space-y-2.5 mt-2">
                             {item.bullets.map((bullet, idx) => (
                               <div key={idx} className="flex items-start gap-2.5 text-xs sm:text-sm text-white/85 leading-relaxed font-normal">
-                                <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+                                <CheckCircle2 className="w-4 h-4 text-white/70 shrink-0 mt-0.5" />
                                 <span>{bullet}</span>
                               </div>
                             ))}

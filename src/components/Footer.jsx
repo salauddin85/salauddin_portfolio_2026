@@ -130,14 +130,14 @@ export default function Footer() {
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 text-xs sm:text-sm hover:text-[var(--text-primary)] transition-colors"
               >
-                <LinkedinIcon className="w-4 h-4 text-blue-500" />
+                <LinkedinIcon className="w-4 h-4" />
                 <span>LinkedIn</span>
               </a>
               <a
                 href="mailto:ahmedsalauddin677785@gmail.com"
                 className="inline-flex items-center gap-2 text-xs sm:text-sm hover:text-[var(--text-primary)] transition-colors"
               >
-                <Mail className="w-4 h-4 text-indigo-500" />
+                <Mail className="w-4 h-4" />
                 <span>Email</span>
               </a>
             </div>
@@ -150,7 +150,7 @@ export default function Footer() {
             <p className="text-xs leading-relaxed text-[var(--text-secondary)]">
               Open to full-time SWE roles, distributed teams, and high-impact freelance engineering contracts.
             </p>
-            <div className="mt-3 text-[11px] font-mono text-emerald-600 dark:text-emerald-400 flex items-center gap-1.5">
+            <div className="mt-3 text-[11px] font-mono text-[var(--text-primary)] flex items-center gap-1.5">
               <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
               <span>Available for Hire</span>
             </div>
@@ -160,14 +160,14 @@ export default function Footer() {
         {/* Bottom Bar (Screenshot 7) */}
         <div className="pt-8 border-t border-[var(--border-default)] flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-[var(--text-muted)]">
           <div>
-            © {new Date().getFullYear()} MD. Salauddin. Designed & engineered with Next.js & Tailwind.
+            © {new Date().getFullYear()} MD. Salauddin. All rights reserved.
           </div>
           <button
             onClick={scrollToTop}
             className="flex items-center gap-1.5 hover:text-[var(--text-primary)] transition-colors cursor-pointer focus:outline-none"
           >
-            <span>BACK TO TOP</span>
-            <ArrowUp className="w-3.5 h-3.5" />
+            <span className="text-sm font-mono font-bold ">BACK TO TOP</span>
+            <ArrowUp className="w-3.5 h-3.5 " />
           </button>
         </div>
       </div>

@@ -385,7 +385,7 @@ export default function Work() {
         >
           <div className="flex flex-col items-start">
             <div className="flex items-center gap-2 text-xs font-mono tracking-widest uppercase font-normal text-[var(--text-muted)] mb-3">
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+              <span className="w-1.5 h-1.5 rounded-full bg-[var(--text-primary)]"></span>
               <span>FEATURED</span>
             </div>
             <h2 className="text-base sm:text-lg font-normal text-[var(--text-secondary)] max-w-2xl leading-relaxed">
@@ -496,7 +496,7 @@ export default function Work() {
                   <div>
                     {/* Project Title */}
                     <div className="flex items-start justify-between gap-3">
-                      <h3 className="text-xl sm:text-2xl font-bold tracking-tight text-[var(--text-primary)] group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
+                      <h3 className="text-xl sm:text-2xl font-bold tracking-tight text-[var(--text-primary)] group-hover:opacity-80 transition-opacity">
                         {project.title}
                       </h3>
                       <div className="w-8 h-8 rounded-full border border-[var(--border-default)] flex items-center justify-center shrink-0 text-[var(--text-muted)] group-hover:border-black group-hover:bg-black group-hover:text-white dark:group-hover:border-white dark:group-hover:bg-white dark:group-hover:text-black transition-all duration-200">
@@ -511,7 +511,7 @@ export default function Work() {
 
                     {/* Key Technical Highlight Pill */}
                     <div className="mt-3.5 inline-flex items-center gap-1.5 px-3 py-1 rounded-lg text-xs bg-[var(--bg-elevated)] border border-[var(--border-default)] text-[var(--text-primary)] font-medium">
-                      <Sparkles className="w-3.5 h-3.5 text-indigo-500 shrink-0" />
+                      <Sparkles className="w-3.5 h-3.5 text-[var(--text-primary)] shrink-0" />
                       <span className="truncate">{project.metricsHighlight}</span>
                     </div>
                   </div>
@@ -550,7 +550,7 @@ export default function Work() {
         {/* Footer info note */}
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4 p-6 rounded-2xl border border-[var(--border-default)] bg-[var(--bg-surface)] text-xs text-[var(--text-secondary)] font-mono">
           <div className="flex items-center gap-2">
-            <Terminal className="w-4 h-4 text-emerald-500" />
+            <Terminal className="w-4 h-4 text-[var(--text-primary)]" />
             <span>Architecture: Production CI/CD, Containerized Micro-services & Multi-tenant DB Schemas</span>
           </div>
           <a
@@ -603,7 +603,7 @@ export default function Work() {
                 </div>
 
                 <div className="flex items-center gap-3">
-                  <span className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-mono font-medium bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-800 text-emerald-700 dark:text-emerald-300">
+                  <span className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-mono font-medium bg-neutral-100 dark:bg-neutral-800 border border-[var(--border-default)] text-[var(--text-primary)]">
                     <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
                     <span>{selectedProject.status}</span>
                   </span>
@@ -648,8 +648,9 @@ export default function Work() {
                         <span className="px-3 py-1 rounded-full text-xs font-medium bg-[var(--bg-elevated)] border border-[var(--border-default)] text-[var(--text-primary)]">
                           {selectedProject.category}
                         </span>
-                        <span className="px-2.5 py-1 rounded-full text-xs font-mono font-medium text-emerald-600 dark:text-emerald-400 bg-emerald-500/10">
-                          • {selectedProject.status}
+                        <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-mono font-medium text-[var(--text-primary)] bg-neutral-100 dark:bg-neutral-800 border border-[var(--border-default)]">
+                          <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                          <span>{selectedProject.status}</span>
                         </span>
                       </div>
 
@@ -678,8 +679,9 @@ export default function Work() {
                           <span className="font-mono text-[var(--text-muted)] uppercase tracking-wider text-[11px]">
                             STATUS
                           </span>
-                          <span className="font-semibold text-emerald-600 dark:text-emerald-400">
-                            {selectedProject.status} Production
+                          <span className="inline-flex items-center gap-1.5 font-semibold text-[var(--text-primary)]">
+                            <span className="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+                            <span>{selectedProject.status} Production</span>
                           </span>
                         </div>
 
@@ -743,13 +745,13 @@ export default function Work() {
                   <div className="space-y-6">
                     <div>
                       <h4 className="flex items-center gap-2 text-sm font-mono uppercase tracking-widest text-[var(--text-primary)] font-bold mb-4">
-                        <CheckCircle2 className="w-4 h-4 text-emerald-500" />
+                        <CheckCircle2 className="w-4 h-4 text-[var(--text-primary)]" />
                         <span>Key Features & Capabilities</span>
                       </h4>
                       <ul className="space-y-2.5">
                         {selectedProject.keyFeatures.map((feat, idx) => (
                           <li key={idx} className="flex items-start gap-2.5 text-xs sm:text-sm text-[var(--text-secondary)] leading-relaxed">
-                            <span className="w-1.5 h-1.5 rounded-full bg-indigo-500 shrink-0 mt-2" />
+                            <span className="w-1.5 h-1.5 rounded-full bg-[var(--text-primary)] shrink-0 mt-2" />
                             <span>{feat}</span>
                           </li>
                         ))}
@@ -758,13 +760,13 @@ export default function Work() {
 
                     <div className="p-4 rounded-2xl bg-[var(--bg-elevated)] border border-[var(--border-default)]">
                       <h5 className="text-xs font-mono uppercase tracking-wider text-[var(--text-primary)] font-semibold mb-2 flex items-center gap-1.5">
-                        <Cpu className="w-3.5 h-3.5 text-indigo-500" />
+                        <Cpu className="w-3.5 h-3.5 text-[var(--text-primary)]" />
                         <span>Key Impact & Metrics</span>
                       </h5>
                       <ul className="space-y-1.5 text-xs text-[var(--text-secondary)]">
                         {selectedProject.highlights.map((h, i) => (
                           <li key={i} className="flex items-start gap-2">
-                            <Check className="w-3.5 h-3.5 text-emerald-500 shrink-0 mt-0.5" />
+                            <Check className="w-3.5 h-3.5 text-[var(--text-primary)] shrink-0 mt-0.5" />
                             <span>{h}</span>
                           </li>
                         ))}
@@ -774,9 +776,9 @@ export default function Work() {
 
                   {/* Right: Technical Challenges & Architecture Solutions */}
                   <div className="space-y-6">
-                    <div className="p-5 rounded-2xl border border-amber-500/20 bg-amber-500/5 dark:bg-amber-500/10">
-                      <h4 className="flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-amber-700 dark:text-amber-400 font-bold mb-2">
-                        <ShieldCheck className="w-4 h-4" />
+                    <div className="p-5 rounded-2xl border border-[var(--border-default)] bg-[var(--bg-elevated)]">
+                      <h4 className="flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-[var(--text-primary)] font-bold mb-2">
+                        <ShieldCheck className="w-4 h-4 text-[var(--text-primary)]" />
                         <span>Technical Challenge</span>
                       </h4>
                       <p className="text-xs sm:text-sm text-[var(--text-secondary)] leading-relaxed">
@@ -784,9 +786,9 @@ export default function Work() {
                       </p>
                     </div>
 
-                    <div className="p-5 rounded-2xl border border-indigo-500/20 bg-indigo-500/5 dark:bg-indigo-500/10">
-                      <h4 className="flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-indigo-700 dark:text-indigo-400 font-bold mb-2">
-                        <Zap className="w-4 h-4" />
+                    <div className="p-5 rounded-2xl border border-[var(--border-default)] bg-[var(--bg-elevated)]">
+                      <h4 className="flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-[var(--text-primary)] font-bold mb-2">
+                        <Zap className="w-4 h-4 text-[var(--text-primary)]" />
                         <span>Engineering Approach & Solution</span>
                       </h4>
                       <p className="text-xs sm:text-sm text-[var(--text-secondary)] leading-relaxed">
@@ -832,7 +834,7 @@ export default function Work() {
                         </div>
 
                         <div>
-                          <h5 className="text-xs font-bold text-[var(--text-primary)] group-hover/mini:text-indigo-500 transition-colors truncate">
+                          <h5 className="text-xs font-bold text-[var(--text-primary)] group-hover/mini:opacity-80 transition-opacity truncate">
                             {item.title}
                           </h5>
                           <p className="text-[11px] text-[var(--text-secondary)] truncate">

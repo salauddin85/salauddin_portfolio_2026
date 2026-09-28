@@ -92,7 +92,7 @@ export default function Awards() {
           className="flex flex-col items-start mb-12 sm:mb-16"
         >
           <div className="flex items-center gap-2 text-xs font-mono tracking-widest uppercase font-normal text-[var(--text-muted)] mb-3">
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+            <span className="w-1.5 h-1.5 rounded-full bg-[var(--text-primary)]"></span>
             <span>RECOGNITION</span>
           </div>
           <h2 className="text-base sm:text-lg font-normal text-[var(--text-secondary)] max-w-2xl leading-relaxed">
@@ -122,7 +122,7 @@ export default function Awards() {
                 </div>
 
                 {/* Award Title */}
-                <h3 className="text-lg sm:text-xl font-bold tracking-tight text-[var(--text-primary)] group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
+                <h3 className="text-lg sm:text-xl font-bold tracking-tight text-[var(--text-primary)] group-hover:text-black dark:group-hover:text-white transition-colors">
                   {award.title}
                 </h3>
 
