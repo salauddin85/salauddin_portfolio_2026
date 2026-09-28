@@ -255,7 +255,7 @@ export default function TechStack() {
           className="flex flex-col items-start mb-8 sm:mb-10"
         >
           <div className="flex items-center gap-2 text-xs font-mono tracking-widest uppercase font-normal text-[var(--text-muted)] mb-3">
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+            <span className="w-1.5 h-1.5 rounded-full bg-[var(--text-primary)]"></span>
             <span>TECHNOLOGIES I USE</span>
           </div>
           <h2 className="text-base sm:text-lg font-normal text-[var(--text-secondary)] max-w-3xl leading-relaxed">
@@ -287,7 +287,7 @@ export default function TechStack() {
                 key={`${tech}-${idx}`}
                 className="group flex items-center gap-2.5 px-4 sm:px-5 py-2 sm:py-2.5 rounded-full border border-[var(--border-default)] bg-[var(--bg-surface)] text-xs sm:text-[13px] font-medium text-[var(--text-primary)] shadow-2xs hover:bg-black hover:text-white hover:border-black dark:hover:bg-white dark:hover:text-black dark:hover:border-white hover:shadow-md hover:-translate-y-0.5 active:scale-95 transition-all duration-300 shrink-0 cursor-pointer"
               >
-                <span className="text-indigo-500 group-hover:text-white dark:group-hover:text-black transition-colors shrink-0">
+                <span className="text-[var(--text-primary)] group-hover:text-white dark:group-hover:text-black transition-colors shrink-0">
                   <TechIcon name={tech} className="w-4 h-4" />
                 </span>
                 <span className="font-mono text-xs tracking-tight">{tech}</span>
@@ -347,7 +347,7 @@ export default function TechStack() {
                     {/* Card Header */}
                     <div className="flex items-center justify-between pb-3.5 mb-4 border-b border-[var(--border-default)]">
                       <div className="flex items-center gap-2.5">
-                        <div className="w-8 h-8 rounded-lg bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 flex items-center justify-center group-hover/card:scale-110 group-hover/card:bg-indigo-500 group-hover/card:text-white transition-all duration-300 shadow-2xs">
+                        <div className="w-8 h-8 rounded-lg bg-neutral-100 dark:bg-neutral-800 text-[var(--text-primary)] flex items-center justify-center group-hover/card:scale-110 group-hover/card:bg-black group-hover/card:text-white dark:group-hover/card:bg-white dark:group-hover/card:text-black transition-all duration-300 shadow-2xs">
                           <Icon className="w-4 h-4" />
                         </div>
                         <h3 className="text-xs font-mono font-bold uppercase tracking-wider text-[var(--text-primary)]">
@@ -368,7 +368,7 @@ export default function TechStack() {
                           key={skill}
                           className="group/item flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium bg-[var(--bg-deep)] text-[var(--text-primary)] border border-[var(--border-default)] hover:bg-black hover:text-white hover:border-black dark:hover:bg-white dark:hover:text-black dark:hover:border-white hover:shadow-xs hover:-translate-y-0.5 active:scale-95 transition-all duration-300 cursor-pointer select-none"
                         >
-                          <span className="text-indigo-500 group-hover/item:text-white dark:group-hover/item:text-black transition-colors shrink-0">
+                          <span className="text-[var(--text-primary)] group-hover/item:text-white dark:group-hover/item:text-black transition-colors shrink-0">
                             <TechIcon name={skill} className="w-3.5 h-3.5" />
                           </span>
                           <span className="transition-colors">{skill}</span>
@@ -385,7 +385,7 @@ export default function TechStack() {
         {/* Problem Solving Stat Card with Smooth Hover Shadow Effect */}
         <div className="mt-8 p-6 sm:p-7 rounded-2xl border border-[var(--border-default)] bg-[var(--bg-surface)] shadow-xs hover:shadow-[0_16px_36px_-10px_rgba(0,0,0,0.08)] dark:hover:shadow-[0_16px_36px_-10px_rgba(0,0,0,0.5)] hover:border-[var(--border-accent)] hover:-translate-y-1 transition-all duration-300 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-5">
           <div className="flex items-center gap-3.5">
-            <div className="w-11 h-11 rounded-xl bg-amber-500/10 text-amber-600 dark:text-amber-400 flex items-center justify-center shrink-0 shadow-xs">
+            <div className="w-11 h-11 rounded-xl bg-neutral-100 dark:bg-neutral-800 text-[var(--text-primary)] flex items-center justify-center shrink-0 shadow-xs">
               <Terminal className="w-5 h-5" />
             </div>
             <div>
