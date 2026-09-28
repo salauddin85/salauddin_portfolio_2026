@@ -1,11 +1,11 @@
 @import "tailwindcss";
 
 :root {
-  /* Light Theme Palette (Matches Reference Screenshots) */
-  --bg-deep: #F7F7F4;
+  /* Light Theme Palette (Default White Theme) */
+  --bg-deep: #FFFFFF;
   --bg-surface: #FFFFFF;
-  --bg-elevated: #EFEFEA;
-  --border-default: #E6E6DF;
+  --bg-elevated: #F8F8F6;
+  --border-default: #E5E5E0;
   --border-accent: #111111;
   --primary-indigo: #111111;
   --primary-light: #2A2A2A;
@@ -19,7 +19,7 @@
   --error-red: #EF4444;
   --hero-name-stroke: #111111;
   --hero-name-fill: #111111;
-  --nav-bg: rgba(247, 247, 244, 0.85);
+  --nav-bg: rgba(255, 255, 255, 0.88);
   --btn-pill-bg: #111111;
   --btn-pill-text: #FFFFFF;
   --btn-pill-hover: #262626;

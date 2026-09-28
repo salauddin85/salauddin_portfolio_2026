@@ -51,7 +51,7 @@ export default function RootLayout({ children }) {
       className={`${inter.variable} ${syne.variable} ${jetbrainsMono.variable} scroll-smooth`}
     >
       <body className="min-h-screen bg-[var(--bg-deep)] text-[var(--text-primary)] font-sans antialiased selection:bg-indigo-500/20 selection:text-indigo-400 transition-colors duration-200">
-        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
+        <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false}>
           {children}
         </ThemeProvider>
       </body>

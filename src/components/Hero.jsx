@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
-import { motion } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import { ArrowUpRight, Mail, Phone, MapPin } from "lucide-react";
 
 function GithubIcon({ className = "w-4 h-4" }) {
@@ -21,10 +21,58 @@ function GithubIcon({ className = "w-4 h-4" }) {
 
 const STATS = [
   { value: "2+", label: "YEARS EXPERIENCE" },
-  { value: "15+", label: "FULL-STACK FEATURES" },
-  { value: "1000+", label: "ACTIVE USERS SERVED" },
+  { value: "100+", label: "FULL-STACK FEATURES" },
+  { value: "5000+", label: "ACTIVE USERS SERVED" },
   { value: "30%", label: "API OPTIMIZATION" },
 ];
+
+/**
+ * Animated counter that smoothly increments numbers from 0 to target on scroll into view
+ */
+function AnimatedCounter({ value, duration = 1.8 }) {
+  const numericMatch = value.match(/(\d+)/);
+  const target = numericMatch ? parseInt(numericMatch[0], 10) : 0;
+  const suffix = value.includes("+") ? "+" : value.includes("%") ? "%" : "";
+
+  const [displayCount, setDisplayCount] = useState(0);
+  const counterRef = useRef(null);
+  const isInView = useInView(counterRef, { once: true, margin: "-40px" });
+
+  useEffect(() => {
+    if (!isInView) return;
+
+    let startTime = null;
+    const durationMs = duration * 1000;
+
+    const animateNumber = (now) => {
+      if (!startTime) startTime = now;
+      const elapsed = now - startTime;
+      const progress = Math.min(elapsed / durationMs, 1);
+
+      // Smooth custom ease-out curve (fast initial climb, silky settle)
+      const ease = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
+      const current = Math.floor(ease * target);
+
+      setDisplayCount(current);
+
+      if (progress < 1) {
+        requestAnimationFrame(animateNumber);
+      } else {
+        setDisplayCount(target);
+      }
+    };
+
+    const frameId = requestAnimationFrame(animateNumber);
+    return () => cancelAnimationFrame(frameId);
+  }, [isInView, target, duration]);
+
+  return (
+    <span ref={counterRef}>
+      {displayCount}
+      {suffix}
+    </span>
+  );
+}
 
 export default function Hero() {
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
@@ -32,6 +80,7 @@ export default function Hero() {
   const [phoneHovered, setPhoneHovered] = useState(false);
   const [imageHovered, setImageHovered] = useState(false);
   const [hasScrolled, setHasScrolled] = useState(false);
+  const [nameComplete, setNameComplete] = useState(false);
   const containerRef = useRef(null);
 
   useEffect(() => {
@@ -59,9 +108,15 @@ export default function Hero() {
     window.addEventListener("scroll", handleScroll, { passive: true });
     handleScroll();
 
+    // Fallback safety timer in case tab is in background or animation callback is delayed
+    const fallbackTimer = setTimeout(() => {
+      setNameComplete(true);
+    }, 1500);
+
     return () => {
       window.removeEventListener("mousemove", handleMouseMove);
       window.removeEventListener("scroll", handleScroll);
+      clearTimeout(fallbackTimer);
     };
   }, [isTouchDevice]);
 
@@ -85,23 +140,31 @@ export default function Hero() {
         ref={containerRef}
         className="relative w-full h-[100dvh] max-h-[100dvh] min-h-[600px] overflow-hidden flex flex-col justify-between pt-16 sm:pt-20 pb-4 sm:pb-6 lg:pb-7 bg-[var(--bg-deep)] select-none"
       >
-        {/* Layer 1: Giant Outlined "MD." & Solid "SALAUDDIN" (Moved slightly upward as requested) */}
+        {/* Layer 1: Giant Outlined "MD." & Solid "SALAUDDIN" (Animates first with natural, unforced timing) */}
         <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none z-0 px-2 sm:px-4 -translate-y-12 sm:-translate-y-16 md:-translate-y-20 lg:-translate-y-24">
           {/* "Hi, I'm" greeting */}
           <motion.p
-            initial={{ opacity: 0, y: 6 }}
+            initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4, delay: 0 }}
+            transition={{
+              duration: 0.65,
+              delay: 0.1,
+              ease: [0.16, 1, 0.3, 1],
+            }}
             className="text-xs sm:text-sm md:text-base font-mono tracking-widest text-[var(--text-muted)] uppercase mb-1 sm:mb-2"
           >
             Hi, I&apos;m
           </motion.p>
 
-          {/* Line 1 (Outlined): "MD." (Moved slightly upward) */}
+          {/* Line 1 (Outlined): "MD." */}
           <motion.div
-            initial={{ opacity: 0, y: 10 }}
+            initial={{ opacity: 0, y: 36 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1, ease: "easeOut" }}
+            transition={{
+              duration: 0.75,
+              delay: 0.22,
+              ease: [0.16, 1, 0.3, 1],
+            }}
             className="w-full text-center -translate-y-1 sm:-translate-y-2 md:-translate-y-3"
           >
             <h1 className="hero-stroke-text font-display font-black tracking-widest uppercase leading-[0.88] text-[clamp(54px,9.5vw,135px)] select-none">
@@ -109,11 +172,18 @@ export default function Hero() {
             </h1>
           </motion.div>
 
-          {/* Line 2 (Solid): "SALAUDDIN" (Clear balanced gap from MD.) */}
+          {/* Line 2 (Solid): "SALAUDDIN" - Triggers nameComplete upon full completion */}
           <motion.div
-            initial={{ opacity: 0, y: 12 }}
+            initial={{ opacity: 0, y: 44 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.35, ease: "easeOut" }}
+            transition={{
+              duration: 0.85,
+              delay: 0.35,
+              ease: [0.16, 1, 0.3, 1],
+            }}
+            onAnimationComplete={() => {
+              setNameComplete(true);
+            }}
             className="w-full text-center mt-1 sm:mt-2 md:mt-3"
           >
             <h2 className="font-display font-black tracking-normal uppercase leading-[0.88] text-[var(--hero-name-fill)] opacity-95 text-[clamp(48px,9vw,132px)] select-none">
@@ -123,11 +193,11 @@ export default function Hero() {
         </div>
 
         {/* 
-          Layer 2: Profile Photo - Kept in exact position
+          Layer 2: Profile Photo - Kept in exact position with smooth entrance
         */}
         <div className="absolute inset-0 flex items-end justify-center pointer-events-none z-10 overflow-hidden">
           <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
+            initial={{ opacity: 0, scale: 0.94 }}
             animate={{
               opacity: 1,
               scale: 1,
@@ -135,8 +205,8 @@ export default function Hero() {
               y: photoParallax.y,
             }}
             transition={{
-              opacity: { duration: 0.5, delay: 0.25 },
-              scale: { duration: 0.5, delay: 0.25, ease: "easeOut" },
+              opacity: { duration: 0.7, delay: 0.2 },
+              scale: { duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] },
               x: { type: "spring", stiffness: 100, damping: 18 },
               y: { type: "spring", stiffness: 100, damping: 18 },
             }}
@@ -172,25 +242,55 @@ export default function Hero() {
 
         {/* 
           Layer 3 & 4: Bottom Overlay Controls & Content Blocks
-          Kept exactly in their current position.
+          Starts immediately and simultaneously once the Name animation has fully completed.
         */}
         <div className="relative z-20 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-2 sm:pb-3 lg:pb-4 flex flex-col md:flex-row items-center md:items-end justify-between gap-5 pointer-events-auto">
-          {/* Bottom-Left: Role & CTA (Kept exactly where it is) */}
-          <motion.div
-            initial={{ opacity: 0, x: -16 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5, delay: 0.45, ease: "easeOut" }}
-            className="flex flex-col items-center md:items-start text-center md:text-left max-w-sm sm:max-w-md"
-          >
-            <h3 className="text-xl sm:text-2xl md:text-3xl font-extrabold tracking-tight text-[var(--text-primary)] leading-[1.15]">
+          {/* Bottom-Left: Role, Subtitle & CTA (Starts immediately when name animation completes) */}
+          <div className="flex flex-col items-center md:items-start text-center md:text-left max-w-sm sm:max-w-md">
+            <motion.h3
+              initial={{ opacity: 0, y: 28 }}
+              animate={
+                nameComplete ? { opacity: 1, y: 0 } : { opacity: 0, y: 28 }
+              }
+              transition={{
+                duration: 0.65,
+                delay: 0,
+                ease: [0.16, 1, 0.3, 1],
+              }}
+              className="text-xl sm:text-2xl md:text-3xl font-extrabold tracking-tight text-[var(--text-primary)] leading-[1.15]"
+            >
               Full Stack Software
               <br className="hidden sm:inline" /> Engineer
-            </h3>
-            <p className="mt-2 text-xs sm:text-sm md:text-[15px] text-[var(--text-secondary)] leading-relaxed max-w-sm font-normal">
+            </motion.h3>
+
+            <motion.p
+              initial={{ opacity: 0, y: 22 }}
+              animate={
+                nameComplete ? { opacity: 1, y: 0 } : { opacity: 0, y: 22 }
+              }
+              transition={{
+                duration: 0.65,
+                delay: 0.1,
+                ease: [0.16, 1, 0.3, 1],
+              }}
+              className="mt-2 text-xs sm:text-sm md:text-[15px] text-[var(--text-secondary)] leading-relaxed max-w-sm font-normal"
+            >
               I build websites and scalable systems that are simple, reliable,
               and fast.
-            </p>
-            <div className="mt-3.5">
+            </motion.p>
+
+            <motion.div
+              initial={{ opacity: 0, y: 18 }}
+              animate={
+                nameComplete ? { opacity: 1, y: 0 } : { opacity: 0, y: 18 }
+              }
+              transition={{
+                duration: 0.65,
+                delay: 0.2,
+                ease: [0.16, 1, 0.3, 1],
+              }}
+              className="mt-3.5"
+            >
               <button
                 onClick={() => handleScrollTo("work")}
                 className="inline-flex items-center gap-2 px-6 py-2.5 sm:py-3 rounded-full text-xs sm:text-sm font-semibold bg-[var(--btn-pill-bg)] text-[var(--btn-pill-text)] hover:opacity-90 active:scale-95 transition-all shadow-sm cursor-pointer group"
@@ -198,14 +298,20 @@ export default function Hero() {
                 <span>View Projects</span>
                 <ArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
               </button>
-            </div>
-          </motion.div>
+            </motion.div>
+          </div>
 
-          {/* Bottom-Right: 4 Social Pills Stack (Kept exactly where it is) */}
+          {/* Bottom-Right: GitHub, Email, Phone, Location (All animate at the exact same time together) */}
           <motion.div
-            initial={{ opacity: 0, x: 16 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5, delay: 0.5, ease: "easeOut" }}
+            initial={{ opacity: 0, x: 75 }}
+            animate={
+              nameComplete ? { opacity: 1, x: 0 } : { opacity: 0, x: 75 }
+            }
+            transition={{
+              duration: 0.7,
+              delay: 0,
+              ease: [0.16, 1, 0.3, 1],
+            }}
             className="flex flex-wrap md:flex-col items-center md:items-end justify-center gap-2 sm:gap-2.5"
           >
             {/* GitHub */}
@@ -252,13 +358,13 @@ export default function Hero() {
         </div>
 
         {/* 
-          Subtle, Minimal Scroll Indicator (100% Mirroring Reference Image):
-          Thin horizontal lines, clean mouse outline, and spaced monospace SCROLL label.
+          Subtle, Minimal Scroll Indicator:
+          Fades in once name is settled.
         */}
         <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.5, delay: 0.65 }}
+          initial={{ opacity: 0, y: 10 }}
+          animate={nameComplete ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
+          transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
           onClick={() => handleScrollTo("about")}
           className="absolute bottom-3 sm:bottom-4 lg:bottom-5 left-1/2 -translate-x-1/2 z-30 cursor-pointer hidden lg:flex flex-col items-center gap-1 group select-none"
           aria-label="Scroll down to About section"
@@ -278,27 +384,40 @@ export default function Hero() {
             </div>
             <span className="w-10 sm:w-14 h-[1px] bg-neutral-400/40 dark:bg-neutral-600/40 transition-colors group-hover:bg-neutral-600 dark:group-hover:bg-neutral-300"></span>
           </div>
-          <span className="text-[8.5px] font-mono font-bold tracking-[0.32em] text-neutral-500/80 dark:text-neutral-400/80 uppercase transition-colors group-hover:text-neutral-900 dark:group-hover:text-neutral-100 pl-1">
+          <span className="text-[8.5px] font-mono font-bold tracking-[0.32em] text-neutral-500/80 dark:text-neutral-100/80 uppercase transition-colors text-neutral-900 dark:group-hover:text-neutral-100 pl-1">
             SCROLL
           </span>
         </motion.div>
       </section>
 
-      {/* Stats Bar */}
-      <div className="w-full border-y border-[var(--border-default)] bg-[var(--bg-surface)] py-8 sm:py-10">
+      {/* Stats Bar with Entrance Animation & Counting Numbers */}
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-50px" }}
+        transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+        className="w-full border-y border-[var(--border-default)] bg-[var(--bg-surface)] py-8 sm:py-10"
+      >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8 text-center">
             {STATS.map((stat, i) => (
               <motion.div
                 key={stat.label}
-                initial={{ opacity: 0, y: 14 }}
+                initial={{ opacity: 0, y: 22 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: i * 0.08 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{
+                  duration: 0.6,
+                  delay: i * 0.12,
+                  ease: [0.16, 1, 0.3, 1],
+                }}
                 className="flex flex-col items-center"
               >
                 <span className="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight text-[var(--text-primary)] font-display">
-                  {stat.value}
+                  <AnimatedCounter
+                    value={stat.value}
+                    duration={1.8 + i * 0.2}
+                  />
                 </span>
                 <span className="mt-1 text-[10px] sm:text-xs font-mono font-medium text-[var(--text-muted)] tracking-wider uppercase">
                   {stat.label}
@@ -307,7 +426,7 @@ export default function Hero() {
             ))}
           </div>
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 }

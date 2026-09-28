@@ -136,7 +136,6 @@ export default function Navbar() {
                   }`}
                 >
                   <span className="inline-flex items-center gap-1">
-                    {link.name === "Resume" && <FileText className="w-3.5 h-3.5 text-indigo-500" />}
                     <span>{link.name}</span>
                     {link.badge && (
                       <span className="text-[10px] font-mono text-[var(--text-muted)] -top-1 relative ml-0.5">
