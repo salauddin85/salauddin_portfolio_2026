@@ -50,7 +50,7 @@ export default function Contact() {
             <span className="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
             <span>GET IN TOUCH</span>
           </div>
-          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-[var(--text-primary)] max-w-2xl">
+          <h2 className="text-lg font-medium text-[var(--text-primary)] max-w-2xl leading-relaxed">
             Let&apos;s build something exceptional together.
           </h2>
         </div>

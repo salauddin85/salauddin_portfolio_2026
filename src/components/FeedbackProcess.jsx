@@ -36,7 +36,7 @@ export default function FeedbackProcess() {
             <span className="w-1.5 h-1.5 rounded-full bg-indigo-500"></span>
             <span>RECOMMENDATIONS & FEEDBACK</span>
           </div>
-          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-[var(--text-primary)] max-w-2xl">
+          <h2 className="text-lg font-medium text-[var(--text-primary)] max-w-2xl leading-relaxed">
             What collaborators and managers say about working with me.
           </h2>
         </div>

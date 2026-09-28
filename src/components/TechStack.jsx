@@ -258,7 +258,7 @@ export default function TechStack() {
             <span className="w-1.5 h-1.5 rounded-full bg-indigo-500"></span>
             <span>TECH STACK</span>
           </div>
-          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-[var(--text-primary)] max-w-3xl">
+          <h2 className="text-lg font-medium text-[var(--text-primary)] max-w-3xl leading-relaxed">
             The tools I use to build complete websites, apps, and scalable backends.
           </h2>
         </motion.div>

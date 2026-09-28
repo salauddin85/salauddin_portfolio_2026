@@ -77,7 +77,7 @@ export default function About() {
             <span className="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
             <span>ABOUT ME</span>
           </div>
-          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-[var(--text-primary)] max-w-3xl">
+          <h2 className="text-lg font-medium text-[var(--text-primary)] max-w-3xl leading-relaxed">
             I love building simple, reliable, and scalable systems that solve real problems.
           </h2>
         </motion.div>

@@ -4,6 +4,7 @@ import About from "../components/About";
 import TechStack from "../components/TechStack";
 import Work from "../components/Work";
 import Experience from "../components/Experience";
+import Awards from "../components/Awards";
 import Credentials from "../components/Credentials";
 import Services from "../components/Services";
 import FeedbackProcess from "../components/FeedbackProcess";
@@ -31,6 +32,9 @@ export default function Home() {
 
       {/* 4.6 Experience Section */}
       <Experience />
+
+      {/* Awards Section */}
+      <Awards />
 
       {/* Recognition & Credentials Section */}
       <Credentials />

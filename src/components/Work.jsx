@@ -389,7 +389,7 @@ export default function Work() {
               <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
               <span>FEATURED WORK</span>
             </div>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-[var(--text-primary)] max-w-2xl leading-tight">
+            <h2 className="text-lg font-medium text-[var(--text-primary)] max-w-2xl leading-relaxed">
               Live products and private builds across web, AI, SaaS, and fintech.
             </h2>
             <p className="mt-3 text-xs sm:text-sm text-[var(--text-secondary)] font-normal max-w-xl">

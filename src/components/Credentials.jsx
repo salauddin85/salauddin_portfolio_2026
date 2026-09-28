@@ -1,6 +1,7 @@
 "use client";
 
-import React from "react";
+import React, { useRef } from "react";
+import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 import { Award, CheckCircle, ExternalLink, ShieldCheck, BookmarkCheck } from "lucide-react";
 
 const CERTIFICATES = [
@@ -49,23 +50,54 @@ const CERTIFICATES = [
 ];
 
 export default function Credentials() {
+  const sectionRef = useRef(null);
+
+  // Directly link animation to visitor's continuous scroll progress
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start end", "end start"],
+  });
+
+  // Physical spring physics for buttery-smooth responsive scroll
+  const springConfig = { stiffness: 100, damping: 24, mass: 0.4 };
+
+  // Scroll-linked continuous leftward movement matching other sections
+  const rawWatermarkX = useTransform(scrollYProgress, [0, 1], [0, -260]);
+  const smoothWatermarkX = useSpring(rawWatermarkX, springConfig);
+
+  const rawHeaderX = useTransform(scrollYProgress, [0, 1], [0, -90]);
+  const smoothHeaderX = useSpring(rawHeaderX, springConfig);
+
   return (
-    <section id="credentials" className="relative w-full py-24 sm:py-32 overflow-hidden bg-[var(--bg-deep)] border-t border-[var(--border-default)]">
-      {/* Background Watermark Title */}
-      <div className="section-watermark text-[clamp(36px,9vw,150px)]">
-        CREDENTIALS
+    <section 
+      id="credentials" 
+      ref={sectionRef} 
+      className="relative w-full py-24 sm:py-32 overflow-hidden bg-[var(--bg-deep)] border-t border-[var(--border-default)]"
+    >
+      {/* Background Section Title "CREDENTIALS" — Centered horizontally by default, then scroll-linked translation to the left */}
+      <div className="absolute top-[-10px] left-0 w-full flex justify-center pointer-events-none overflow-hidden z-0 select-none">
+        <motion.div
+          style={{ x: smoothWatermarkX }}
+          className="font-display font-black uppercase tracking-[-0.04em] whitespace-nowrap text-[clamp(42px,11vw,180px)] leading-none text-[var(--watermark-color)] [-webkit-text-stroke:var(--watermark-stroke,0px_transparent)] max-w-[95vw] overflow-hidden"
+        >
+          CREDENTIALS
+        </motion.div>
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col items-start mb-12 sm:mb-16">
+        {/* Section Header: Scroll-linked continuous leftward movement */}
+        <motion.div 
+          style={{ x: smoothHeaderX }} 
+          className="flex flex-col items-start mb-12 sm:mb-16"
+        >
           <div className="flex items-center gap-2 text-xs font-mono tracking-widest uppercase font-semibold text-[var(--text-primary)] mb-3">
             <span className="w-1.5 h-1.5 rounded-full bg-indigo-500"></span>
             <span>RECOGNITION & CERTIFICATIONS</span>
           </div>
-          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-[var(--text-primary)] max-w-3xl">
+          <h2 className="text-lg font-medium text-[var(--text-primary)] max-w-3xl leading-relaxed">
             Verified credentials, professional courses, and academic honors.
           </h2>
-        </div>
+        </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {CERTIFICATES.map((cert, index) => (

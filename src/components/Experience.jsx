@@ -113,7 +113,7 @@ export default function Experience() {
                 <span className="w-1.5 h-1.5 rounded-full bg-indigo-400"></span>
                 <span>CAREER & EDUCATION</span>
               </div>
-              <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold tracking-tight text-white">
+              <h2 className="text-lg font-medium text-white leading-relaxed">
                 Engineering roles from architecture to production.
               </h2>
             </div>

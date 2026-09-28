@@ -96,7 +96,7 @@ export default function Services() {
             <span className="w-1.5 h-1.5 rounded-full bg-indigo-500"></span>
             <span>SERVICES & SOLUTIONS</span>
           </div>
-          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-[var(--text-primary)] max-w-3xl">
+          <h2 className="text-lg font-medium text-[var(--text-primary)] max-w-3xl leading-relaxed">
             Everything you need to launch: architecture, APIs, frontend, and cloud deployment.
           </h2>
         </div>
