@@ -1,7 +1,7 @@
 "use client";
 
-import React, { useState } from "react";
-import { Mail, Phone, MapPin, Send, CheckCircle2 } from "lucide-react";
+import React, { useState, useRef, useEffect } from "react";
+import { Mail, Phone, MapPin, Send, ChevronDown, CheckCircle2 } from "lucide-react";
 
 function GithubIcon({ className = "w-4 h-4" }) {
   return (
@@ -17,20 +17,44 @@ function GithubIcon({ className = "w-4 h-4" }) {
   );
 }
 
+const PROJECT_TYPES = [
+  "Website",
+  "Web Application",
+  "Mobile App",
+  "Custom System",
+  "API / Integration",
+  "Maintenance & Support",
+  "Other",
+];
+
 export default function Contact() {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
-    projectType: "Full-Time Opportunity",
-    message: ""
+    projectType: "",
+    message: "",
   });
+  const [dropdownOpen, setDropdownOpen] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
+  const dropdownRef = useRef(null);
+
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setDropdownOpen(false);
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     setLoading(true);
-    // Simulate instantaneous clean delivery
     setTimeout(() => {
       setLoading(false);
       setSubmitted(true);
@@ -38,183 +62,246 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="relative w-full py-24 sm:py-32 overflow-hidden bg-[var(--bg-deep)] border-t border-[var(--border-default)]">
-      {/* Background Watermark Title */}
-      <div className="section-watermark text-[clamp(38px,9vw,150px)]">
-        CONTACT
-      </div>
-
+    <section
+      id="contact"
+      className="relative w-full py-16 sm:py-24 lg:py-32 overflow-hidden bg-[var(--bg-deep)]"
+    >
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col items-start mb-12 sm:mb-16">
-          <div className="flex items-center gap-2 text-xs font-mono tracking-widest uppercase font-semibold text-[var(--text-primary)] mb-3">
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
-            <span>GET IN TOUCH</span>
-          </div>
-          <h2 className="text-lg font-medium text-[var(--text-primary)] max-w-2xl leading-relaxed">
-            Let&apos;s build something exceptional together.
-          </h2>
-        </div>
-
-        {/* Two-Column Contact Layout (Screenshot 6) */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-          {/* Left Dark Info Card (5 Cols) */}
-          <div className="lg:col-span-5 rounded-3xl p-8 sm:p-10 bg-[#0F0F15] text-white border border-white/10 shadow-xl flex flex-col justify-between h-full">
+        {/* Two-Column Contact Layout matching the reference screenshot */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 items-stretch">
+          
+          {/* Left Dark Card (DIRECT CONTACT / REACH OUT) */}
+          <div className="lg:col-span-5 rounded-[28px] sm:rounded-[32px] p-7 sm:p-9 lg:p-10 bg-[#141416] text-white border border-neutral-800 shadow-xl flex flex-col justify-between">
             <div>
-              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-mono mb-8">
-                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-                <span>Open for new opportunities</span>
+              {/* Tag */}
+              <div className="text-xs font-mono uppercase tracking-widest text-neutral-400 font-semibold mb-3">
+                DIRECT CONTACT
               </div>
 
-              <div className="space-y-6">
-                <div>
-                  <div className="text-[11px] font-mono text-white/50 uppercase tracking-wider mb-1">
-                    EMAIL
-                  </div>
-                  <a
-                    href="mailto:ahmedsalauddin677785@gmail.com"
-                    className="text-sm sm:text-base font-medium text-white hover:text-indigo-400 transition-colors"
-                  >
-                    ahmedsalauddin677785@gmail.com
-                  </a>
-                </div>
+              {/* Title */}
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black font-display tracking-tight text-white mb-3">
+                REACH OUT
+              </h2>
 
-                <div>
-                  <div className="text-[11px] font-mono text-white/50 uppercase tracking-wider mb-1">
-                    PHONE & WHATSAPP
-                  </div>
-                  <a
-                    href="tel:+8801902061020"
-                    className="text-sm sm:text-base font-medium text-white hover:text-indigo-400 transition-colors"
-                  >
-                    +880 1902 061020
-                  </a>
-                </div>
+              {/* Description */}
+              <p className="text-xs sm:text-sm text-neutral-400 leading-relaxed mb-8 max-w-sm">
+                Prefer email or call? Use the details below. I typically reply within 24 hours.
+              </p>
 
-                <div>
-                  <div className="text-[11px] font-mono text-white/50 uppercase tracking-wider mb-1">
-                    GITHUB
+              {/* 4 Contact Pill Containers */}
+              <div className="space-y-3.5">
+                {/* 1. Email */}
+                <a
+                  href="mailto:ahmedsalauddin677785@gmail.com"
+                  className="group rounded-2xl bg-[#1c1c20]/90 border border-neutral-800/90 p-3.5 sm:p-4 flex items-center gap-3.5 hover:border-neutral-700 hover:bg-[#222228] transition-all"
+                >
+                  <div className="w-10 h-10 rounded-full bg-neutral-800 flex items-center justify-center text-neutral-300 group-hover:text-white shrink-0 transition-colors">
+                    <Mail className="w-4 h-4" />
                   </div>
-                  <a
-                    href="https://github.com/salauddin85"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-sm sm:text-base font-medium text-white hover:text-indigo-400 transition-colors inline-flex items-center gap-1.5"
-                  >
-                    <span>github.com/salauddin85</span>
-                  </a>
-                </div>
+                  <div className="flex flex-col min-w-0">
+                    <span className="text-[10px] font-mono uppercase tracking-wider text-neutral-400 font-semibold mb-0.5">
+                      EMAIL
+                    </span>
+                    <span className="text-xs sm:text-sm font-medium text-white truncate">
+                      ahmedsalauddin677785@gmail.com
+                    </span>
+                  </div>
+                </a>
 
-                <div>
-                  <div className="text-[11px] font-mono text-white/50 uppercase tracking-wider mb-1">
-                    LOCATION
+                {/* 2. Phone */}
+                <a
+                  href="tel:+8801902061020"
+                  className="group rounded-2xl bg-[#1c1c20]/90 border border-neutral-800/90 p-3.5 sm:p-4 flex items-center gap-3.5 hover:border-neutral-700 hover:bg-[#222228] transition-all"
+                >
+                  <div className="w-10 h-10 rounded-full bg-neutral-800 flex items-center justify-center text-neutral-300 group-hover:text-white shrink-0 transition-colors">
+                    <Phone className="w-4 h-4" />
                   </div>
-                  <div className="text-sm sm:text-base font-medium text-white">
-                    Dhaka, Bangladesh 🇧🇩
+                  <div className="flex flex-col min-w-0">
+                    <span className="text-[10px] font-mono uppercase tracking-wider text-neutral-400 font-semibold mb-0.5">
+                      PHONE
+                    </span>
+                    <span className="text-xs sm:text-sm font-medium text-white truncate">
+                      +880 1902 061020
+                    </span>
+                  </div>
+                </a>
+
+                {/* 3. GitHub */}
+                <a
+                  href="https://github.com/salauddin85"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group rounded-2xl bg-[#1c1c20]/90 border border-neutral-800/90 p-3.5 sm:p-4 flex items-center gap-3.5 hover:border-neutral-700 hover:bg-[#222228] transition-all"
+                >
+                  <div className="w-10 h-10 rounded-full bg-neutral-800 flex items-center justify-center text-neutral-300 group-hover:text-white shrink-0 transition-colors">
+                    <GithubIcon className="w-4 h-4" />
+                  </div>
+                  <div className="flex flex-col min-w-0">
+                    <span className="text-[10px] font-mono uppercase tracking-wider text-neutral-400 font-semibold mb-0.5">
+                      GITHUB
+                    </span>
+                    <span className="text-xs sm:text-sm font-medium text-white truncate">
+                      github.com/salauddin85
+                    </span>
+                  </div>
+                </a>
+
+                {/* 4. Location */}
+                <div className="rounded-2xl bg-[#1c1c20]/90 border border-neutral-800/90 p-3.5 sm:p-4 flex items-center gap-3.5">
+                  <div className="w-10 h-10 rounded-full bg-neutral-800 flex items-center justify-center text-neutral-300 shrink-0">
+                    <MapPin className="w-4 h-4" />
+                  </div>
+                  <div className="flex flex-col min-w-0">
+                    <span className="text-[10px] font-mono uppercase tracking-wider text-neutral-400 font-semibold mb-0.5">
+                      LOCATION
+                    </span>
+                    <span className="text-xs sm:text-sm font-medium text-white truncate">
+                      Dhaka, Bangladesh
+                    </span>
                   </div>
                 </div>
               </div>
-            </div>
-
-            <div className="mt-12 pt-6 border-t border-white/10 text-xs font-mono text-white/60">
-              Response time: Typically within 24 hours
             </div>
           </div>
 
-          {/* Right Form Card (7 Cols) */}
-          <div className="lg:col-span-7 rounded-3xl p-8 sm:p-10 border border-[var(--border-default)] bg-[var(--bg-surface)] shadow-xs">
-            {submitted ? (
-              <div className="py-12 flex flex-col items-center justify-center text-center">
-                <div className="w-14 h-14 rounded-full bg-emerald-500/10 text-emerald-500 flex items-center justify-center mb-4">
-                  <CheckCircle2 className="w-7 h-7" />
-                </div>
-                <h3 className="text-xl font-bold text-[var(--text-primary)]">
-                  Message Sent Successfully!
-                </h3>
-                <p className="mt-2 text-sm text-[var(--text-secondary)] max-w-sm">
-                  Thank you for reaching out. I have received your message and will reply within 24 hours.
-                </p>
-                <button
-                  onClick={() => setSubmitted(false)}
-                  className="mt-6 px-5 py-2 rounded-full text-xs font-semibold bg-[var(--btn-pill-bg)] text-[var(--btn-pill-text)]"
-                >
-                  Send another message
-                </button>
+          {/* Right White Card (GET IN TOUCH / LET'S BUILD SOMETHING) */}
+          <div className="lg:col-span-7 rounded-[28px] sm:rounded-[32px] p-7 sm:p-9 lg:p-10 bg-white border border-neutral-200/90 shadow-sm flex flex-col justify-between text-neutral-900">
+            <div>
+              {/* Tag */}
+              <div className="text-xs font-mono uppercase tracking-widest text-neutral-500 font-semibold mb-3">
+                GET IN TOUCH
               </div>
-            ) : (
-              <form onSubmit={handleSubmit} className="space-y-5">
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                  <div>
-                    <label className="block text-xs font-mono uppercase tracking-wider text-[var(--text-muted)] mb-2">
-                      YOUR NAME
-                    </label>
-                    <input
-                      type="text"
-                      required
-                      placeholder="e.g. John Doe"
-                      value={formData.name}
-                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                      className="w-full px-4 py-3 rounded-xl border border-[var(--border-default)] bg-[var(--bg-deep)] text-sm text-[var(--text-primary)] focus:outline-none focus:border-[var(--border-accent)] transition-all"
-                    />
+
+              {/* Title */}
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black font-display tracking-tight text-neutral-900 mb-6">
+                LET&apos;S BUILD SOMETHING
+              </h2>
+
+              {submitted ? (
+                <div className="py-16 flex flex-col items-center justify-center text-center">
+                  <div className="w-14 h-14 rounded-full bg-emerald-500/10 text-emerald-600 flex items-center justify-center mb-4">
+                    <CheckCircle2 className="w-7 h-7" />
                   </div>
-
-                  <div>
-                    <label className="block text-xs font-mono uppercase tracking-wider text-[var(--text-muted)] mb-2">
-                      EMAIL ADDRESS
-                    </label>
-                    <input
-                      type="email"
-                      required
-                      placeholder="e.g. john@company.com"
-                      value={formData.email}
-                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      className="w-full px-4 py-3 rounded-xl border border-[var(--border-default)] bg-[var(--bg-deep)] text-sm text-[var(--text-primary)] focus:outline-none focus:border-[var(--border-accent)] transition-all"
-                    />
-                  </div>
-                </div>
-
-                <div>
-                  <label className="block text-xs font-mono uppercase tracking-wider text-[var(--text-muted)] mb-2">
-                    PROJECT TYPE / PURPOSE
-                  </label>
-                  <select
-                    value={formData.projectType}
-                    onChange={(e) => setFormData({ ...formData, projectType: e.target.value })}
-                    className="w-full px-4 py-3 rounded-xl border border-[var(--border-default)] bg-[var(--bg-deep)] text-sm text-[var(--text-primary)] focus:outline-none focus:border-[var(--border-accent)] transition-all"
-                  >
-                    <option value="Full-Time Opportunity">Full-Time Software Engineer Opportunity</option>
-                    <option value="Freelance Contract">Freelance / Contract Project</option>
-                    <option value="Backend Architecture">Django & REST API Development</option>
-                    <option value="AI / RAG Integration">AI & Vector Search Integration</option>
-                    <option value="General Inquiry">General Inquiries & Coffee Chat</option>
-                  </select>
-                </div>
-
-                <div>
-                  <label className="block text-xs font-mono uppercase tracking-wider text-[var(--text-muted)] mb-2">
-                    MESSAGE
-                  </label>
-                  <textarea
-                    required
-                    rows={5}
-                    placeholder="Tell me about your project, team, or opportunity..."
-                    value={formData.message}
-                    onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                    className="w-full px-4 py-3 rounded-xl border border-[var(--border-default)] bg-[var(--bg-deep)] text-sm text-[var(--text-primary)] focus:outline-none focus:border-[var(--border-accent)] transition-all resize-none"
-                  />
-                </div>
-
-                <div className="pt-2">
+                  <h3 className="text-xl font-bold text-neutral-900 mb-1">
+                    Message Sent Successfully!
+                  </h3>
+                  <p className="text-sm text-neutral-500 mb-6 max-w-sm">
+                    Thank you for reaching out. I typically reply within 24 hours.
+                  </p>
                   <button
-                    type="submit"
-                    disabled={loading}
-                    className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-full text-sm font-semibold bg-[var(--btn-pill-bg)] text-[var(--btn-pill-text)] hover:opacity-90 active:scale-95 transition-all shadow-md"
+                    onClick={() => {
+                      setSubmitted(false);
+                      setFormData({ name: "", email: "", projectType: "", message: "" });
+                    }}
+                    className="px-6 py-2.5 rounded-full text-xs font-semibold bg-[#141416] text-white hover:bg-neutral-800 transition-colors cursor-pointer"
                   >
-                    <span>{loading ? "Sending..." : "Send Message"}</span>
-                    <Send className="w-4 h-4" />
+                    Send another message
                   </button>
                 </div>
-              </form>
-            )}
+              ) : (
+                <form onSubmit={handleSubmit} className="space-y-4">
+                  {/* Name and Email Row */}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                      <label className="block text-xs font-semibold text-neutral-900 mb-2">
+                        Name
+                      </label>
+                      <input
+                        type="text"
+                        required
+                        value={formData.name}
+                        onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                        placeholder="Your name"
+                        className="w-full rounded-2xl border border-neutral-200/90 px-4 py-3 text-sm text-neutral-900 placeholder:text-neutral-400 bg-white focus:outline-none focus:border-neutral-400 transition-colors"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-xs font-semibold text-neutral-900 mb-2">
+                        Email
+                      </label>
+                      <input
+                        type="email"
+                        required
+                        value={formData.email}
+                        onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                        placeholder="you@company.com"
+                        className="w-full rounded-2xl border border-neutral-200/90 px-4 py-3 text-sm text-neutral-900 placeholder:text-neutral-400 bg-white focus:outline-none focus:border-neutral-400 transition-colors"
+                      />
+                    </div>
+                  </div>
+
+                  {/* Project Type Dropdown */}
+                  <div className="relative" ref={dropdownRef}>
+                    <label className="block text-xs font-semibold text-neutral-900 mb-2">
+                      Project type
+                    </label>
+                    <button
+                      type="button"
+                      onClick={() => setDropdownOpen(!dropdownOpen)}
+                      className="w-full rounded-2xl border border-neutral-200/90 px-4 py-3 text-sm flex items-center justify-between text-left bg-white transition-colors cursor-pointer focus:outline-none focus:border-neutral-400"
+                    >
+                      <span className={formData.projectType ? "text-neutral-900 font-medium" : "text-neutral-400"}>
+                        {formData.projectType || "Select..."}
+                      </span>
+                      <ChevronDown
+                        className={`w-4 h-4 text-neutral-500 transition-transform duration-200 ${
+                          dropdownOpen ? "rotate-180" : ""
+                        }`}
+                      />
+                    </button>
+
+                    {/* Dropdown Menu matching Screenshot 2 */}
+                    {dropdownOpen && (
+                      <div className="absolute left-0 right-0 top-full mt-2 rounded-2xl border border-neutral-200/90 bg-white shadow-xl p-2 z-30 space-y-0.5">
+                        {PROJECT_TYPES.map((type) => (
+                          <div
+                            key={type}
+                            onClick={() => {
+                              setFormData({ ...formData, projectType: type });
+                              setDropdownOpen(false);
+                            }}
+                            className={`px-3.5 py-2.5 rounded-xl text-sm cursor-pointer transition-colors ${
+                              formData.projectType === type
+                                ? "bg-neutral-100 font-medium text-neutral-900"
+                                : "text-neutral-700 hover:bg-neutral-50 hover:text-neutral-900"
+                            }`}
+                          >
+                            {type}
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Message Field */}
+                  <div>
+                    <label className="block text-xs font-semibold text-neutral-900 mb-2">
+                      Message
+                    </label>
+                    <textarea
+                      required
+                      rows={4}
+                      value={formData.message}
+                      onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                      placeholder="Tell me about your project..."
+                      className="w-full rounded-2xl border border-neutral-200/90 p-4 text-sm text-neutral-900 placeholder:text-neutral-400 bg-white focus:outline-none focus:border-neutral-400 transition-colors resize-none"
+                    />
+                  </div>
+
+                  {/* Submit Button with Send icon matching Screenshot */}
+                  <div className="pt-2">
+                    <button
+                      type="submit"
+                      disabled={loading}
+                      className="w-full py-3.5 sm:py-4 px-6 rounded-full bg-[#141416] text-white text-sm font-semibold hover:bg-neutral-800 transition-all flex items-center justify-center gap-2 shadow-sm cursor-pointer disabled:opacity-60"
+                    >
+                      <span>{loading ? "Sending..." : "Send Message"}</span>
+                      <Send className="w-4 h-4 ml-1" />
+                    </button>
+                  </div>
+                </form>
+              )}
+            </div>
           </div>
         </div>
       </div>

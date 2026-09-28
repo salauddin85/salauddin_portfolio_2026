@@ -221,8 +221,8 @@ export default function TechStack() {
   // Physical spring physics for buttery-smooth scroll response
   const springConfig = { stiffness: 100, damping: 24, mass: 0.4 };
 
-  // Scroll-linked continuous leftward movement
-  const rawWatermarkX = useTransform(scrollYProgress, [0, 1], [0, -260]);
+  // Scroll-linked continuous leftward movement matching Experience
+  const rawWatermarkX = useTransform(scrollYProgress, [0, 1], [0, -110]);
   const smoothWatermarkX = useSpring(rawWatermarkX, springConfig);
 
   const rawHeaderX = useTransform(scrollYProgress, [0, 1], [0, -90]);
@@ -236,13 +236,13 @@ export default function TechStack() {
     <section 
       id="tech-stack" 
       ref={sectionRef}
-      className="relative w-full py-24 sm:py-32 overflow-hidden bg-[var(--bg-deep)] border-t border-[var(--border-default)]"
+      className="relative w-full py-24 sm:py-32 overflow-hidden bg-[var(--bg-deep)]"
     >
-      {/* Background Section Title "TECH STACK" — Scroll-linked continuous leftward movement */}
-      <div className="absolute top-[-10px] left-0 w-full flex justify-center pointer-events-none overflow-hidden z-0 select-none">
+      {/* Background Section Title — Centered horizontally only */}
+      <div className="absolute top-6 sm:top-8 left-0 w-full flex justify-center pointer-events-none select-none z-0 px-4 sm:px-8">
         <motion.div
           style={{ x: smoothWatermarkX }}
-          className="font-display font-black uppercase tracking-[-0.04em] whitespace-nowrap text-[clamp(38px,9vw,150px)] leading-none text-[var(--watermark-color)] [-webkit-text-stroke:var(--watermark-stroke,0px_transparent)] max-w-[95vw] overflow-hidden"
+          className="font-display font-black uppercase tracking-tight whitespace-nowrap text-[clamp(26px,6vw,90px)] leading-none text-[var(--watermark-color)] [-webkit-text-stroke:var(--watermark-stroke,0px_transparent)] select-none text-center"
         >
           TECH STACK
         </motion.div>
@@ -254,11 +254,11 @@ export default function TechStack() {
           style={{ x: smoothHeaderX }}
           className="flex flex-col items-start mb-8 sm:mb-10"
         >
-          <div className="flex items-center gap-2 text-xs font-mono tracking-widest uppercase font-semibold text-[var(--text-primary)] mb-3">
-            <span className="w-1.5 h-1.5 rounded-full bg-indigo-500"></span>
-            <span>TECH STACK</span>
+          <div className="flex items-center gap-2 text-xs font-mono tracking-widest uppercase font-normal text-[var(--text-muted)] mb-3">
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+            <span>TECHNOLOGIES I USE</span>
           </div>
-          <h2 className="text-lg font-medium text-[var(--text-primary)] max-w-3xl leading-relaxed">
+          <h2 className="text-base sm:text-lg font-normal text-[var(--text-secondary)] max-w-3xl leading-relaxed">
             The tools I use to build complete websites, apps, and scalable backends.
           </h2>
         </motion.div>
@@ -267,7 +267,7 @@ export default function TechStack() {
           Feature 1: Horizontal Auto-Scrolling Continuous Technology Showcase (Right to Left)
           Smooth, seamless, infinite loop with official icons and CTA-style black hover
         */}
-        <div className="relative w-full overflow-hidden py-4 mb-12 border-y border-[var(--border-default)] bg-[var(--bg-surface)]/60 backdrop-blur-xs rounded-2xl select-none">
+        <div className="relative w-full overflow-hidden py-4 mb-12 bg-[var(--bg-surface)]/60 backdrop-blur-xs rounded-2xl select-none">
           {/* Subtle gradient side fades for ultra-clean edge blending */}
           <div className="absolute left-0 top-0 bottom-0 w-12 sm:w-24 bg-gradient-to-r from-[var(--bg-deep)] to-transparent z-10 pointer-events-none" />
           <div className="absolute right-0 top-0 bottom-0 w-12 sm:w-24 bg-gradient-to-l from-[var(--bg-deep)] to-transparent z-10 pointer-events-none" />

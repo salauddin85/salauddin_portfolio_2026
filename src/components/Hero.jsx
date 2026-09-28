@@ -77,7 +77,6 @@ function AnimatedCounter({ value, duration = 1.8 }) {
 export default function Hero() {
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const [isTouchDevice, setIsTouchDevice] = useState(false);
-  const [phoneHovered, setPhoneHovered] = useState(false);
   const [imageHovered, setImageHovered] = useState(false);
   const [hasScrolled, setHasScrolled] = useState(false);
   const [nameComplete, setNameComplete] = useState(false);
@@ -319,7 +318,7 @@ export default function Hero() {
               href="https://github.com/salauddin85"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-2.5 px-5 sm:px-6 py-2 sm:py-2.5 rounded-full border border-[var(--border-default)] bg-[var(--bg-surface)] text-xs sm:text-sm font-medium text-[var(--text-primary)] shadow-xs hover:border-[var(--border-accent)] hover:scale-105 active:scale-95 transition-all min-w-[125px] justify-center md:justify-start"
+              className="flex items-center gap-2.5 px-5 sm:px-6 py-2 sm:py-2.5 rounded-full border border-[var(--border-default)] bg-[var(--bg-surface)] text-xs sm:text-sm font-medium text-[var(--text-primary)] shadow-xs hover:bg-black hover:text-white hover:border-black dark:hover:bg-white dark:hover:text-black dark:hover:border-white hover:scale-105 active:scale-95 transition-all min-w-[125px] justify-center md:justify-start cursor-pointer"
             >
               <GithubIcon className="w-4 h-4" />
               <span>GitHub</span>
@@ -328,32 +327,30 @@ export default function Hero() {
             {/* Email */}
             <a
               href="mailto:ahmedsalauddin677785@gmail.com"
-              className="flex items-center gap-2.5 px-5 sm:px-6 py-2 sm:py-2.5 rounded-full border border-[var(--border-default)] bg-[var(--bg-surface)] text-xs sm:text-sm font-medium text-[var(--text-primary)] shadow-xs hover:border-[var(--border-accent)] hover:scale-105 active:scale-95 transition-all min-w-[125px] justify-center md:justify-start"
+              className="flex items-center gap-2.5 px-5 sm:px-6 py-2 sm:py-2.5 rounded-full border border-[var(--border-default)] bg-[var(--bg-surface)] text-xs sm:text-sm font-medium text-[var(--text-primary)] shadow-xs hover:bg-black hover:text-white hover:border-black dark:hover:bg-white dark:hover:text-black dark:hover:border-white hover:scale-105 active:scale-95 transition-all min-w-[125px] justify-center md:justify-start cursor-pointer"
             >
-              <Mail className="w-4 h-4 text-indigo-500" />
+              <Mail className="w-4 h-4" />
               <span>Email</span>
             </a>
 
             {/* Phone */}
-            <div
-              onMouseEnter={() => setPhoneHovered(true)}
-              onMouseLeave={() => setPhoneHovered(false)}
-              className="relative"
+            <a
+              href="tel:+8801902061020"
+              className="flex items-center gap-2.5 px-5 sm:px-6 py-2 sm:py-2.5 rounded-full border border-[var(--border-default)] bg-[var(--bg-surface)] text-xs sm:text-sm font-medium text-[var(--text-primary)] shadow-xs hover:bg-black hover:text-white hover:border-black dark:hover:bg-white dark:hover:text-black dark:hover:border-white hover:scale-105 active:scale-95 transition-all min-w-[125px] justify-center md:justify-start cursor-pointer"
             >
-              <a
-                href="tel:+8801902061020"
-                className="flex items-center gap-2.5 px-5 sm:px-6 py-2 sm:py-2.5 rounded-full border border-[var(--border-default)] bg-[var(--bg-surface)] text-xs sm:text-sm font-medium text-[var(--text-primary)] shadow-xs hover:border-[var(--border-accent)] hover:scale-105 active:scale-95 transition-all min-w-[125px] justify-center md:justify-start"
-              >
-                <Phone className="w-4 h-4 text-emerald-500" />
-                <span>{phoneHovered ? "+8801902061020" : "Phone"}</span>
-              </a>
-            </div>
+              <Phone className="w-4 h-4" />
+              <span>Phone</span>
+            </a>
 
             {/* Location */}
-            <div className="flex items-center gap-2.5 px-5 sm:px-6 py-2 sm:py-2.5 rounded-full border border-[var(--border-default)] bg-[var(--bg-surface)] text-xs sm:text-sm font-medium text-[var(--text-primary)] shadow-xs hover:border-[var(--border-accent)] transition-all cursor-default min-w-[125px] justify-center md:justify-start">
-              <MapPin className="w-4 h-4 text-rose-500" />
+            <button
+              type="button"
+              onClick={() => handleScrollTo("next-steps")}
+              className="flex items-center gap-2.5 px-5 sm:px-6 py-2 sm:py-2.5 rounded-full border border-[var(--border-default)] bg-[var(--bg-surface)] text-xs sm:text-sm font-medium text-[var(--text-primary)] shadow-xs hover:bg-black hover:text-white hover:border-black dark:hover:bg-white dark:hover:text-black dark:hover:border-white hover:scale-105 active:scale-95 transition-all min-w-[125px] justify-center md:justify-start cursor-pointer"
+            >
+              <MapPin className="w-4 h-4" />
               <span>Location</span>
-            </div>
+            </button>
           </motion.div>
         </div>
 

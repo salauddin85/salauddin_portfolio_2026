@@ -330,8 +330,8 @@ export default function Work() {
   // Physical spring for buttery responsive scroll synchronization
   const springConfig = { stiffness: 100, damping: 24, mass: 0.4 };
 
-  // Scroll-linked continuous leftward movement matching About Me & Tech Stack
-  const rawWatermarkX = useTransform(scrollYProgress, [0, 1], [0, -260]);
+  // Scroll-linked continuous leftward movement matching Experience
+  const rawWatermarkX = useTransform(scrollYProgress, [0, 1], [0, -110]);
   const smoothWatermarkX = useSpring(rawWatermarkX, springConfig);
 
   const rawHeaderX = useTransform(scrollYProgress, [0, 1], [0, -90]);
@@ -365,31 +365,30 @@ export default function Work() {
     <section 
       id="work" 
       ref={sectionRef} 
-      className="relative w-full py-24 sm:py-32 overflow-hidden bg-[var(--bg-deep)] border-t border-[var(--border-default)]"
+      className="relative w-full py-24 sm:py-32 overflow-hidden bg-[var(--bg-deep)]"
     >
-      {/* Background Section Title "WORK" — Centered horizontally by default, then scroll-linked translation to the left */}
-      <div className="absolute top-[-10px] left-0 w-full flex justify-center pointer-events-none overflow-hidden z-0 select-none">
+      {/* Background Section Title — Centered horizontally only */}
+      <div className="absolute top-6 sm:top-8 left-0 w-full flex justify-center pointer-events-none select-none z-0 px-4 sm:px-8">
         <motion.div 
           style={{ x: smoothWatermarkX }} 
-          className="font-display font-black uppercase tracking-[-0.04em] whitespace-nowrap text-[clamp(42px,11vw,180px)] leading-none text-[var(--watermark-color)] [-webkit-text-stroke:var(--watermark-stroke,0px_transparent)] max-w-[95vw] overflow-hidden"
+          className="font-display font-black uppercase tracking-tight whitespace-nowrap text-[clamp(26px,6vw,90px)] leading-none text-[var(--watermark-color)] [-webkit-text-stroke:var(--watermark-stroke,0px_transparent)] select-none text-center"
         >
           WORK
         </motion.div>
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
         {/* Section Header with scroll-linked animation */}
         <motion.div 
           style={{ x: smoothHeaderX }} 
           className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12 sm:mb-16"
         >
           <div className="flex flex-col items-start">
-            <div className="flex items-center gap-2 text-xs font-mono tracking-widest uppercase font-semibold text-[var(--text-primary)] mb-3">
-              <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-              <span>FEATURED WORK</span>
+            <div className="flex items-center gap-2 text-xs font-mono tracking-widest uppercase font-normal text-[var(--text-muted)] mb-3">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+              <span>FEATURED</span>
             </div>
-            <h2 className="text-lg font-medium text-[var(--text-primary)] max-w-2xl leading-relaxed">
+            <h2 className="text-base sm:text-lg font-normal text-[var(--text-secondary)] max-w-2xl leading-relaxed">
               Live products and private builds across web, AI, SaaS, and fintech.
             </h2>
             <p className="mt-3 text-xs sm:text-sm text-[var(--text-secondary)] font-normal max-w-xl">

@@ -7,7 +7,9 @@ import Experience from "../components/Experience";
 import Awards from "../components/Awards";
 import Credentials from "../components/Credentials";
 import Services from "../components/Services";
+import Process from "../components/Process";
 import FeedbackProcess from "../components/FeedbackProcess";
+import NextSteps from "../components/NextSteps";
 import Contact from "../components/Contact";
 import Footer from "../components/Footer";
 import ChatWidget from "../components/ChatWidget";
@@ -39,11 +41,17 @@ export default function Home() {
       {/* Recognition & Credentials Section */}
       <Credentials />
 
-      {/* Services & Process Section */}
+      {/* Services Section */}
       <Services />
 
-      {/* Feedback & Next Steps Section */}
+      {/* Process / How I Work Section */}
+      <Process />
+
+      {/* Feedback & Recommendations Section */}
       <FeedbackProcess />
+
+      {/* What Happens Next Section */}
+      <NextSteps />
 
       {/* 4.7 Contact Section */}
       <Contact />

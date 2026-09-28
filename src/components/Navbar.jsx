@@ -35,7 +35,7 @@ export default function Navbar() {
     window.addEventListener("scroll", handleScroll, { passive: true });
     handleScroll();
 
-    const sectionIds = ["hero", "about", "tech-stack", "work", "experience", "awards", "credentials", "services", "contact"];
+    const sectionIds = ["hero", "about", "tech-stack", "work", "experience", "awards", "credentials", "services", "process", "feedback", "next-steps", "contact"];
     const observerCallback = (entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {

@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 :root {
   /* Light Theme Palette (Default White Theme) */
   --bg-deep: #FFFFFF;
@@ -23,8 +25,8 @@
   --btn-pill-bg: #111111;
   --btn-pill-text: #FFFFFF;
   --btn-pill-hover: #262626;
-  --watermark-color: rgba(17, 17, 17, 0.07);
-  --watermark-stroke: 1.5px rgba(17, 17, 17, 0.13);
+  --watermark-color: transparent;
+  --watermark-stroke: 1px rgba(17, 17, 17, 0.12);
 }
 
 .dark {
@@ -134,4 +136,13 @@ body {
 }
 ::-webkit-scrollbar-thumb:hover {
   background: var(--text-muted);
+}
+
+/* Next Section Dark Theme Background Override */
+.dark #next-steps {
+  background-color: var(--bg-deep) !important;
+}
+
+.dark #next-steps .next-cloudscape-bg {
+  display: none !important;
 }

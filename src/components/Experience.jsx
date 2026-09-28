@@ -10,22 +10,55 @@ const EXPERIENCES = [
     num: "01",
     role: "Junior Software Developer",
     company: "PEPOLTEK LTD",
-    period: "December 2024 to September 2026",
+    period: "December 2024 – September 2026",
     location: "Dhaka, Bangladesh",
     type: "Experience",
     icon: Briefcase,
-    bullets: [
-      "Built 5+ websites and management systems as a solo developer, handling everything from planning to deployment.",
-      "Provided system updates, fixed issues, and offered ongoing technical support after project delivery.",
-      "Engineered scalable REST APIs using Django REST Framework and maintained production-grade backend systems.",
-      "Built backend architecture for Club Management System, Talent Tracker (talentracker.net), and Pepoltek (pepoltek.com) using DRF, TypeScript, and Docker.",
-      "Contributed 15+ full-stack features for AI-HRM TalenTEK (talentek.bd) using Next.js and JavaScript for seamless frontend integration.",
-      "Automated CI/CD deployment processes with Docker pipelines, reducing deployment times from 4 hours to 30 minutes.",
-      "Improved API performance by ~30% through caching strategies and optimized database queries.",
-      "Managed VPS deployments and production systems, reducing infrastructure costs by ~20% via server optimization.",
-      "Worked closely with clients to understand their needs and turn their ideas into simple, reliable software.",
+    summary: "Worked across the full software lifecycle on multiple production products, from requirement analysis and system design to development, testing, deployment and long-term maintenance, in close collaboration with clients.",
+    sections: [
+      {
+        heading: "End-to-end ownership",
+        points: [
+          "Handled projects from planning to production: requirement analysis, documentation (PDD, SRS, SDD), database design, API design, development, testing, deployment, bug fixing and continuous feature additions."
+        ]
+      },
+      {
+        heading: "Backend",
+        points: [
+          "Built scalable REST APIs with Django REST Framework, PostgreSQL and Redis for Club Management System, Talent Tracker (talentracker.net) and Pepoltek (pepoltek.com), supporting 1000-5000+ active users.",
+          "Improved API performance by ~30% through caching strategies and optimized database queries."
+        ]
+      },
+      {
+        heading: "Frontend & UI/UX",
+        points: [
+          "Delivered 15+ full-stack features for AI-HRM TalenTEK (talentek.bd) using Next.js, TypeScript and Zustand.",
+          "Turned UI designs into responsive, user-friendly interfaces and suggested UX improvements based on user feedback."
+        ]
+      },
+      {
+        heading: "DevOps & Infrastructure",
+        points: [
+          "Automated CI/CD with Docker pipelines, cutting deployment time from 4 hours to 30 minutes.",
+          "Managed VPS deployments and production systems, reducing infrastructure costs by ~20% through server optimization."
+        ]
+      },
+      {
+        heading: "Testing & Quality (SQA)",
+        points: [
+          "Wrote API tests with Pytest, verified features before release, and reproduced, triaged and fixed reported bugs."
+        ]
+      },
+      {
+        heading: "Client collaboration & support",
+        points: [
+          "Worked closely with clients to understand their needs and turn ideas into simple, reliable software.",
+          "Added new features, fixed bugs and improved performance based on client feedback.",
+          "Provided technical support, system maintenance and regular updates to keep applications secure, reliable and running smoothly."
+        ]
+      }
     ],
-    tech: ["Python", "Django", "DRF", "Next.js", "TypeScript", "Docker", "PostgreSQL", "CI/CD", "AWS"]
+    tech: ["Python", "Django", "DRF", "Next.js", "TypeScript", "Zustand", "PostgreSQL", "Redis", "Docker", "CI/CD", "Pytest", "Nginx", "Linux VPS"]
   },
   {
     id: "nub",
@@ -40,7 +73,7 @@ const EXPERIENCES = [
       "Currently pursuing B.Sc. in CSE focusing on Advanced Algorithms, Distributed Systems, and AI integrations.",
       "Active participant in collegiate competitive programming and engineering projects."
     ],
-    tech: ["System Architecture","Distributed Systems","System Design", "AI & ML"]
+    tech: ["Data Structures", "Algorithms", "System Architecture", "AI & ML"]
   },
   {
     id: "bgpi",
@@ -55,12 +88,12 @@ const EXPERIENCES = [
       "Graduated with CGPA 3.51 out of 4.00.",
       "Strong foundational coursework in C, C++, Java, Database Management Systems, and Software Engineering."
     ],
-    tech: ["C / C++", "Java", "SQL", "OOP", "Networking", "Data Structures", "Algorithms"]
+    tech: ["C / C++", "Java", "SQL", "OOP", "Networking"]
   }
 ];
 
 export default function Experience() {
-  const [expandedId, setExpandedId] = useState("pepoltek");
+  const [expandedId, setExpandedId] = useState(null);
   const sectionRef = useRef(null);
 
   // Directly link animation to visitor's continuous scroll progress
@@ -72,7 +105,7 @@ export default function Experience() {
   // Physical spring physics for buttery-smooth responsive scroll
   const springConfig = { stiffness: 100, damping: 24, mass: 0.4 };
 
-  // Scroll-linked continuous leftward movement smoothly calibrated to stay fully contained & visible
+  // Scroll-linked continuous leftward movement calibrated to stay unclipped inside black box
   const rawWatermarkX = useTransform(scrollYProgress, [0, 1], [0, -110]);
   const smoothWatermarkX = useSpring(rawWatermarkX, springConfig);
 
@@ -87,17 +120,17 @@ export default function Experience() {
     <section 
       id="experience" 
       ref={sectionRef} 
-      className="relative w-full py-24 sm:py-32 overflow-hidden bg-[var(--bg-deep)] border-t border-[var(--border-default)]"
+      className="relative w-full py-24 sm:py-32 overflow-hidden bg-[var(--bg-deep)]"
     >
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Inverted Dark Card Container with modern border and shadow */}
-        <div className="relative rounded-3xl p-8 sm:p-12 lg:p-16 pt-16 sm:pt-20 lg:pt-24 bg-[#0E0E14] text-white border border-white/10 shadow-2xl overflow-hidden">
+        <div className="relative rounded-3xl p-8 sm:p-12 lg:p-16 pt-16 sm:pt-20 lg:pt-24 bg-[#0E0E14] text-white border border-white/10 shadow-2xl overflow-hidden [--watermark-color:transparent] [--watermark-stroke:1px_rgba(255,255,255,0.14)]">
           
           {/* Centered Watermark Title inside the Black Box — Complete word unclipped & clearly visible */}
           <div className="absolute top-4 sm:top-6 left-0 w-full flex justify-center pointer-events-none select-none z-0 px-4 sm:px-8">
             <motion.div 
               style={{ x: smoothWatermarkX }}
-              className="font-display font-black uppercase tracking-tight whitespace-nowrap text-[clamp(26px,6vw,90px)] leading-none text-white/[0.09] [-webkit-text-stroke:1.2px_rgba(255,255,255,0.22)] select-none text-center"
+              className="font-display font-black uppercase tracking-tight whitespace-nowrap text-[clamp(26px,6vw,90px)] leading-none text-[var(--watermark-color)] [-webkit-text-stroke:var(--watermark-stroke,0px_transparent)] select-none text-center"
             >
               EXPERIENCE
             </motion.div>
@@ -106,14 +139,14 @@ export default function Experience() {
           {/* Section Header: Scroll-linked continuous leftward movement with clear comfortable gap */}
           <motion.div 
             style={{ x: smoothHeaderX }}
-            className="relative z-10 flex flex-col md:flex-row md:items-end justify-between gap-6 pb-8 border-b border-white/10 mb-8 mt-2 sm:mt-4"
+            className="relative z-10 flex flex-col md:flex-row md:items-end justify-between gap-6 mb-8 mt-2 sm:mt-4"
           >
             <div>
-              <div className="flex items-center gap-2 text-xs font-mono tracking-widest uppercase text-indigo-400 mb-3">
+              <div className="flex items-center gap-2 text-xs font-mono tracking-widest uppercase font-normal text-indigo-400 mb-3">
                 <span className="w-1.5 h-1.5 rounded-full bg-indigo-400"></span>
                 <span>CAREER & EDUCATION</span>
               </div>
-              <h2 className="text-lg font-medium text-white leading-relaxed">
+              <h2 className="text-base sm:text-lg font-normal text-white/80 leading-relaxed">
                 Engineering roles from architecture to production.
               </h2>
             </div>
@@ -153,7 +186,7 @@ export default function Experience() {
                             <span>{item.type}</span>
                           </span>
                         </div>
-                        <p className="text-xs sm:text-sm text-white/70 mt-1">
+                        <p className="text-xs sm:text-sm text-white/70 mt-1 font-normal">
                           {item.role}
                         </p>
                       </div>
@@ -165,7 +198,7 @@ export default function Experience() {
                         {item.period}
                       </span>
 
-                      {/* "+" icon button: background smoothly turns white with black icon on hover */}
+                      {/* "+" icon button: background turns solid white with black icon on hover */}
                       <div className="w-8 h-8 rounded-full border border-white/20 flex items-center justify-center text-white/80 transition-all duration-300 ease-out group-hover:bg-white group-hover:text-black group-hover:border-white hover:bg-white hover:text-black hover:border-white shadow-sm">
                         {isExpanded ? (
                           <Minus className="w-4 h-4 transition-transform duration-200" />
@@ -196,14 +229,45 @@ export default function Experience() {
                           </span>
                         </div>
 
-                        <div className="space-y-2.5 mt-2">
-                          {item.bullets.map((bullet, idx) => (
-                            <div key={idx} className="flex items-start gap-2.5 text-xs sm:text-sm text-white/85 leading-relaxed">
-                              <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
-                              <span>{bullet}</span>
-                            </div>
-                          ))}
-                        </div>
+                        {/* High-level summary paragraph */}
+                        {item.summary && (
+                          <div className="pt-2 pb-3 mb-3 border-b border-white/10">
+                            <p className="text-xs sm:text-sm text-white/90 leading-relaxed font-normal">
+                              {item.summary}
+                            </p>
+                          </div>
+                        )}
+
+                        {/* Structured Sections (Item 1) or Standard Bullets (Item 2 & 3) */}
+                        {item.sections ? (
+                          <div className="space-y-4 mt-2">
+                            {item.sections.map((sec, sIdx) => (
+                              <div key={sIdx} className="space-y-1.5">
+                                <h4 className="text-xs font-mono uppercase tracking-wider text-indigo-300 font-semibold flex items-center gap-2">
+                                  <span className="w-1.5 h-1.5 rounded-full bg-indigo-400"></span>
+                                  <span>{sec.heading}</span>
+                                </h4>
+                                <div className="space-y-1.5 pl-2 sm:pl-3.5">
+                                  {sec.points.map((pt, pIdx) => (
+                                    <div key={pIdx} className="flex items-start gap-2.5 text-xs sm:text-sm text-white/85 leading-relaxed font-normal">
+                                      <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+                                      <span>{pt}</span>
+                                    </div>
+                                  ))}
+                                </div>
+                              </div>
+                            ))}
+                          </div>
+                        ) : (
+                          <div className="space-y-2.5 mt-2">
+                            {item.bullets.map((bullet, idx) => (
+                              <div key={idx} className="flex items-start gap-2.5 text-xs sm:text-sm text-white/85 leading-relaxed font-normal">
+                                <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+                                <span>{bullet}</span>
+                              </div>
+                            ))}
+                          </div>
+                        )}
 
                         <div className="mt-5 pt-4 border-t border-white/10 flex flex-wrap gap-1.5">
                           {item.tech.map((t) => (
