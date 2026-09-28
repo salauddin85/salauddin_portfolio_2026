@@ -92,9 +92,9 @@ export default function Services() {
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="flex flex-col items-start mb-12 sm:mb-16">
-          <div className="flex items-center gap-2 text-xs font-mono tracking-widest uppercase text-[var(--text-muted)] mb-3">
+          <div className="flex items-center gap-2 text-xs font-mono tracking-widest uppercase font-semibold text-[var(--text-primary)] mb-3">
             <span className="w-1.5 h-1.5 rounded-full bg-indigo-500"></span>
-            <span>WHAT I OFFER</span>
+            <span>SERVICES & SOLUTIONS</span>
           </div>
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-[var(--text-primary)] max-w-3xl">
             Everything you need to launch: architecture, APIs, frontend, and cloud deployment.

@@ -36,9 +36,9 @@ export default function About() {
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="flex flex-col items-start mb-12 sm:mb-16">
-          <div className="flex items-center gap-2 text-xs font-mono tracking-widest uppercase text-[var(--text-muted)] mb-3">
+          <div className="flex items-center gap-2 text-xs font-mono tracking-widest uppercase font-semibold text-[var(--text-primary)] mb-3">
             <span className="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
-            <span>GET TO KNOW ME</span>
+            <span>ABOUT ME</span>
           </div>
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-[var(--text-primary)] max-w-3xl">
             I love building simple, reliable, and scalable systems that solve real problems.
