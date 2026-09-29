@@ -111,16 +111,16 @@ export default function About() {
               <h3 className="text-xs font-mono uppercase tracking-widest text-[var(--text-muted)] font-semibold mb-4">
                 EXPERTISE
               </h3>
-              <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+              <div className="flex flex-wrap gap-2.5 sm:gap-3">
                 {EXPERTISE.map((item) => {
                   const Icon = item.icon;
                   return (
                     <div
                       key={item.name}
-                      className="group flex items-center gap-2.5 p-3 sm:p-3.5 rounded-xl border border-[var(--border-default)] bg-[var(--bg-surface)] text-xs sm:text-[13px] font-medium text-[var(--text-primary)] shadow-xs hover:bg-black hover:text-white hover:border-black dark:hover:bg-white dark:hover:text-black dark:hover:border-white hover:shadow-md hover:-translate-y-0.5 active:scale-95 transition-all duration-300 ease-out cursor-pointer select-none"
+                      className="group flex items-center gap-2 px-4 py-2 sm:px-4.5 sm:py-2.5 rounded-full border border-[var(--border-default)] bg-[var(--bg-surface)] text-xs sm:text-[13px] font-medium text-[var(--text-primary)] shadow-2xs hover:bg-black hover:text-white hover:border-black dark:hover:bg-white dark:hover:text-black dark:hover:border-white hover:shadow-xs hover:-translate-y-0.5 active:scale-95 transition-all duration-300 ease-out cursor-pointer select-none"
                     >
-                      <Icon className="w-4 h-4 text-[var(--text-primary)] group-hover:text-white dark:group-hover:text-black shrink-0 transition-colors duration-300" />
-                      <span className="transition-colors duration-300">{item.name}</span>
+                      <Icon className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[var(--text-primary)] group-hover:text-white dark:group-hover:text-black shrink-0 transition-colors duration-300" />
+                      <span className="transition-colors duration-300 whitespace-nowrap">{item.name}</span>
                     </div>
                   );
                 })}

@@ -70,7 +70,7 @@ export default function Process() {
           className="flex flex-col items-start mb-12 sm:mb-16"
         >
           <div className="flex items-center gap-2 text-xs font-mono tracking-widest uppercase font-normal text-[var(--text-muted)] mb-3">
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+            <span className="w-1.5 h-1.5 rounded-full bg-[var(--text-primary)]"></span>
             <span>HOW I WORK</span>
           </div>
           <h2 className="text-base sm:text-lg font-normal text-[var(--text-secondary)] max-w-2xl leading-relaxed">

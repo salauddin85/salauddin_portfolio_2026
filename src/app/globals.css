@@ -146,3 +146,25 @@ body {
 .dark #next-steps .next-cloudscape-bg {
   display: none !important;
 }
+
+/* Technology Marquee Infinite Auto-Scroll with Instant Pause on Hover */
+@keyframes techMarqueeScroll {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+.tech-marquee-track {
+  display: flex;
+  width: max-content;
+  will-change: transform;
+  animation: techMarqueeScroll 60s linear infinite;
+}
+
+.tech-marquee-track:hover {
+  animation-play-state: paused !important;
+}
+

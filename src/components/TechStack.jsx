@@ -11,15 +11,45 @@ import {
   Workflow, 
   Terminal, 
   Cpu,
-  Layers
+  Layers,
+  ShieldCheck,
+  GitBranch,
+  Boxes,
+  Bot,
+  Brain,
+  Network,
+  KeyRound,
+  Activity,
+  FileCode
 } from "lucide-react";
 
 /**
  * High-fidelity vector tech icons rendered inline with currentColor for seamless hover inversion
  */
 function TechIcon({ name, className = "w-3.5 h-3.5" }) {
-  const n = name.toLowerCase();
+  const n = name.toLowerCase().trim();
 
+  if (n.includes("flutter")) {
+    return (
+      <svg className={className} viewBox="0 0 24 24" fill="currentColor">
+        <path d="M14.314 0L2.3 12 6 15.7 21.684.013h-7.37zM6.002 15.696L14.316 24h7.37L13.37 15.696h-7.368zm3.684-3.696l3.684 3.696h7.37L17.054 12l3.686-3.684h-7.37L9.686 12z"/>
+      </svg>
+    );
+  }
+  if (n.includes("html")) {
+    return (
+      <svg className={className} viewBox="0 0 24 24" fill="currentColor">
+        <path d="M1.5 0h21l-1.91 21.563L11.977 24l-8.564-2.438L1.5 0zm7.031 9.75l-.232-2.718 10.059.003.23-2.622L5.412 4.41l.698 8.01h9.126l-.326 3.426-2.91.804-2.955-.81-.188-2.11H6.248l.33 4.171L12 19.351l5.379-1.443.744-8.158H8.531z"/>
+      </svg>
+    );
+  }
+  if (n.includes("css") && !n.includes("tailwind")) {
+    return (
+      <svg className={className} viewBox="0 0 24 24" fill="currentColor">
+        <path d="M1.5 0h21l-1.91 21.563L11.977 24l-8.564-2.438L1.5 0zm17.09 4.413L5.41 4.41l.235 2.622 10.125.002-.255 2.716h-7.23l.238 2.65h6.757l-.547 5.706-2.748.74-2.75-.742-.178-1.97H6.602l.35 4.316 5.047 1.398 5.05-1.398 1.541-16.035z"/>
+      </svg>
+    );
+  }
   if (n.includes("python")) {
     return (
       <svg className={className} viewBox="0 0 24 24" fill="currentColor">
@@ -97,6 +127,28 @@ function TechIcon({ name, className = "w-3.5 h-3.5" }) {
       </svg>
     );
   }
+  if (n.includes("hostinger")) {
+    return (
+      <svg className={className} viewBox="0 0 24 24" fill="none">
+        <rect width="24" height="24" rx="6" className="fill-neutral-900 dark:fill-white" />
+        <path d="M7.75 6.75v10.5h2.5v-3.75h3.5v3.75h2.5V6.75h-2.5v4.25h-3.5V6.75h-2.5z" className="fill-white dark:fill-neutral-950" />
+      </svg>
+    );
+  }
+  if (n.includes("cloudflare")) {
+    return (
+      <svg className={className} viewBox="0 0 24 24" fill="currentColor">
+        <path d="M18.42 10.43a5.55 5.55 0 0 0-10.4-1.92 4.22 4.22 0 0 0-4.54 4.19c0 .24.02.48.06.71A3.59 3.59 0 0 0 1 16.9a3.6 3.6 0 0 0 3.6 3.6h14.7a4.5 4.5 0 0 0 4.5-4.5c0-2.31-1.76-4.22-4.04-4.47l-.34-.1z"/>
+      </svg>
+    );
+  }
+  if (n.includes("vercel")) {
+    return (
+      <svg className={className} viewBox="0 0 24 24" fill="currentColor">
+        <path d="M12 1L24 22H0L12 1z"/>
+      </svg>
+    );
+  }
   if (n.includes("javascript") || n === "js") {
     return (
       <svg className={className} viewBox="0 0 24 24" fill="currentColor">
@@ -104,28 +156,113 @@ function TechIcon({ name, className = "w-3.5 h-3.5" }) {
       </svg>
     );
   }
+  if (n.includes("terraform")) {
+    return (
+      <svg className={className} viewBox="0 0 24 24" fill="currentColor">
+        <path d="M1.44 0v7.575l6.55 3.79V3.79zm7.633 4.417v7.542l6.55 3.783V8.2zm7.634 0v7.542l6.549-3.784V.633zM9.073 12.633v7.542l6.55 3.784v-7.542z"/>
+      </svg>
+    );
+  }
+  if (n.includes("nginx")) {
+    return (
+      <svg className={className} viewBox="0 0 24 24" fill="currentColor">
+        <path d="M12.001 0a12 12 0 1 0 0 24 12 12 0 0 0 0-24zm4.846 16.716l-3.262-4.148v4.148h-1.92V7.284h1.92l3.262 4.148V7.284h1.92v9.432h-1.92zm-7.692 0H7.235V7.284h1.92v9.432z"/>
+      </svg>
+    );
+  }
+  if (n.includes("mysql")) {
+    return (
+      <svg className={className} viewBox="0 0 24 24" fill="currentColor">
+        <path d="M12 0C5.37 0 0 5.37 0 12s5.37 12 12 12 12-5.37 12-12S18.63 0 12 0zm4.54 16.85c-.95 0-1.78-.49-2.26-1.23-.48.74-1.31 1.23-2.26 1.23-1.07 0-2-.61-2.46-1.5-.46.89-1.39 1.5-2.46 1.5-1.53 0-2.77-1.24-2.77-2.77s1.24-2.77 2.77-2.77c.95 0 1.78.49 2.26 1.23.48-.74 1.31-1.23 2.26-1.23 1.07 0 2 .61 2.46 1.5.46-.89 1.39-1.5 2.46-1.5 1.53 0 2.77 1.24 2.77 2.77s-1.24 2.77-2.77 2.77z"/>
+      </svg>
+    );
+  }
+  if (n.includes("openai")) {
+    return (
+      <svg className={className} viewBox="0 0 24 24" fill="currentColor">
+        <path d="M22.282 9.821a5.985 5.985 0 0 0-.516-4.91 6.046 6.046 0 0 0-6.51-2.9A6.065 6.065 0 0 0 4.981 4.18a5.985 5.985 0 0 0-3.998 2.9 6.046 6.046 0 0 0 .743 7.097 5.98 5.98 0 0 0 .51 4.911 6.051 6.051 0 0 0 6.515 2.9A5.985 5.985 0 0 0 13.26 24a6.056 6.056 0 0 0 5.772-4.206 5.99 5.99 0 0 0 3.997-2.9 6.056 6.056 0 0 0-.747-7.073zM13.26 22.43a4.476 4.476 0 0 1-2.876-1.04l.141-.081 4.779-2.758a.795.795 0 0 0 .392-.681v-6.737l2.02 1.168a.071.071 0 0 1 .038.052v5.583a4.504 4.504 0 0 1-4.494 4.494zM3.6 18.304a4.47 4.47 0 0 1-.535-3.014l.142.085 4.783 2.759a.771.771 0 0 0 .78 0l5.843-3.369v2.332a.08.08 0 0 1-.033.062L9.74 19.95a4.5 4.5 0 0 1-6.14-1.646zM2.34 8.64a4.485 4.485 0 0 1 2.342-1.974V12.2a.76.76 0 0 0 .388.676l5.843 3.368-2.02 1.168a.076.076 0 0 1-.067 0L4.025 14.7a4.5 4.5 0 0 1-1.685-6.06zM18.89 10.66l-5.843-3.37 2.02-1.167a.076.076 0 0 1 .067 0l4.84 2.793a4.499 4.499 0 0 1-.69 8.077V11.34a.79.79 0 0 0-.394-.68zm2.77-2.36a4.5 4.5 0 0 1-1.808 6.027l-.142-.085-4.779-2.76a.771.771 0 0 0-.78 0L8.308 14.85V12.52a.08.08 0 0 1 .033-.062l4.84-2.793a4.499 4.499 0 0 1 8.48 3.633zm-9.66 4.39l-2.74-1.58 2.74-1.58 2.74 1.58-2.74 1.58z"/>
+      </svg>
+    );
+  }
+  if (n.includes("c++")) {
+    return (
+      <svg className={className} viewBox="0 0 24 24" fill="currentColor">
+        <path d="M12 0C5.372 0 0 5.372 0 12s5.372 12 12 12 12-5.372 12-12S18.628 0 12 0zm-.2 18.5c-3.59 0-6.5-2.91-6.5-6.5s2.91-6.5 6.5-6.5c2.04 0 3.86.95 5.05 2.43l-2.05 1.55a4.01 4.01 0 0 0-3-1.48 4 4 0 1 0 0 8c1.19 0 2.26-.52 3-1.39l2.05 1.48c-1.19 1.48-3.01 2.41-5.05 2.41zm8.7-6.5h-1.5v1.5h-1v-1.5h-1.5v-1h1.5v-1.5h1v1.5h1.5v1zm3 0h-1.5v1.5h-1v-1.5h-1.5v-1h1.5v-1.5h1v1.5h1.5v1z"/>
+      </svg>
+    );
+  }
+  if (n === "c") {
+    return (
+      <svg className={className} viewBox="0 0 24 24" fill="currentColor">
+        <path d="M12 0C5.372 0 0 5.372 0 12s5.372 12 12 12 12-5.372 12-12S18.628 0 12 0zm-.2 18.5c-3.59 0-6.5-2.91-6.5-6.5s2.91-6.5 6.5-6.5c2.04 0 3.86.95 5.05 2.43l-2.05 1.55a4.01 4.01 0 0 0-3-1.48 4 4 0 1 0 0 8c1.19 0 2.26-.52 3-1.39l2.05 1.48c-1.19 1.48-3.01 2.41-5.05 2.41z"/>
+      </svg>
+    );
+  }
+  if (n.includes("java") && !n.includes("javascript")) {
+    return (
+      <svg className={className} viewBox="0 0 24 24" fill="currentColor">
+        <path d="M8.851 18.56s-.917.534.667.708c2.409.265 3.667.24 6.27-.272 0 0 .874.526 2.055.845-6.17 2.074-13.064-.171-8.992-1.281zm-1.077-2.585s-1.082.744.542.923c3.084.341 5.385.341 9.42-.363 0 0 .616.444 1.625.688-6.994 1.849-14.896.173-11.587-1.248zm10.742-5.918c-.896-.282-1.928-.43-3.003-.43-3.693 0-5.833 1.77-5.833 5.104 0 3.23 2.031 5.365 5.573 5.365.885 0 1.77-.156 2.6-.469v-2.04c-.417.156-.938.208-1.51.208-1.98 0-3.021 1.042-3.021 3.02 0 1.98 1.041 2.97 2.812 2.97.73 0 1.355.053 1.719.105V10.057z"/>
+      </svg>
+    );
+  }
 
   // Domain Category Icons
-  if (n.includes("api") || n.includes("drf") || n.includes("rest") || n.includes("jwt")) {
-    return <Cpu className={className} />;
+  if (n.includes("zustand")) {
+    return <Boxes className={className} />;
   }
-  if (n.includes("vector") || n.includes("ai") || n.includes("rag") || n.includes("llm")) {
-    return <Sparkles className={className} />;
+  if (n.includes("jwt") || n.includes("auth")) {
+    return <KeyRound className={className} />;
   }
-  if (n.includes("database") || n.includes("sql") || n.includes("mysql") || n.includes("sqlite")) {
-    return <Database className={className} />;
+  if (n.includes("ci/cd") || n.includes("pipeline")) {
+    return <GitBranch className={className} />;
   }
-  if (n.includes("cloud") || n.includes("vps") || n.includes("terraform") || n.includes("nginx")) {
-    return <Cloud className={className} />;
+  if (n.includes("vps") || n.includes("server")) {
+    return <Server className={className} />;
   }
-  if (n.includes("ci/cd") || n.includes("pipeline") || n.includes("solid") || n.includes("pattern") || n.includes("architecture")) {
+  if (n.includes("grafana") || n.includes("prometheus")) {
+    return <Activity className={className} />;
+  }
+  if (n.includes("loki")) {
+    return <FileCode className={className} />;
+  }
+  if (n.includes("agent") || n.includes("generative")) {
+    return <Bot className={className} />;
+  }
+  if (n.includes("llm")) {
+    return <Brain className={className} />;
+  }
+  if (n.includes("rag")) {
+    return <Layers className={className} />;
+  }
+  if (n.includes("system design") || n.includes("architecture")) {
+    return <Network className={className} />;
+  }
+  if (n.includes("microservice")) {
+    return <Boxes className={className} />;
+  }
+  if (n.includes("monolith")) {
+    return <Layers className={className} />;
+  }
+  if (n.includes("solid") || n.includes("dry") || n.includes("kiss") || n.includes("tenant") || n.includes("tenancy")) {
+    return <ShieldCheck className={className} />;
+  }
+  if (n.includes("pattern") || n.includes("repository") || n.includes("factory") || n.includes("celery")) {
     return <Workflow className={className} />;
   }
-  if (n.includes("c++") || n.includes("c") || n.includes("java") || n.includes("terminal") || n.includes("problem")) {
-    return <Terminal className={className} />;
+  if (n.includes("api") || n.includes("drf") || n.includes("rest")) {
+    return <Cpu className={className} />;
   }
-  if (n.includes("microservice") || n.includes("monolith") || n.includes("multi-tenancy")) {
-    return <Layers className={className} />;
+  if (n.includes("vector") || n.includes("ai") || n.includes("embedding") || n.includes("pgvector")) {
+    return <Sparkles className={className} />;
+  }
+  if (n.includes("database") || n.includes("sql") || n.includes("sqlite")) {
+    return <Database className={className} />;
+  }
+  if (n.includes("cloud")) {
+    return <Cloud className={className} />;
+  }
+  if (n.includes("terminal") || n.includes("problem")) {
+    return <Terminal className={className} />;
   }
 
   return <Code2 className={className} />;
@@ -142,9 +279,9 @@ const CATEGORIES = [
   {
     id: "backend",
     title: "BACKEND",
-    count: 6,
+    count: 7,
     icon: Server,
-    skills: ["Python", "Django", "Django REST Framework", "REST APIs", "JWT Auth", "Celery & Redis"]
+    skills: ["Python", "Django", "Django REST Framework", "REST APIs", "JWT Auth", "Celery", "Redis"]
   },
   {
     id: "database",
@@ -183,29 +320,67 @@ const CATEGORIES = [
   }
 ];
 
-// Rich showcase of all primary technologies
+// Technology showcase matching the reference screenshot exactly, expanded with all tools from the 7 cards
 const MARQUEE_TECH = [
-  "Python",
-  "Django",
-  "Django REST Framework",
-  "Next.js",
-  "React",
-  "TypeScript",
-  "JavaScript",
-  "PostgreSQL",
-  "Docker",
-  "pgvector",
-  "RAG Systems",
-  "Redis",
+  "NEXT.JS",
+  "REACT JS",
+  "HTML5",
+  "CSS3",
+  "JAVASCRIPT",
+  "TYPESCRIPT",
+  "PYTHON",
+  "DJANGO",
+  "POSTGRESQL",
+  "DOCKER",
+  "REDIS",
+  "TAILWIND CSS",
+  "BOOTSTRAP",
   "AWS",
-  "CI/CD Pipelines",
-  "Tailwind CSS",
-  "Linux",
-  "Celery",
-  "Nginx",
-  "MySQL",
-  "Zustand",
-  "System Design"
+  "LINUX",
+  "HOSTINGER",
+  "CLOUDFLARE",
+  "VERCEL",
+  // From Frontend
+  "ZUSTAND",
+  "POSTMAN",
+  // From Backend
+  "DJANGO REST FRAMEWORK",
+  "REST APIS",
+  "JWT AUTH",
+  "CELERY",
+  // From Databases
+  "MYSQL",
+  "SQLITE",
+  "PGVECTOR",
+  // From Hosting & DevOps
+  "TERRAFORM",
+  "NGINX",
+  "CI/CD PIPELINES",
+  "VPS",
+  "GRAFANA",
+  "LOKI",
+  "PROMETHEUS",
+  // From AI & Vector Search
+  "GENERATIVE AI",
+  "LLMS",
+  "RAG SYSTEMS",
+  "VECTOR EMBEDDINGS",
+  "OPENAI API",
+  "AI AGENTS",
+  // From System Architecture
+  "SOLID PRINCIPLES",
+  "DRY & KISS",
+  "MICROSERVICES",
+  "MONOLITH",
+  "REPOSITORY PATTERN",
+  "FACTORY PATTERN",
+  "SYSTEM DESIGN",
+  "ZERO-TRUST MULTI-TENANCY",
+  // From Core Languages
+  "C",
+  "C++",
+  "JAVA",
+  "SQL"
 ];
 
 export default function TechStack() {
@@ -252,48 +427,46 @@ export default function TechStack() {
         {/* Section Header: Scroll-linked continuous leftward movement */}
         <motion.div 
           style={{ x: smoothHeaderX }}
-          className="flex flex-col items-start mb-8 sm:mb-10"
+          className="flex flex-col items-start mb-10 sm:mb-12"
         >
           <div className="flex items-center gap-2 text-xs font-mono tracking-widest uppercase font-normal text-[var(--text-muted)] mb-3">
             <span className="w-1.5 h-1.5 rounded-full bg-[var(--text-primary)]"></span>
             <span>TECHNOLOGIES I USE</span>
           </div>
-          <h2 className="text-base sm:text-lg font-normal text-[var(--text-secondary)] max-w-3xl leading-relaxed">
-            The tools I use to build complete websites, apps, and scalable backends.
+          <h2 className="text-sm sm:text-base font-normal text-[var(--text-secondary)] max-w-xl leading-relaxed">
+            The tools I use to build complete websites, apps, and systems, from frontend to hosting.
           </h2>
         </motion.div>
 
         {/* 
-          Feature 1: Horizontal Auto-Scrolling Continuous Technology Showcase (Right to Left)
-          Smooth, seamless, infinite loop with official icons and CTA-style black hover
+          Feature 1: Auto-scrolling Technology Bar matching reference screenshot
+          Clean horizontal stream without pill buttons, bold uppercase typography, and slash separators
         */}
-        <div className="relative w-full overflow-hidden py-4 mb-12 bg-[var(--bg-surface)]/60 backdrop-blur-xs rounded-2xl select-none">
+        <div className="relative w-full overflow-hidden border-y border-[var(--border-default)] py-4 sm:py-5 mb-14 select-none">
           {/* Subtle gradient side fades for ultra-clean edge blending */}
           <div className="absolute left-0 top-0 bottom-0 w-12 sm:w-24 bg-gradient-to-r from-[var(--bg-deep)] to-transparent z-10 pointer-events-none" />
           <div className="absolute right-0 top-0 bottom-0 w-12 sm:w-24 bg-gradient-to-l from-[var(--bg-deep)] to-transparent z-10 pointer-events-none" />
 
-          <motion.div
-            animate={{ x: ["0%", "-50%"] }}
-            transition={{
-              repeat: Infinity,
-              repeatType: "loop",
-              duration: 32,
-              ease: "linear",
-            }}
-            className="flex items-center gap-3 sm:gap-4 w-max hover:[animation-play-state:paused]"
+          <div
+            className="tech-marquee-track flex items-center gap-6 sm:gap-8 w-max will-change-transform"
           >
             {[...MARQUEE_TECH, ...MARQUEE_TECH].map((tech, idx) => (
-              <div
-                key={`${tech}-${idx}`}
-                className="group flex items-center gap-2.5 px-4 sm:px-5 py-2 sm:py-2.5 rounded-full border border-[var(--border-default)] bg-[var(--bg-surface)] text-xs sm:text-[13px] font-medium text-[var(--text-primary)] shadow-2xs hover:bg-black hover:text-white hover:border-black dark:hover:bg-white dark:hover:text-black dark:hover:border-white hover:shadow-md hover:-translate-y-0.5 active:scale-95 transition-all duration-300 shrink-0 cursor-pointer"
+              <div 
+                key={`${tech}-${idx}`} 
+                className="flex items-center gap-6 sm:gap-8 shrink-0 select-none"
               >
-                <span className="text-[var(--text-primary)] group-hover:text-white dark:group-hover:text-black transition-colors shrink-0">
-                  <TechIcon name={tech} className="w-4 h-4" />
+                <div className="flex items-center gap-2.5 sm:gap-3 text-neutral-800 dark:text-neutral-200 opacity-75">
+                  <TechIcon name={tech} className="w-4 h-4 sm:w-4.5 sm:h-4.5 shrink-0" />
+                  <span className="font-sans text-xs sm:text-[13px] font-semibold tracking-wider uppercase">
+                    {tech}
+                  </span>
+                </div>
+                <span className="text-neutral-300 dark:text-neutral-700 font-light select-none text-xs sm:text-sm">
+                  /
                 </span>
-                <span className="font-mono text-xs tracking-tight">{tech}</span>
               </div>
             ))}
-          </motion.div>
+          </div>
         </div>
 
         {/* Filter Tab Strip */}
@@ -360,13 +533,13 @@ export default function TechStack() {
                     </div>
 
                     {/* 
-                      Skills Pills: Displayed with authentic icons/logos and CTA-style black hover
+                      Skills Pills: Displayed as authentic pill buttons with icons and CTA-style black hover
                     */}
                     <div className="flex flex-wrap gap-2 pt-1">
                       {cat.skills.map((skill) => (
                         <div
                           key={skill}
-                          className="group/item flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium bg-[var(--bg-deep)] text-[var(--text-primary)] border border-[var(--border-default)] hover:bg-black hover:text-white hover:border-black dark:hover:bg-white dark:hover:text-black dark:hover:border-white hover:shadow-xs hover:-translate-y-0.5 active:scale-95 transition-all duration-300 cursor-pointer select-none"
+                          className="group/item flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-medium bg-[var(--bg-deep)] text-[var(--text-primary)] border border-[var(--border-default)] hover:bg-black hover:text-white hover:border-black dark:hover:bg-white dark:hover:text-black dark:hover:border-white hover:shadow-xs hover:-translate-y-0.5 active:scale-95 transition-all duration-300 cursor-pointer select-none"
                         >
                           <span className="text-[var(--text-primary)] group-hover/item:text-white dark:group-hover/item:text-black transition-colors shrink-0">
                             <TechIcon name={skill} className="w-3.5 h-3.5" />

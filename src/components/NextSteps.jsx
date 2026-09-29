@@ -101,7 +101,7 @@ export default function NextSteps() {
           className="flex flex-col items-start mb-12 sm:mb-16"
         >
           <div className="flex items-center gap-2 text-xs font-mono tracking-widest uppercase font-normal text-[var(--text-muted)] mb-3">
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+            <span className="w-1.5 h-1.5 rounded-full bg-[var(--text-primary)]"></span>
             <span>WHAT HAPPENS NEXT</span>
           </div>
           <h2 className="text-base sm:text-lg font-normal text-[var(--text-secondary)] max-w-2xl leading-relaxed">
@@ -177,10 +177,10 @@ export default function NextSteps() {
                       className={`inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-[11px] font-mono uppercase tracking-wider font-semibold transition-all duration-300 ${
                         isActive
                           ? "bg-white/10 border border-white/10 text-white/90"
-                          : "bg-emerald-500/10 border border-emerald-500/20 text-emerald-600 dark:text-emerald-400"
+                          : "border border-neutral-300 dark:border-neutral-700 bg-neutral-100 dark:bg-neutral-800 text-neutral-800 dark:text-neutral-200"
                       }`}
                     >
-                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                      <span className={`w-1.5 h-1.5 rounded-full ${isActive ? "bg-white" : "bg-black dark:bg-white"} animate-pulse`}></span>
                       <span>{step.badge}</span>
                     </span>
                   ) : (
