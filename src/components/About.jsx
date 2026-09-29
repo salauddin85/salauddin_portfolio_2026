@@ -36,15 +36,6 @@ export default function About() {
     offset: ["start end", "end start"],
   });
 
-  const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-    const check = () => setIsMobile(window.innerWidth < 768);
-    check();
-    window.addEventListener("resize", check, { passive: true });
-    return () => window.removeEventListener("resize", check);
-  }, []);
-
   // Smooth, physical spring configuration for responsive scroll
   const springConfig = { stiffness: 100, damping: 24, mass: 0.4 };
 
@@ -66,7 +57,7 @@ export default function About() {
       {/* Background Section Title — Centered horizontally only */}
       <div className="absolute top-6 sm:top-8 left-0 w-full flex justify-center pointer-events-none select-none z-0 px-4 sm:px-8">
         <motion.div
-          style={{ x: isMobile ? 0 : smoothWatermarkX }}
+          style={{ x: smoothWatermarkX }}
           className="font-display font-black uppercase tracking-tight whitespace-nowrap text-[clamp(26px,6vw,90px)] leading-none text-[var(--watermark-color)] [-webkit-text-stroke:var(--watermark-stroke,0px_transparent)] select-none text-center"
         >
           ABOUT ME
@@ -76,7 +67,7 @@ export default function About() {
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <motion.div
-          style={{ x: isMobile ? 0 : smoothHeaderX }}
+          style={{ x: smoothHeaderX }}
           className="flex flex-col items-start mb-12 sm:mb-16"
         >
           <div className="flex items-center gap-2 text-xs font-mono tracking-widest uppercase font-normal text-[var(--text-muted)] mb-3">
@@ -93,7 +84,7 @@ export default function About() {
           {/* Left Column: My Journey, Expertise & Metrics (7 Cols) */}
           <div className="lg:col-span-7 flex flex-col gap-8">
             {/* My Journey */}
-            <motion.div style={{ x: isMobile ? 0 : smoothJourneyX }}>
+            <motion.div style={{ x: smoothJourneyX }}>
               <h3 className="text-xs font-mono uppercase tracking-widest text-[var(--text-muted)] font-semibold mb-4">
                 MY JOURNEY
               </h3>

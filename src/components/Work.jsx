@@ -365,7 +365,7 @@ export default function Work() {
     <section 
       id="work" 
       ref={sectionRef} 
-      className="relative w-full py-24 sm:py-32 overflow-hidden bg-[var(--bg-deep)]"
+      className="relative w-full py-20 sm:py-32 overflow-hidden bg-[var(--bg-deep)]"
     >
       {/* Background Section Title — Centered horizontally only */}
       <div className="absolute top-6 sm:top-8 left-0 w-full flex justify-center pointer-events-none select-none z-0 px-4 sm:px-8">
@@ -378,10 +378,10 @@ export default function Work() {
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header with scroll-linked animation */}
+        {/* Section Header with scroll-linked animation matching Feedback, About Me, and Experience */}
         <motion.div 
           style={{ x: smoothHeaderX }} 
-          className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12 sm:mb-16"
+          className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10 sm:mb-16"
         >
           <div className="flex flex-col items-start">
             <div className="flex items-center gap-2 text-xs font-mono tracking-widest uppercase font-normal text-[var(--text-muted)] mb-3">
@@ -391,16 +391,16 @@ export default function Work() {
             <h2 className="text-base sm:text-lg font-normal text-[var(--text-secondary)] max-w-2xl leading-relaxed">
               Live products and private builds across web, AI, SaaS, and fintech.
             </h2>
-            <p className="mt-3 text-xs sm:text-sm text-[var(--text-secondary)] font-normal max-w-xl">
+            <p className="mt-2.5 sm:mt-3 text-xs sm:text-sm text-[var(--text-secondary)] font-normal max-w-xl leading-relaxed">
               Production systems built with modern architecture, rock-solid backends, and responsive user experiences. Click any project to inspect full case details.
             </p>
           </div>
 
-          {/* Filter Pills matching Screenshot 1 */}
-          <div className="flex items-center gap-2 overflow-x-auto no-scrollbar pb-1 shrink-0">
+          {/* Filter Pills — Wrapped and fully responsive without horizontal cut-off */}
+          <div className="flex flex-wrap items-center gap-2 sm:gap-2.5 w-full md:w-auto">
             <button
               onClick={() => setFilter("all")}
-              className={`px-4 py-2 rounded-full text-xs font-medium transition-all duration-200 cursor-pointer ${
+              className={`px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-full text-xs font-medium transition-all duration-200 cursor-pointer select-none ${
                 filter === "all"
                   ? "bg-black text-white dark:bg-white dark:text-black shadow-sm"
                   : "border border-[var(--border-default)] bg-[var(--bg-surface)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:border-neutral-400 dark:hover:border-neutral-600"
@@ -410,7 +410,7 @@ export default function Work() {
             </button>
             <button
               onClick={() => setFilter("ai")}
-              className={`px-4 py-2 rounded-full text-xs font-medium transition-all duration-200 cursor-pointer ${
+              className={`px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-full text-xs font-medium transition-all duration-200 cursor-pointer select-none ${
                 filter === "ai"
                   ? "bg-black text-white dark:bg-white dark:text-black shadow-sm"
                   : "border border-[var(--border-default)] bg-[var(--bg-surface)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:border-neutral-400 dark:hover:border-neutral-600"
@@ -420,7 +420,7 @@ export default function Work() {
             </button>
             <button
               onClick={() => setFilter("enterprise")}
-              className={`px-4 py-2 rounded-full text-xs font-medium transition-all duration-200 cursor-pointer ${
+              className={`px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-full text-xs font-medium transition-all duration-200 cursor-pointer select-none ${
                 filter === "enterprise"
                   ? "bg-black text-white dark:bg-white dark:text-black shadow-sm"
                   : "border border-[var(--border-default)] bg-[var(--bg-surface)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:border-neutral-400 dark:hover:border-neutral-600"
@@ -430,7 +430,7 @@ export default function Work() {
             </button>
             <button
               onClick={() => setFilter("fintech")}
-              className={`px-4 py-2 rounded-full text-xs font-medium transition-all duration-200 cursor-pointer ${
+              className={`px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-full text-xs font-medium transition-all duration-200 cursor-pointer select-none ${
                 filter === "fintech"
                   ? "bg-black text-white dark:bg-white dark:text-black shadow-sm"
                   : "border border-[var(--border-default)] bg-[var(--bg-surface)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:border-neutral-400 dark:hover:border-neutral-600"
@@ -440,7 +440,7 @@ export default function Work() {
             </button>
             <button
               onClick={() => setFilter("web")}
-              className={`px-4 py-2 rounded-full text-xs font-medium transition-all duration-200 cursor-pointer ${
+              className={`px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-full text-xs font-medium transition-all duration-200 cursor-pointer select-none ${
                 filter === "web"
                   ? "bg-black text-white dark:bg-white dark:text-black shadow-sm"
                   : "border border-[var(--border-default)] bg-[var(--bg-surface)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:border-neutral-400 dark:hover:border-neutral-600"
@@ -452,7 +452,7 @@ export default function Work() {
         </motion.div>
 
         {/* Project Cards Grid — Following Screenshot 1 reference */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 mb-12 sm:mb-16">
           <AnimatePresence mode="popLayout">
             {filteredProjects.map((project) => (
               <motion.div
@@ -463,24 +463,24 @@ export default function Work() {
                 exit={{ opacity: 0, scale: 0.96 }}
                 transition={{ duration: 0.35, ease: "easeOut" }}
                 onClick={() => setSelectedProject(project)}
-                className="group rounded-3xl border border-[var(--border-default)] bg-[var(--bg-surface)] overflow-hidden transition-all duration-300 hover:border-neutral-400 dark:hover:border-neutral-600 hover:shadow-[0_20px_45px_-12px_rgba(0,0,0,0.12)] dark:hover:shadow-[0_20px_45px_-12px_rgba(0,0,0,0.6)] hover:-translate-y-1.5 cursor-pointer flex flex-col justify-between"
+                className="group rounded-2xl sm:rounded-3xl border border-[var(--border-default)] bg-[var(--bg-surface)] overflow-hidden transition-all duration-300 hover:border-neutral-400 dark:hover:border-neutral-600 hover:shadow-[0_20px_45px_-12px_rgba(0,0,0,0.12)] dark:hover:shadow-[0_20px_45px_-12px_rgba(0,0,0,0.6)] hover:-translate-y-1.5 cursor-pointer flex flex-col justify-between"
               >
                 {/* Project Image & Mockup Canvas */}
-                <div className="relative w-full aspect-16/10 sm:aspect-16/9 bg-neutral-100 dark:bg-neutral-900 overflow-hidden border-b border-[var(--border-default)] flex items-center justify-center p-3 sm:p-5">
-                  {/* Status Badge overlay in top-left (Screenshot 1: • Live) */}
-                  <div className="absolute top-4 left-4 z-10 flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-mono font-medium bg-white/95 dark:bg-black/80 backdrop-blur-md border border-neutral-200 dark:border-neutral-800 text-neutral-900 dark:text-neutral-100 shadow-sm">
-                    <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                <div className="relative w-full aspect-16/10 sm:aspect-16/9 bg-neutral-100 dark:bg-neutral-900 overflow-hidden border-b border-[var(--border-default)] flex items-center justify-center p-2.5 sm:p-5">
+                  {/* Status Badge overlay in top-left */}
+                  <div className="absolute top-3 left-3 sm:top-4 sm:left-4 z-10 flex items-center gap-1.5 px-2.5 sm:px-3 py-0.5 sm:py-1 rounded-full text-[10px] sm:text-[11px] font-mono font-medium bg-white/95 dark:bg-black/80 backdrop-blur-md border border-neutral-200 dark:border-neutral-800 text-neutral-900 dark:text-neutral-100 shadow-sm">
+                    <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-emerald-500 animate-pulse"></span>
                     <span>{project.status}</span>
                   </div>
 
                   {/* "Click to View" badge on top right hover */}
-                  <div className="absolute top-4 right-4 z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-mono uppercase tracking-wider font-semibold bg-black/85 text-white dark:bg-white dark:text-black shadow-md">
+                  <div className="absolute top-3 right-3 sm:top-4 sm:right-4 z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-mono uppercase tracking-wider font-semibold bg-black/85 text-white dark:bg-white dark:text-black shadow-md">
                     <span>View Case</span>
                     <ArrowUpRight className="w-3 h-3" />
                   </div>
 
                   {/* Mockup Image Display */}
-                  <div className="w-full h-full rounded-2xl overflow-hidden shadow-sm relative">
+                  <div className="w-full h-full rounded-xl sm:rounded-2xl overflow-hidden shadow-sm relative">
                     <img
                       src={project.image}
                       alt={project.title}
@@ -491,36 +491,36 @@ export default function Work() {
                   </div>
                 </div>
 
-                {/* Card Content & Badges (Matching Screenshot 1) */}
-                <div className="p-6 sm:p-7 flex-1 flex flex-col justify-between">
+                {/* Card Content & Badges */}
+                <div className="p-4 sm:p-6 lg:p-7 flex-1 flex flex-col justify-between">
                   <div>
                     {/* Project Title */}
                     <div className="flex items-start justify-between gap-3">
-                      <h3 className="text-xl sm:text-2xl font-bold tracking-tight text-[var(--text-primary)] group-hover:opacity-80 transition-opacity">
+                      <h3 className="text-lg sm:text-2xl font-bold tracking-tight text-[var(--text-primary)] group-hover:opacity-80 transition-opacity leading-snug">
                         {project.title}
                       </h3>
-                      <div className="w-8 h-8 rounded-full border border-[var(--border-default)] flex items-center justify-center shrink-0 text-[var(--text-muted)] group-hover:border-black group-hover:bg-black group-hover:text-white dark:group-hover:border-white dark:group-hover:bg-white dark:group-hover:text-black transition-all duration-200">
-                        <ArrowUpRight className="w-4 h-4" />
+                      <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full border border-[var(--border-default)] flex items-center justify-center shrink-0 text-[var(--text-muted)] group-hover:border-black group-hover:bg-black group-hover:text-white dark:group-hover:border-white dark:group-hover:bg-white dark:group-hover:text-black transition-all duration-200">
+                        <ArrowUpRight className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
                       </div>
                     </div>
 
                     {/* Short Description */}
-                    <p className="mt-2 text-xs sm:text-sm text-[var(--text-secondary)] font-normal leading-relaxed line-clamp-2">
+                    <p className="mt-1.5 sm:mt-2 text-xs sm:text-sm text-[var(--text-secondary)] font-normal leading-relaxed line-clamp-2">
                       {project.tagline}
                     </p>
 
-                    {/* Key Technical Highlight Pill */}
-                    <div className="mt-3.5 inline-flex items-center gap-1.5 px-3 py-1 rounded-lg text-xs bg-[var(--bg-elevated)] border border-[var(--border-default)] text-[var(--text-primary)] font-medium">
-                      <Sparkles className="w-3.5 h-3.5 text-[var(--text-primary)] shrink-0" />
-                      <span className="truncate">{project.metricsHighlight}</span>
+                    {/* Key Technical Highlight Pill — Full text wrap without clipping */}
+                    <div className="mt-3 inline-flex items-start sm:items-center gap-1.5 px-2.5 sm:px-3 py-1.5 rounded-lg text-[11px] sm:text-xs bg-[var(--bg-elevated)] border border-[var(--border-default)] text-[var(--text-primary)] font-medium max-w-full">
+                      <Sparkles className="w-3.5 h-3.5 text-[var(--text-primary)] shrink-0 mt-0.5 sm:mt-0" />
+                      <span className="leading-snug break-words">{project.metricsHighlight}</span>
                     </div>
                   </div>
 
-                  {/* Bottom Badges Row: Category + Tech with Icons (Exact match with reference) */}
-                  <div className="mt-6 pt-5 border-t border-[var(--border-default)] flex flex-wrap items-center gap-2">
+                  {/* Bottom Badges Row: Category + Tech with Icons */}
+                  <div className="mt-4 pt-3.5 sm:mt-6 sm:pt-5 border-t border-[var(--border-default)] flex flex-wrap items-center gap-1.5 sm:gap-2">
                     {/* Category Pill with Icon */}
-                    <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium bg-[var(--bg-elevated)] border border-[var(--border-default)] text-[var(--text-primary)]">
-                      <Boxes className="w-3.5 h-3.5 text-neutral-500" />
+                    <span className="inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-0.5 sm:py-1 rounded-full text-[11px] sm:text-xs font-medium bg-[var(--bg-elevated)] border border-[var(--border-default)] text-[var(--text-primary)]">
+                      <Boxes className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-neutral-500" />
                       <span>{project.category}</span>
                     </span>
 
@@ -528,15 +528,15 @@ export default function Work() {
                     {project.tech.slice(0, 4).map((techName) => (
                       <span
                         key={techName}
-                        className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-xs font-mono bg-[var(--bg-deep)] border border-[var(--border-default)] text-[var(--text-secondary)] group-hover:text-[var(--text-primary)] transition-colors"
+                        className="inline-flex items-center gap-1 sm:gap-1.5 px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-md text-[11px] sm:text-xs font-mono bg-[var(--bg-deep)] border border-[var(--border-default)] text-[var(--text-secondary)] group-hover:text-[var(--text-primary)] transition-colors"
                       >
-                        <TechLogo name={techName} className="w-3.5 h-3.5 shrink-0" />
+                        <TechLogo name={techName} className="w-3 h-3 sm:w-3.5 sm:h-3.5 shrink-0" />
                         <span>{techName}</span>
                       </span>
                     ))}
 
                     {project.tech.length > 4 && (
-                      <span className="px-2 py-1 rounded-md text-[11px] font-mono bg-[var(--bg-elevated)] text-[var(--text-muted)]">
+                      <span className="px-1.5 sm:px-2 py-0.5 sm:py-1 rounded-md text-[10px] sm:text-[11px] font-mono bg-[var(--bg-elevated)] text-[var(--text-muted)]">
                         +{project.tech.length - 4}
                       </span>
                     )}
@@ -548,16 +548,16 @@ export default function Work() {
         </div>
 
         {/* Footer info note */}
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 p-6 rounded-2xl border border-[var(--border-default)] bg-[var(--bg-surface)] text-xs text-[var(--text-secondary)] font-mono">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-4 p-4 sm:p-6 rounded-2xl border border-[var(--border-default)] bg-[var(--bg-surface)] text-xs text-[var(--text-secondary)] font-mono">
           <div className="flex items-center gap-2">
-            <Terminal className="w-4 h-4 text-[var(--text-primary)]" />
-            <span>Architecture: Production CI/CD, Containerized Micro-services & Multi-tenant DB Schemas</span>
+            <Terminal className="w-4 h-4 text-[var(--text-primary)] shrink-0" />
+            <span className="leading-relaxed">Architecture: Production CI/CD, Containerized Micro-services & Multi-tenant DB Schemas</span>
           </div>
           <a
             href="https://github.com/salauddin85"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-1.5 font-semibold text-[var(--text-primary)] hover:underline"
+            className="inline-flex items-center gap-1.5 font-semibold text-[var(--text-primary)] hover:underline whitespace-nowrap"
           >
             <span>Explore 40+ Repos on GitHub</span>
             <ArrowUpRight className="w-3.5 h-3.5" />
@@ -714,12 +714,12 @@ export default function Work() {
                     </div>
 
                     {/* Action CTA Buttons (Screenshot 2) */}
-                    <div className="pt-4 flex flex-wrap items-center gap-3">
+                    <div className="pt-4 flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5 sm:gap-3">
                       <a
                         href={selectedProject.liveUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex-1 inline-flex items-center justify-center gap-2 px-5 py-3 rounded-full text-xs sm:text-sm font-semibold bg-black text-white hover:bg-neutral-800 dark:bg-white dark:text-black dark:hover:bg-neutral-200 transition-all shadow-sm"
+                        className="flex-1 inline-flex items-center justify-center gap-2 px-5 py-2.5 sm:py-3 rounded-full text-xs sm:text-sm font-semibold bg-black text-white hover:bg-neutral-800 dark:bg-white dark:text-black dark:hover:bg-neutral-200 transition-all shadow-sm"
                       >
                         <span>Live Preview</span>
                         <ArrowUpRight className="w-4 h-4" />
@@ -729,7 +729,7 @@ export default function Work() {
                         href={selectedProject.githubUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-full text-xs sm:text-sm font-semibold border border-[var(--border-default)] bg-[var(--bg-surface)] hover:bg-[var(--bg-elevated)] text-[var(--text-primary)] transition-all"
+                        className="inline-flex items-center justify-center gap-2 px-5 py-2.5 sm:py-3 rounded-full text-xs sm:text-sm font-semibold border border-[var(--border-default)] bg-[var(--bg-surface)] hover:bg-[var(--bg-elevated)] text-[var(--text-primary)] transition-all"
                       >
                         <FolderGit2 className="w-4 h-4" />
                         <span>Codebase</span>

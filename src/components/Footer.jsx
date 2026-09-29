@@ -45,7 +45,7 @@ export default function Footer() {
           <div className="flex items-center gap-3">
             <div className="relative w-10 h-10 rounded-xl overflow-hidden border border-[var(--border-default)] bg-[var(--bg-surface)] p-0.5 shadow-xs">
               <Image
-                src="/images/portfolio_logo.png"
+                src="/images/portfolio.png"
                 alt="MD. Salauddin"
                 width={40}
                 height={40}
