@@ -199,7 +199,7 @@ export default function Services() {
         >
           <div className="flex items-center gap-2 text-xs font-mono tracking-widest uppercase font-normal text-[var(--text-muted)] mb-3">
             <span className="w-1.5 h-1.5 rounded-full bg-[var(--text-primary)]"></span>
-            <span>WHAT I OFFER</span>
+            <span className="font-extrabold opacity-90">WHAT I OFFER</span>
           </div>
           <h2 className="text-base sm:text-lg font-normal text-[var(--text-secondary)] max-w-3xl leading-relaxed">
             Everything you need to launch: planning, design, development, and support.

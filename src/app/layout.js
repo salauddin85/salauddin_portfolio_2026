@@ -38,8 +38,8 @@ export const metadata = {
   ],
   authors: [{ name: "MD. Salauddin" }],
   icons: {
-    icon: "/images/logo.png",
-    apple: "/images/logo.png",
+    icon: "/images/portfolio_logo.png",
+    apple: "/images/portfolio_logo.png",
   },
 };
 

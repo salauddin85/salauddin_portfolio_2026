@@ -71,7 +71,7 @@ export default function Process() {
         >
           <div className="flex items-center gap-2 text-xs font-mono tracking-widest uppercase font-normal text-[var(--text-muted)] mb-3">
             <span className="w-1.5 h-1.5 rounded-full bg-[var(--text-primary)]"></span>
-            <span>HOW I WORK</span>
+            <span className="font-extrabold opacity-90">HOW I WORK</span>
           </div>
           <h2 className="text-base sm:text-lg font-normal text-[var(--text-secondary)] max-w-2xl leading-relaxed">
             Four structured steps from initial concept to live production.

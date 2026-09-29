@@ -144,7 +144,7 @@ export default function Experience() {
             <div>
               <div className="flex items-center gap-2 text-xs font-mono tracking-widest uppercase font-normal text-white/60 mb-3">
                 <span className="w-1.5 h-1.5 rounded-full bg-white"></span>
-                <span>CAREER & EDUCATION</span>
+                <span className="font-extrabold opacity-90">CAREER & EDUCATION</span>
               </div>
               <h2 className="text-base sm:text-lg font-normal text-white/80 leading-relaxed">
                 Engineering roles from architecture to production.

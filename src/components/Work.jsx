@@ -386,7 +386,7 @@ export default function Work() {
           <div className="flex flex-col items-start">
             <div className="flex items-center gap-2 text-xs font-mono tracking-widest uppercase font-normal text-[var(--text-muted)] mb-3">
               <span className="w-1.5 h-1.5 rounded-full bg-[var(--text-primary)]"></span>
-              <span>FEATURED</span>
+              <span className="font-extrabold opacity-90">FEATURED</span>
             </div>
             <h2 className="text-base sm:text-lg font-normal text-[var(--text-secondary)] max-w-2xl leading-relaxed">
               Live products and private builds across web, AI, SaaS, and fintech.

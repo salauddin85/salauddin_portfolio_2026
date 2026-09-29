@@ -431,7 +431,7 @@ export default function TechStack() {
         >
           <div className="flex items-center gap-2 text-xs font-mono tracking-widest uppercase font-normal text-[var(--text-muted)] mb-3">
             <span className="w-1.5 h-1.5 rounded-full bg-[var(--text-primary)]"></span>
-            <span>TECHNOLOGIES I USE</span>
+            <span className="font-extrabold opacity-90">TECHNOLOGIES I USE</span>
           </div>
           <h2 className="text-sm sm:text-base font-normal text-[var(--text-secondary)] max-w-xl leading-relaxed">
             The tools I use to build complete websites, apps, and systems, from frontend to hosting.

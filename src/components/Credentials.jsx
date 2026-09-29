@@ -150,7 +150,7 @@ export default function Credentials() {
           <div className="flex flex-col items-start">
             <div className="flex items-center gap-2 text-xs font-mono tracking-widest uppercase font-normal text-[var(--text-muted)] mb-3">
               <span className="w-1.5 h-1.5 rounded-full bg-[var(--text-primary)]"></span>
-              <span>CREDENTIALS</span>
+              <span className="font-extrabold opacity-90">CREDENTIALS</span>
             </div>
             <h2 className="text-base sm:text-lg font-normal text-[var(--text-secondary)] max-w-2xl leading-relaxed">
               Gallery of certifications in IT and non-IT fields.
