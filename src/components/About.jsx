@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useRef } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 import { 
   GraduationCap, 
@@ -36,6 +36,15 @@ export default function About() {
     offset: ["start end", "end start"],
   });
 
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 768);
+    check();
+    window.addEventListener("resize", check, { passive: true });
+    return () => window.removeEventListener("resize", check);
+  }, []);
+
   // Smooth, physical spring configuration for responsive scroll
   const springConfig = { stiffness: 100, damping: 24, mass: 0.4 };
 
@@ -57,7 +66,7 @@ export default function About() {
       {/* Background Section Title — Centered horizontally only */}
       <div className="absolute top-6 sm:top-8 left-0 w-full flex justify-center pointer-events-none select-none z-0 px-4 sm:px-8">
         <motion.div
-          style={{ x: smoothWatermarkX }}
+          style={{ x: isMobile ? 0 : smoothWatermarkX }}
           className="font-display font-black uppercase tracking-tight whitespace-nowrap text-[clamp(26px,6vw,90px)] leading-none text-[var(--watermark-color)] [-webkit-text-stroke:var(--watermark-stroke,0px_transparent)] select-none text-center"
         >
           ABOUT ME
@@ -67,7 +76,7 @@ export default function About() {
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <motion.div
-          style={{ x: smoothHeaderX }}
+          style={{ x: isMobile ? 0 : smoothHeaderX }}
           className="flex flex-col items-start mb-12 sm:mb-16"
         >
           <div className="flex items-center gap-2 text-xs font-mono tracking-widest uppercase font-normal text-[var(--text-muted)] mb-3">
@@ -84,7 +93,7 @@ export default function About() {
           {/* Left Column: My Journey, Expertise & Metrics (7 Cols) */}
           <div className="lg:col-span-7 flex flex-col gap-8">
             {/* My Journey */}
-            <motion.div style={{ x: smoothJourneyX }}>
+            <motion.div style={{ x: isMobile ? 0 : smoothJourneyX }}>
               <h3 className="text-xs font-mono uppercase tracking-widest text-[var(--text-muted)] font-semibold mb-4">
                 MY JOURNEY
               </h3>
@@ -136,7 +145,7 @@ export default function About() {
               className="p-6 sm:p-7 rounded-2xl border border-[var(--border-default)] bg-[var(--bg-surface)] shadow-xs"
             >
               {/* Card Header */}
-              <div className="flex items-center justify-between pb-4 mb-5 border-b border-[var(--border-default)]">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-4 mb-5 border-b border-[var(--border-default)] gap-3">
                 <div className="flex items-center gap-3">
                   <div className="w-9 h-9 rounded-xl bg-neutral-100 dark:bg-neutral-800 text-[var(--text-primary)] flex items-center justify-center shadow-xs">
                     <Activity className="w-4.5 h-4.5" />
@@ -270,7 +279,7 @@ export default function About() {
                 </div>
               </div>
 
-              <div className="mt-5 pt-4 border-t border-[var(--border-default)] flex items-center justify-between">
+              <div className="mt-5 pt-4 border-t border-[var(--border-default)] flex flex-wrap items-center justify-between gap-2">
                 <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-neutral-100 dark:bg-neutral-800 border border-[var(--border-default)] text-xs font-mono font-medium text-[var(--text-primary)]">
                   <span className="w-1.5 h-1.5 rounded-full bg-[var(--text-primary)] animate-pulse"></span>
                   <span>Currently Enrolled (Active Student)</span>
@@ -307,7 +316,7 @@ export default function About() {
                 </div>
               </div>
 
-              <div className="mt-5 pt-4 border-t border-[var(--border-default)] flex items-center justify-between">
+              <div className="mt-5 pt-4 border-t border-[var(--border-default)] flex flex-wrap items-center justify-between gap-2">
                 <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[var(--bg-deep)] border border-[var(--border-default)] text-xs font-mono font-semibold text-[var(--text-primary)]">
                   <CheckCircle2 className="w-3.5 h-3.5 text-[var(--text-primary)]" />
                   <span>CGPA 3.51 / 4.00</span>

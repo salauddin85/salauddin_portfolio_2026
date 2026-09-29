@@ -137,13 +137,13 @@ export default function Hero() {
       <section
         id="hero"
         ref={containerRef}
-        className="relative w-full h-[100dvh] max-h-[100dvh] min-h-[600px] overflow-hidden flex flex-col justify-between pt-16 sm:pt-20 pb-4 sm:pb-6 lg:pb-7 bg-[var(--bg-deep)] select-none"
+        className="relative w-full min-h-[100dvh] md:h-[100dvh] md:max-h-[100dvh] md:overflow-hidden flex flex-col justify-between pt-16 sm:pt-20 pb-3 sm:pb-6 lg:pb-7 bg-[var(--bg-deep)] select-none"
       >
-        {/* Layer 1: Giant Outlined "MD." & Solid "SALAUDDIN" (Animates first with natural, unforced timing) */}
-        <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none z-0 px-2 sm:px-4 -translate-y-12 sm:-translate-y-16 md:-translate-y-20 lg:-translate-y-24">
+        {/* Layer 1: Outlined "MD." & Solid "SALAUDDIN" */}
+        <div className="relative md:absolute md:inset-0 flex flex-col items-center justify-center pointer-events-none z-0 px-4 pt-5 sm:pt-4 md:pt-0 md:-translate-y-16 lg:-translate-y-24">
           {/* "Hi, I'm" greeting */}
           <motion.p
-            initial={{ opacity: 0, y: 24 }}
+            initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{
               duration: 0.65,
@@ -157,23 +157,23 @@ export default function Hero() {
 
           {/* Line 1 (Outlined): "MD." */}
           <motion.div
-            initial={{ opacity: 0, y: 36 }}
+            initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{
               duration: 0.75,
               delay: 0.22,
               ease: [0.16, 1, 0.3, 1],
             }}
-            className="w-full text-center -translate-y-1 sm:-translate-y-2 md:-translate-y-3"
+            className="w-full text-center"
           >
-            <h1 className="hero-stroke-text font-display font-black tracking-widest uppercase leading-[0.88] text-[clamp(54px,9.5vw,135px)] select-none">
+            <h1 className="hero-stroke-text font-display font-black tracking-widest uppercase leading-[0.88] text-[clamp(34px,9vw,135px)] select-none">
               MD.
             </h1>
           </motion.div>
 
-          {/* Line 2 (Solid): "SALAUDDIN" - Triggers nameComplete upon full completion */}
+          {/* Line 2 (Solid): "SALAUDDIN" */}
           <motion.div
-            initial={{ opacity: 0, y: 44 }}
+            initial={{ opacity: 0, y: 28 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{
               duration: 0.85,
@@ -183,18 +183,18 @@ export default function Hero() {
             onAnimationComplete={() => {
               setNameComplete(true);
             }}
-            className="w-full text-center mt-1 sm:mt-2 md:mt-3"
+            className="w-full text-center mt-2 sm:mt-2.5 md:mt-3"
           >
-            <h2 className="font-display font-black tracking-normal uppercase leading-[0.88] text-[var(--hero-name-fill)] opacity-95 text-[clamp(48px,9vw,132px)] select-none">
+            <h2 className="font-display font-black tracking-tight sm:tracking-normal uppercase leading-[0.88] text-[var(--hero-name-fill)] opacity-95 text-[clamp(26px,7.2vw,132px)] select-none">
               SALAUDDIN
             </h2>
           </motion.div>
         </div>
 
         {/* 
-          Layer 2: Profile Photo - Kept in exact position with smooth entrance
+          Layer 2: Profile Photo - Positioned cleanly on mobile without covering text, layered on desktop
         */}
-        <div className="absolute inset-0 flex items-end justify-center pointer-events-none z-10 overflow-hidden">
+        <div className="relative md:absolute md:inset-0 flex items-center md:items-end justify-center pointer-events-none z-10 overflow-hidden -mt-2 sm:my-4 md:my-0 mb-1 sm:mb-4">
           <motion.div
             initial={{ opacity: 0, scale: 0.94 }}
             animate={{
@@ -216,11 +216,11 @@ export default function Hero() {
             <div
               style={{
                 WebkitMaskImage:
-                  "linear-gradient(to bottom, black 65%, transparent 100%)",
+                  "linear-gradient(to bottom, black 70%, transparent 100%)",
                 maskImage:
-                  "linear-gradient(to bottom, black 65%, transparent 100%)",
+                  "linear-gradient(to bottom, black 70%, transparent 100%)",
               }}
-              className={`relative w-[clamp(300px,40vw,560px)] h-[62vh] sm:h-[68vh] md:h-[66vh] filter drop-shadow-[0_12px_28px_rgba(0,0,0,0.2)] dark:drop-shadow-[0_16px_36px_rgba(0,0,0,0.65)] transition-all duration-700 ease-in-out ${
+              className={`relative w-[clamp(180px,52vw,270px)] sm:w-[clamp(240px,50vw,340px)] md:w-[clamp(300px,40vw,560px)] h-[200px] sm:h-[280px] md:h-[66vh] filter drop-shadow-[0_12px_28px_rgba(0,0,0,0.2)] dark:drop-shadow-[0_16px_36px_rgba(0,0,0,0.65)] transition-all duration-700 ease-in-out ${
                 isColor ? "grayscale-0 contrast-100" : "grayscale contrast-110"
               }`}
             >
@@ -229,116 +229,116 @@ export default function Hero() {
                 alt="MD. Salauddin — Full-Stack Software Engineer"
                 fill
                 priority
-                sizes="(max-width: 640px) 280px, (max-width: 1024px) 380px, 500px"
+                sizes="(max-width: 640px) 240px, (max-width: 1024px) 380px, 500px"
                 className="object-contain object-bottom"
               />
             </div>
           </motion.div>
         </div>
 
-        {/* Spacer for top flex */}
-        <div className="w-full pointer-events-none" />
+        {/* Spacer for top flex on desktop */}
+        <div className="hidden md:block w-full pointer-events-none" />
 
         {/* 
-          Layer 3 & 4: Bottom Overlay Controls & Content Blocks
-          Starts immediately and simultaneously once the Name animation has fully completed.
+          Layer 3 & 4: Controls & Content Blocks
+          On mobile: Flows below the photo with zero overlap
+          On desktop: Positioned at bottom corners
         */}
-        <div className="relative z-20 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-2 sm:pb-3 lg:pb-4 flex flex-col md:flex-row items-center md:items-end justify-between gap-5 pointer-events-auto">
-          {/* Bottom-Left: Role, Subtitle & CTA (Starts immediately when name animation completes) */}
-          <div className="flex flex-col items-center md:items-start text-center md:text-left max-w-sm sm:max-w-md">
+        <div className="relative z-20 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-2 sm:pb-6 md:pb-4 flex flex-col md:flex-row items-center md:items-end justify-between gap-3 sm:gap-4 md:gap-6 pointer-events-auto">
+          {/* Role, Subtitle & CTA */}
+          <div className="flex flex-col items-center md:items-start text-center md:text-left max-w-md w-full">
             <motion.h3
-              initial={{ opacity: 0, y: 28 }}
+              initial={{ opacity: 0, y: 20 }}
               animate={
-                nameComplete ? { opacity: 1, y: 0 } : { opacity: 0, y: 28 }
+                nameComplete ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }
               }
               transition={{
                 duration: 0.65,
                 delay: 0,
                 ease: [0.16, 1, 0.3, 1],
               }}
-              className="text-xl sm:text-2xl md:text-3xl font-extrabold tracking-tight text-[var(--text-primary)] leading-[1.15]"
+              className="text-lg sm:text-2xl md:text-3xl font-extrabold tracking-tight text-[var(--text-primary)] leading-[1.2]"
             >
-              Full Stack Software
-              <br className="hidden sm:inline" /> Engineer
+              Full Stack Software Engineer
             </motion.h3>
 
             <motion.p
-              initial={{ opacity: 0, y: 22 }}
+              initial={{ opacity: 0, y: 16 }}
               animate={
-                nameComplete ? { opacity: 1, y: 0 } : { opacity: 0, y: 22 }
+                nameComplete ? { opacity: 1, y: 0 } : { opacity: 0, y: 16 }
               }
               transition={{
                 duration: 0.65,
                 delay: 0.1,
                 ease: [0.16, 1, 0.3, 1],
               }}
-              className="mt-2 text-xs sm:text-sm md:text-[15px] text-[var(--text-secondary)] leading-relaxed max-w-sm font-normal"
+              className="mt-1 sm:mt-2 text-xs sm:text-sm md:text-[15px] text-[var(--text-secondary)] leading-relaxed max-w-sm font-normal"
             >
               I build websites and scalable systems that are simple, reliable,
               and fast.
             </motion.p>
 
             <motion.div
-              initial={{ opacity: 0, y: 18 }}
+              initial={{ opacity: 0, y: 14 }}
               animate={
-                nameComplete ? { opacity: 1, y: 0 } : { opacity: 0, y: 18 }
+                nameComplete ? { opacity: 1, y: 0 } : { opacity: 0, y: 14 }
               }
               transition={{
                 duration: 0.65,
                 delay: 0.2,
                 ease: [0.16, 1, 0.3, 1],
               }}
-              className="mt-3.5"
+              className="mt-2.5 sm:mt-4"
             >
               <button
                 onClick={() => handleScrollTo("work")}
-                className="inline-flex items-center gap-2 px-6 py-2.5 sm:py-3 rounded-full text-xs sm:text-sm font-semibold bg-[var(--btn-pill-bg)] text-[var(--btn-pill-text)] hover:opacity-90 active:scale-95 transition-all shadow-sm cursor-pointer group"
+                className="inline-flex items-center gap-2 px-5 py-2 sm:px-6 sm:py-3 rounded-full text-xs sm:text-sm font-semibold bg-[var(--btn-pill-bg)] text-[var(--btn-pill-text)] hover:opacity-90 active:scale-95 transition-all shadow-sm cursor-pointer group"
               >
                 <span>View Projects</span>
-                <ArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                <ArrowUpRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
               </button>
             </motion.div>
           </div>
 
-          {/* Bottom-Right: GitHub, Email, Phone, Location (All animate at the exact same time together) */}
+          {/* Contact Pills: Responsive 2x2 grid on mobile, vertical stack on desktop */}
           <motion.div
-            initial={{ opacity: 0, x: 75 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={
-              nameComplete ? { opacity: 1, x: 0 } : { opacity: 0, x: 75 }
+              nameComplete ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }
             }
             transition={{
               duration: 0.7,
-              delay: 0,
+              delay: 0.1,
               ease: [0.16, 1, 0.3, 1],
             }}
-            className="flex flex-wrap md:flex-col items-center md:items-end justify-center gap-2 sm:gap-2.5"
+            className="grid grid-cols-2 gap-2 sm:gap-2.5 w-full max-w-[285px] sm:max-w-sm md:flex md:flex-col md:w-auto items-center md:items-end justify-center"
           >
             {/* GitHub */}
             <a
               href="https://github.com/salauddin85"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-2.5 px-5 sm:px-6 py-2 sm:py-2.5 rounded-full border border-[var(--border-default)] bg-[var(--bg-surface)] text-xs sm:text-sm font-medium text-[var(--text-primary)] shadow-xs hover:bg-black hover:text-white hover:border-black dark:hover:bg-white dark:hover:text-black dark:hover:border-white hover:scale-105 active:scale-95 transition-all min-w-[125px] justify-center md:justify-start cursor-pointer"
+              className="flex items-center justify-center gap-1.5 sm:gap-2 px-3 sm:px-6 py-1.5 sm:py-2.5 rounded-full border border-[var(--border-default)] bg-[var(--bg-surface)] text-[11.5px] sm:text-sm font-medium text-[var(--text-primary)] shadow-xs hover:bg-black hover:text-white hover:border-black dark:hover:bg-white dark:hover:text-black dark:hover:border-white transition-all w-full md:w-auto md:min-w-[125px] cursor-pointer"
             >
-              <GithubIcon className="w-4 h-4" />
+              <GithubIcon className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
               <span>GitHub</span>
             </a>
 
             {/* Email */}
             <a
               href="mailto:ahmedsalauddin677785@gmail.com"
-              className="flex items-center gap-2.5 px-5 sm:px-6 py-2 sm:py-2.5 rounded-full border border-[var(--border-default)] bg-[var(--bg-surface)] text-xs sm:text-sm font-medium text-[var(--text-primary)] shadow-xs hover:bg-black hover:text-white hover:border-black dark:hover:bg-white dark:hover:text-black dark:hover:border-white hover:scale-105 active:scale-95 transition-all min-w-[125px] justify-center md:justify-start cursor-pointer"
+              className="flex items-center justify-center gap-1.5 sm:gap-2 px-3 sm:px-6 py-1.5 sm:py-2.5 rounded-full border border-[var(--border-default)] bg-[var(--bg-surface)] text-[11.5px] sm:text-sm font-medium text-[var(--text-primary)] shadow-xs hover:bg-black hover:text-white hover:border-black dark:hover:bg-white dark:hover:text-black dark:hover:border-white transition-all w-full md:w-auto md:min-w-[125px] cursor-pointer"
             >
-              <Mail className="w-4 h-4" />
+              <Mail className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
               <span>Email</span>
             </a>
 
             {/* Phone */}
             <a
               href="tel:+8801902061020"
-              className="flex items-center gap-2.5 px-5 sm:px-6 py-2 sm:py-2.5 rounded-full border border-[var(--border-default)] bg-[var(--bg-surface)] text-xs sm:text-sm font-medium text-[var(--text-primary)] shadow-xs hover:bg-black hover:text-white hover:border-black dark:hover:bg-white dark:hover:text-black dark:hover:border-white hover:scale-105 active:scale-95 transition-all min-w-[125px] justify-center md:justify-start cursor-pointer"
+              className="flex items-center justify-center gap-1.5 sm:gap-2 px-3 sm:px-6 py-1.5 sm:py-2.5 rounded-full border border-[var(--border-default)] bg-[var(--bg-surface)] text-[11.5px] sm:text-sm font-medium text-[var(--text-primary)] shadow-xs hover:bg-black hover:text-white hover:border-black dark:hover:bg-white dark:hover:text-black dark:hover:border-white transition-all w-full md:w-auto md:min-w-[125px] cursor-pointer"
             >
-              <Phone className="w-4 h-4" />
+              <Phone className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
               <span>Phone</span>
             </a>
 
@@ -346,9 +346,9 @@ export default function Hero() {
             <button
               type="button"
               onClick={() => handleScrollTo("next-steps")}
-              className="flex items-center gap-2.5 px-5 sm:px-6 py-2 sm:py-2.5 rounded-full border border-[var(--border-default)] bg-[var(--bg-surface)] text-xs sm:text-sm font-medium text-[var(--text-primary)] shadow-xs hover:bg-black hover:text-white hover:border-black dark:hover:bg-white dark:hover:text-black dark:hover:border-white hover:scale-105 active:scale-95 transition-all min-w-[125px] justify-center md:justify-start cursor-pointer"
+              className="flex items-center justify-center gap-1.5 sm:gap-2 px-3 sm:px-6 py-1.5 sm:py-2.5 rounded-full border border-[var(--border-default)] bg-[var(--bg-surface)] text-[11.5px] sm:text-sm font-medium text-[var(--text-primary)] shadow-xs hover:bg-black hover:text-white hover:border-black dark:hover:bg-white dark:hover:text-black dark:hover:border-white transition-all w-full md:w-auto md:min-w-[125px] cursor-pointer"
             >
-              <MapPin className="w-4 h-4" />
+              <MapPin className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
               <span>Location</span>
             </button>
           </motion.div>

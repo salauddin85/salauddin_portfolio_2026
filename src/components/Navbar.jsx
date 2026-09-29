@@ -93,12 +93,13 @@ export default function Navbar() {
                 onMouseEnter={() => setShowTooltip(true)}
                 onMouseLeave={() => setShowTooltip(false)}
               >
-                <div className="flex items-center gap-2 px-3 py-1.5 rounded-full border border-[var(--border-default)] bg-[var(--bg-surface)] text-xs font-medium text-[var(--text-secondary)] shadow-xs hover:border-[var(--border-accent)] cursor-default transition-all">
+                <div className="flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-full border border-[var(--border-default)] bg-[var(--bg-surface)] text-[11px] sm:text-xs font-medium text-[var(--text-secondary)] shadow-xs hover:border-[var(--border-accent)] cursor-default transition-all">
                   <span className="relative flex h-2 w-2">
                     <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
                     <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
                   </span>
-                  <span>Available for New Project</span>
+                  <span className="hidden sm:inline">Available for New Project</span>
+                  <span className="sm:hidden">Available</span>
                 </div>
 
                 <AnimatePresence>
@@ -159,10 +160,10 @@ export default function Navbar() {
           </nav>
 
           {/* Right: Theme Toggle & "Let's Talk ↗" Pill Button */}
-          <div className="flex items-center gap-2 sm:gap-3">
+          <div className="flex items-center gap-1.5 sm:gap-2.5">
             <button
               onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}
-              className="w-9 h-9 flex items-center justify-center rounded-full border border-[var(--border-default)] bg-[var(--bg-surface)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:border-[var(--border-accent)] transition-all focus:outline-none cursor-pointer"
+              className="w-8 h-8 sm:w-9 sm:h-9 flex items-center justify-center rounded-full border border-[var(--border-default)] bg-[var(--bg-surface)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:border-[var(--border-accent)] transition-all focus:outline-none cursor-pointer"
               aria-label="Toggle dark/light theme"
               type="button"
             >
@@ -179,7 +180,7 @@ export default function Navbar() {
                 e.preventDefault();
                 document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" });
               }}
-              className="inline-flex items-center gap-1.5 px-4 lg:px-5 py-2 rounded-full text-[13px] font-semibold bg-[var(--btn-pill-bg)] text-[var(--btn-pill-text)] hover:opacity-90 active:scale-95 transition-all shadow-xs group"
+              className="inline-flex items-center gap-1 px-3 sm:px-4 lg:px-5 py-1.5 sm:py-2 rounded-full text-xs sm:text-[13px] font-semibold bg-[var(--btn-pill-bg)] text-[var(--btn-pill-text)] hover:opacity-90 active:scale-95 transition-all shadow-xs group whitespace-nowrap"
             >
               <span>Let&apos;s Talk</span>
               <ArrowUpRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
@@ -187,7 +188,7 @@ export default function Navbar() {
 
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="md:hidden w-9 h-9 flex items-center justify-center rounded-full border border-[var(--border-default)] bg-[var(--bg-surface)] text-[var(--text-primary)] hover:border-[var(--border-accent)] focus:outline-none transition-colors"
+              className="md:hidden w-8 h-8 sm:w-9 sm:h-9 flex items-center justify-center rounded-full border border-[var(--border-default)] bg-[var(--bg-surface)] text-[var(--text-primary)] hover:border-[var(--border-accent)] focus:outline-none transition-colors"
               aria-label="Open mobile menu"
               aria-expanded={mobileMenuOpen}
             >
