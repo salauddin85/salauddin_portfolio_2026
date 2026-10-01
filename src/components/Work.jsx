@@ -1,25 +1,41 @@
 "use client";
 
 import React, { useState, useRef, useEffect } from "react";
-import { motion, AnimatePresence, useScroll, useTransform, useSpring } from "framer-motion";
-import { 
-  ArrowUpRight, 
-  ExternalLink, 
-  X, 
-  CheckCircle2, 
-  Sparkles, 
-  Layers, 
-  Cpu, 
-  ShieldCheck, 
-  Terminal, 
-  Eye, 
-  Globe, 
+import {
+  motion,
+  AnimatePresence,
+  useScroll,
+  useTransform,
+  useSpring,
+} from "framer-motion";
+import {
+  ArrowUpRight,
+  ExternalLink,
+  X,
+  CheckCircle2,
+  Sparkles,
+  Layers,
+  Cpu,
+  ShieldCheck,
+  Terminal,
+  Eye,
+  Globe,
   ChevronRight,
   Code2,
   FolderGit2,
   Boxes,
   Zap,
-  Check
+  Check,
+  Activity,
+  FileCode,
+  Code,
+  GitBranch,
+  Box,
+  Cloud,
+  Database,
+  Server,
+  Sparkles as SparklesIcon,
+  Sparkles as SparklesIcon2,
 } from "lucide-react";
 
 // Tech Vector Icons with currentColor support for light/dark & hover inversions
@@ -28,78 +44,133 @@ function TechLogo({ name, className = "w-3.5 h-3.5" }) {
 
   if (norm.includes("python")) {
     return (
-      <svg role="img" viewBox="0 0 24 24" fill="currentColor" className={className}>
-        <path d="M14.25.18l.9.2.73.26.59.3.45.32.34.34.25.34.16.33.1.3.04.26.02.2-.01.13V4.5h-4.5V3h3V1.8l-.05-.18-.1-.18-.17-.15-.22-.12-.27-.08-.32-.04H9.75l-.32.04-.27.08-.22.12-.17.15-.1.18-.05.18V4.5H4.13l-.26.04-.3.1-.33.16-.34.25-.34.34-.32.45-.3.59-.26.73-.2.9v4.13l.04.32.08.27.12.22.15.17.18.1.18.05H4.5V9.75h1.5v3H1.8l-.18-.05-.18-.1-.15-.17-.12-.22-.08-.27-.04-.32V7.87l.2-.9.26-.73.3-.59.45-.32.34-.34.34-.25.33-.16.3-.1.26-.04H8.25V.18zM9.75 1.5a.75.75 0 110 1.5.75.75 0 010-1.5zm9.75 8.25v4.5H15v1.5h3v1.2l.05.18.1.18.17.15.22.12.27.08.32.04h4.5l.32-.04.27-.08.22-.12.17-.15.1-.18.05-.18V19.5h4.37l.26-.04.3-.1.33-.16.34-.25.34-.34.32-.45.3-.59.26-.73.2-.9v-4.13l-.04-.32-.08-.27-.12-.22-.15-.17-.18-.1-.18-.05H19.5V14.25h-1.5v-3h4.2l.18.05.18.1.15.17.12.22.08.27.04.32v4.13l-.2.9-.26.73-.3.59-.45.32-.34.34-.34.25-.33.16-.3.1-.26.04H15.75V23.82l-.9-.2-.73-.26-.59-.3-.45-.32-.34-.34-.25-.34-.16-.33-.1-.3-.04-.26-.02-.2.01-.13V19.5h4.5V21h-3v1.2l.05.18.1.18.17.15.22.12.27.08.32.04h4.5l.32-.04.27-.08.22-.12.17-.15.1-.18.05-.18V19.5H19.5V9.75h4.25zM14.25 21a.75.75 0 110 1.5.75.75 0 010-1.5z"/>
+      <svg
+        role="img"
+        viewBox="0 0 24 24"
+        fill="currentColor"
+        className={className}
+      >
+        <path d="M14.25.18l.9.2.73.26.59.3.45.32.34.34.25.34.16.33.1.3.04.26.02.2-.01.13V4.5h-4.5V3h3V1.8l-.05-.18-.1-.18-.17-.15-.22-.12-.27-.08-.32-.04H9.75l-.32.04-.27.08-.22.12-.17.15-.1.18-.05.18V4.5H4.13l-.26.04-.3.1-.33.16-.34.25-.34.34-.32.45-.3.59-.26.73-.2.9v4.13l.04.32.08.27.12.22.15.17.18.1.18.05H4.5V9.75h1.5v3H1.8l-.18-.05-.18-.1-.15-.17-.12-.22-.08-.27-.04-.32V7.87l.2-.9.26-.73.3-.59.45-.32.34-.34.34-.25.33-.16.3-.1.26-.04H8.25V.18zM9.75 1.5a.75.75 0 110 1.5.75.75 0 010-1.5zm9.75 8.25v4.5H15v1.5h3v1.2l.05.18.1.18.17.15.22.12.27.08.32.04h4.5l.32-.04.27-.08.22-.12.17-.15.1-.18.05-.18V19.5h4.37l.26-.04.3-.1.33-.16.34-.25.34-.34.32-.45.3-.59.26-.73.2-.9v-4.13l-.04-.32-.08-.27-.12-.22-.15-.17-.18-.1-.18-.05H19.5V14.25h-1.5v-3h4.2l.18.05.18.1.15.17.12.22.08.27.04.32v4.13l-.2.9-.26.73-.3.59-.45.32-.34.34-.34.25-.33.16-.3.1-.26.04H15.75V23.82l-.9-.2-.73-.26-.59-.3-.45-.32-.34-.34-.25-.34-.16-.33-.1-.3-.04-.26-.02-.2.01-.13V19.5h4.5V21h-3v1.2l.05.18.1.18.17.15.22.12.27.08.32.04h4.5l.32-.04.27-.08.22-.12.17-.15.1-.18.05-.18V19.5H19.5V9.75h4.25zM14.25 21a.75.75 0 110 1.5.75.75 0 010-1.5z" />
       </svg>
     );
   }
   if (norm.includes("django")) {
     return (
-      <svg role="img" viewBox="0 0 24 24" fill="currentColor" className={className}>
-        <path d="m11.146 0h3.336v16.71c-.722.12-1.353.18-1.894.18-2.615 0-3.954-1.127-3.954-3.322 0-2.285 1.488-3.487 3.558-3.487.616 0 1.157.075 1.623.225v-3.773c-.451-.12-.992-.18-1.608-.18-4.044 0-6.974 2.404-6.974 6.883 0 4.569 2.825 6.945 7.154 6.945 1.563 0 2.84-.255 3.908-.736l.24-2.825h-.06c-.632.496-1.518.796-2.585.796-1.924 0-3.051-.931-3.051-2.675v-10.75h.307zm8.39 6.853h3.318v16.967h-3.318zm.135-4.434c0-1.338 1.052-2.419 2.39-2.419 1.337 0 2.389 1.081 2.389 2.419 0 1.353-1.052 2.435-2.389 2.435-1.338 0-2.39-1.082-2.39-2.435zM7.054 6.853v2.886h-2.9v6.524c0 1.743.826 2.509 2.314 2.509.436 0 .842-.045 1.157-.12l.135 2.6c-.6.24-1.428.375-2.344.375-3.096 0-4.584-1.743-4.584-4.885v-7.009h-1.623v-2.886h1.623v-3.52l3.329-1.037v4.557h2.893z"/>
+      <svg
+        role="img"
+        viewBox="0 0 24 24"
+        fill="currentColor"
+        className={className}
+      >
+        <path d="m11.146 0h3.336v16.71c-.722.12-1.353.18-1.894.18-2.615 0-3.954-1.127-3.954-3.322 0-2.285 1.488-3.487 3.558-3.487.616 0 1.157.075 1.623.225v-3.773c-.451-.12-.992-.18-1.608-.18-4.044 0-6.974 2.404-6.974 6.883 0 4.569 2.825 6.945 7.154 6.945 1.563 0 2.84-.255 3.908-.736l.24-2.825h-.06c-.632.496-1.518.796-2.585.796-1.924 0-3.051-.931-3.051-2.675v-10.75h.307zm8.39 6.853h3.318v16.967h-3.318zm.135-4.434c0-1.338 1.052-2.419 2.39-2.419 1.337 0 2.389 1.081 2.389 2.419 0 1.353-1.052 2.435-2.389 2.435-1.338 0-2.39-1.082-2.39-2.435zM7.054 6.853v2.886h-2.9v6.524c0 1.743.826 2.509 2.314 2.509.436 0 .842-.045 1.157-.12l.135 2.6c-.6.24-1.428.375-2.344.375-3.096 0-4.584-1.743-4.584-4.885v-7.009h-1.623v-2.886h1.623v-3.52l3.329-1.037v4.557h2.893z" />
       </svg>
     );
   }
   if (norm.includes("react")) {
     return (
-      <svg role="img" viewBox="0 0 24 24" fill="currentColor" className={className}>
-        <path d="M12 9.08a2.92 2.92 0 100 5.84 2.92 2.92 0 000-5.84zm0-.98a3.9 3.9 0 110 7.8 3.9 3.9 0 010-7.8zM12 0C5.37 0 0 5.37 0 12s5.37 12 12 12 12-5.37 12-12S18.63 0 12 0zm0 1.1c5.23 0 9.63 3.65 10.66 8.54-1.92-1.35-4.66-2.22-7.81-2.36a23.95 23.95 0 00-2.85-5.91c0-.09 0-.18 0-.27zm-1.85.58c.84 1.76 1.83 3.73 2.76 5.65-1.98.15-3.95.5-5.78 1.05 1.12-2.73 2.15-5.02 3.02-6.7zm-4.71 2.51c1.55-.4 3.23-.65 5-.73a25.1 25.1 0 012.75 5.86c-2.48.24-4.9.8-7.1 1.64A10.87 10.87 0 015.44 4.19zM1.1 12c0-.52.05-1.03.13-1.54 1.85 1.34 4.54 2.21 7.64 2.35.79 1.93 1.7 3.84 2.68 5.61-4.99-.44-9.28-3.14-10.45-6.42zm1.64 3.51c1.13 2.66 3.42 4.69 6.27 5.61a25.32 25.32 0 01-2.73-5.72c-1.2.07-2.39.11-3.54.11zm18.52 0c-1.15 0-2.34-.04-3.54-.11a25.32 25.32 0 01-2.73 5.72c2.85-.92 5.14-2.95 6.27-5.61zm1.64-3.51c-1.17 3.28-5.46 5.98-10.45 6.42.98-1.77 1.89-3.68 2.68-5.61 3.1-.14 5.79-1.01 7.64-2.35.08.51.13 1.02.13 1.54z"/>
+      <svg
+        role="img"
+        viewBox="0 0 24 24"
+        fill="currentColor"
+        className={className}
+      >
+        <path d="M12 9.08a2.92 2.92 0 100 5.84 2.92 2.92 0 000-5.84zm0-.98a3.9 3.9 0 110 7.8 3.9 3.9 0 010-7.8zM12 0C5.37 0 0 5.37 0 12s5.37 12 12 12 12-5.37 12-12S18.63 0 12 0zm0 1.1c5.23 0 9.63 3.65 10.66 8.54-1.92-1.35-4.66-2.22-7.81-2.36a23.95 23.95 0 00-2.85-5.91c0-.09 0-.18 0-.27zm-1.85.58c.84 1.76 1.83 3.73 2.76 5.65-1.98.15-3.95.5-5.78 1.05 1.12-2.73 2.15-5.02 3.02-6.7zm-4.71 2.51c1.55-.4 3.23-.65 5-.73a25.1 25.1 0 012.75 5.86c-2.48.24-4.9.8-7.1 1.64A10.87 10.87 0 015.44 4.19zM1.1 12c0-.52.05-1.03.13-1.54 1.85 1.34 4.54 2.21 7.64 2.35.79 1.93 1.7 3.84 2.68 5.61-4.99-.44-9.28-3.14-10.45-6.42zm1.64 3.51c1.13 2.66 3.42 4.69 6.27 5.61a25.32 25.32 0 01-2.73-5.72c-1.2.07-2.39.11-3.54.11zm18.52 0c-1.15 0-2.34-.04-3.54-.11a25.32 25.32 0 01-2.73 5.72c2.85-.92 5.14-2.95 6.27-5.61zm1.64-3.51c-1.17 3.28-5.46 5.98-10.45 6.42.98-1.77 1.89-3.68 2.68-5.61 3.1-.14 5.79-1.01 7.64-2.35.08.51.13 1.02.13 1.54z" />
       </svg>
     );
   }
   if (norm.includes("next")) {
     return (
-      <svg role="img" viewBox="0 0 24 24" fill="currentColor" className={className}>
+      <svg
+        role="img"
+        viewBox="0 0 24 24"
+        fill="currentColor"
+        className={className}
+      >
         <path d="M18.665 21.978C16.808 23.255 14.542 24 12.001 24 5.377 24 0 18.624 0 12S5.377 0 12.001 0 24 5.376 24 12c0 3.584-1.574 6.8-4.072 9.003l-10.63-13.7h-2.12v13.395h1.996V9.897l10.491 13.081zm-4.708-8.232l1.996 2.569V7.302h-1.996v6.444z" />
       </svg>
     );
   }
   if (norm.includes("typescript") || norm === "ts") {
     return (
-      <svg role="img" viewBox="0 0 24 24" fill="currentColor" className={className}>
-        <path d="M1.125 0C.502 0 0 .502 0 1.125v21.75C0 23.498.502 24 1.125 24h21.75c.623 0 1.125-.502 1.125-1.125V1.125C24 .502 23.498 0 22.875 0zm17.363 9.75c.612 0 1.154.037 1.627.111a6.38 6.38 0 0 1 1.306.34v2.458a3.95 3.95 0 0 0-.643-.361 5.093 5.093 0 0 0-.717-.26 5.453 5.453 0 0 0-1.426-.2c-.3 0-.573.028-.819.086a2.1 2.1 0 0 0-.623.242c-.17.104-.297.237-.382.4-.085.164-.127.365-.127.602 0 .305.08.56.24.764.16.205.38.381.658.53.279.15.61.288.995.414.384.126.81.267 1.28.423.47.155.932.343 1.385.565.453.222.843.504 1.17.848.328.344.577.765.748 1.264.17.499.256 1.107.256 1.824 0 .809-.136 1.534-.408 2.175a4.7 4.7 0 0 1-1.132 1.644c-.482.414-1.077.73-1.786.948-.71.218-1.52.327-2.43.327-.72 0-1.396-.06-2.028-.182a8.67 8.67 0 0 1-1.75-.544v-2.613c.582.35 1.196.616 1.84.798.646.182 1.32.273 2.023.273.364 0 .692-.036.985-.109.292-.073.54-.182.744-.327.204-.145.36-.332.468-.56.108-.228.162-.505.162-.832 0-.327-.08-.6-.24-.818a2.53 2.53 0 0 0-.679-.582c-.292-.164-.639-.313-1.04-.448-.403-.135-.852-.284-1.347-.448-.496-.164-.984-.36-1.464-.59a4.84 4.84 0 0 1-1.246-.867 4.14 4.14 0 0 1-.806-1.286c-.19-.508-.285-1.127-.285-1.856 0-.77.135-1.46.405-2.072.27-.612.65-1.134 1.14-1.567.49-.433 1.085-.768 1.785-1.004.7-.236 1.488-.354 2.365-.354zm-8.88 2.277h7.24v2.308h-2.39v10.51H9.865V14.335H7.487z"/>
+      <svg
+        role="img"
+        viewBox="0 0 24 24"
+        fill="currentColor"
+        className={className}
+      >
+        <path d="M1.125 0C.502 0 0 .502 0 1.125v21.75C0 23.498.502 24 1.125 24h21.75c.623 0 1.125-.502 1.125-1.125V1.125C24 .502 23.498 0 22.875 0zm17.363 9.75c.612 0 1.154.037 1.627.111a6.38 6.38 0 0 1 1.306.34v2.458a3.95 3.95 0 0 0-.643-.361 5.093 5.093 0 0 0-.717-.26 5.453 5.453 0 0 0-1.426-.2c-.3 0-.573.028-.819.086a2.1 2.1 0 0 0-.623.242c-.17.104-.297.237-.382.4-.085.164-.127.365-.127.602 0 .305.08.56.24.764.16.205.38.381.658.53.279.15.61.288.995.414.384.126.81.267 1.28.423.47.155.932.343 1.385.565.453.222.843.504 1.17.848.328.344.577.765.748 1.264.17.499.256 1.107.256 1.824 0 .809-.136 1.534-.408 2.175a4.7 4.7 0 0 1-1.132 1.644c-.482.414-1.077.73-1.786.948-.71.218-1.52.327-2.43.327-.72 0-1.396-.06-2.028-.182a8.67 8.67 0 0 1-1.75-.544v-2.613c.582.35 1.196.616 1.84.798.646.182 1.32.273 2.023.273.364 0 .692-.036.985-.109.292-.073.54-.182.744-.327.204-.145.36-.332.468-.56.108-.228.162-.505.162-.832 0-.327-.08-.6-.24-.818a2.53 2.53 0 0 0-.679-.582c-.292-.164-.639-.313-1.04-.448-.403-.135-.852-.284-1.347-.448-.496-.164-.984-.36-1.464-.59a4.84 4.84 0 0 1-1.246-.867 4.14 4.14 0 0 1-.806-1.286c-.19-.508-.285-1.127-.285-1.856 0-.77.135-1.46.405-2.072.27-.612.65-1.134 1.14-1.567.49-.433 1.085-.768 1.785-1.004.7-.236 1.488-.354 2.365-.354zm-8.88 2.277h7.24v2.308h-2.39v10.51H9.865V14.335H7.487z" />
       </svg>
     );
   }
   if (norm.includes("tailwind")) {
     return (
-      <svg role="img" viewBox="0 0 24 24" fill="currentColor" className={className}>
-        <path d="M12.001,4.8c-3.2,0-5.2,1.6-6,4.8c1.2-1.6,2.6-2.2,4.2-1.8c0.913,0.228,1.565,0.89,2.288,1.624 C13.666,10.618,15.027,12,18.001,12c3.2,0,5.2-1.6,6-4.8c-1.2,1.6-2.6,2.2-4.2,1.8c-0.913-0.228-1.565-0.89-2.288-1.624 C16.337,6.182,14.976,4.8,12.001,4.8z M6.001,12c-3.2,0-5.2,1.6-6,4.8c1.2-1.6,2.6-2.2,4.2-1.8c0.913,0.228,1.565,0.89,2.288,1.624 c1.177,1.194,2.538,2.576,5.512,2.576c3.2,0,5.2-1.6,6-4.8c-1.2,1.6-2.6,2.2-4.2,1.8c-0.913-0.228-1.565-0.89-2.288-1.624 C9.637,13.382,8.276,12,6.001,12z"/>
+      <svg
+        role="img"
+        viewBox="0 0 24 24"
+        fill="currentColor"
+        className={className}
+      >
+        <path d="M12.001,4.8c-3.2,0-5.2,1.6-6,4.8c1.2-1.6,2.6-2.2,4.2-1.8c0.913,0.228,1.565,0.89,2.288,1.624 C13.666,10.618,15.027,12,18.001,12c3.2,0,5.2-1.6,6-4.8c-1.2,1.6-2.6,2.2-4.2,1.8c-0.913-0.228-1.565-0.89-2.288-1.624 C16.337,6.182,14.976,4.8,12.001,4.8z M6.001,12c-3.2,0-5.2,1.6-6,4.8c1.2-1.6,2.6-2.2,4.2-1.8c0.913,0.228,1.565,0.89,2.288,1.624 c1.177,1.194,2.538,2.576,5.512,2.576c3.2,0,5.2-1.6,6-4.8c-1.2,1.6-2.6,2.2-4.2,1.8c-0.913-0.228-1.565-0.89-2.288-1.624 C9.637,13.382,8.276,12,6.001,12z" />
       </svg>
     );
   }
   if (norm.includes("postgres") || norm.includes("pgvector")) {
     return (
-      <svg role="img" viewBox="0 0 24 24" fill="currentColor" className={className}>
-        <path d="M11.969 0C5.357 0 0 5.357 0 11.969c0 6.611 5.357 11.969 11.969 11.969 6.611 0 11.969-5.358 11.969-11.969C23.938 5.357 18.58 0 11.969 0zm5.289 17.513c-.11.233-.25.437-.424.614-.173.176-.388.312-.644.407-.257.096-.554.144-.891.144-.555 0-1.026-.134-1.414-.403a3.02 3.02 0 0 1-.951-1.077 5.15 5.15 0 0 1-.453-1.516c-.092-.56-.138-1.127-.138-1.701 0-.616.056-1.205.168-1.767a4.67 4.67 0 0 1 .536-1.53c.245-.445.58-.795 1.004-1.05.424-.256.945-.384 1.563-.384.629 0 1.157.135 1.583.405.426.27.759.645.998 1.126.24.48.36 1.05.36 1.709 0 .616-.073 1.209-.22 1.777a5.2 5.2 0 0 1-.685 1.571 3.53 3.53 0 0 1-1.18 1.134 3.07 3.07 0 0 1-1.638.441zm-6.702-.68c-.378.435-.86.76-1.446.974a4.99 4.99 0 0 1-1.782.32c-.58 0-1.096-.098-1.547-.294a3.17 3.17 0 0 1-1.154-.836c-.298-.362-.519-.806-.662-1.332-.144-.526-.216-1.116-.216-1.771 0-.68.083-1.288.249-1.823.166-.535.412-.989.739-1.362.327-.373.74-.653 1.24-.84.5-.187 1.085-.28 1.756-.28.71 0 1.32.106 1.83.318.51.212.92.518 1.23.918v5.908zm0-7.391a3.02 3.02 0 0 0-.962-.753 2.76 2.76 0 0 0-1.208-.266c-.452 0-.85.074-1.194.222a2.31 2.31 0 0 0-.86.626 3.12 3.12 0 0 0-.518.966c-.118.367-.177.778-.177 1.234 0 .445.059.845.177 1.2.118.356.29.658.518.906.228.248.514.437.86.567.344.13.742.195 1.194.195.461 0 .864-.089 1.208-.266.344-.177.665-.428.962-.753V9.442z"/>
+      <svg
+        role="img"
+        viewBox="0 0 24 24"
+        fill="currentColor"
+        className={className}
+      >
+        <path d="M11.969 0C5.357 0 0 5.357 0 11.969c0 6.611 5.357 11.969 11.969 11.969 6.611 0 11.969-5.358 11.969-11.969C23.938 5.357 18.58 0 11.969 0zm5.289 17.513c-.11.233-.25.437-.424.614-.173.176-.388.312-.644.407-.257.096-.554.144-.891.144-.555 0-1.026-.134-1.414-.403a3.02 3.02 0 0 1-.951-1.077 5.15 5.15 0 0 1-.453-1.516c-.092-.56-.138-1.127-.138-1.701 0-.616.056-1.205.168-1.767a4.67 4.67 0 0 1 .536-1.53c.245-.445.58-.795 1.004-1.05.424-.256.945-.384 1.563-.384.629 0 1.157.135 1.583.405.426.27.759.645.998 1.126.24.48.36 1.05.36 1.709 0 .616-.073 1.209-.22 1.777a5.2 5.2 0 0 1-.685 1.571 3.53 3.53 0 0 1-1.18 1.134 3.07 3.07 0 0 1-1.638.441zm-6.702-.68c-.378.435-.86.76-1.446.974a4.99 4.99 0 0 1-1.782.32c-.58 0-1.096-.098-1.547-.294a3.17 3.17 0 0 1-1.154-.836c-.298-.362-.519-.806-.662-1.332-.144-.526-.216-1.116-.216-1.771 0-.68.083-1.288.249-1.823.166-.535.412-.989.739-1.362.327-.373.74-.653 1.24-.84.5-.187 1.085-.28 1.756-.28.71 0 1.32.106 1.83.318.51.212.92.518 1.23.918v5.908zm0-7.391a3.02 3.02 0 0 0-.962-.753 2.76 2.76 0 0 0-1.208-.266c-.452 0-.85.074-1.194.222a2.31 2.31 0 0 0-.86.626 3.12 3.12 0 0 0-.518.966c-.118.367-.177.778-.177 1.234 0 .445.059.845.177 1.2.118.356.29.658.518.906.228.248.514.437.86.567.344.13.742.195 1.194.195.461 0 .864-.089 1.208-.266.344-.177.665-.428.962-.753V9.442z" />
       </svg>
     );
   }
   if (norm.includes("docker")) {
     return (
-      <svg role="img" viewBox="0 0 24 24" fill="currentColor" className={className}>
-        <path d="M13.983 11.078h2.119a.186.186 0 00.186-.185V9.006a.186.186 0 00-.186-.186h-2.119a.185.185 0 00-.185.185v1.888c0 .102.083.185.185.185m-2.954-5.43h2.118a.186.186 0 00.186-.186V3.574a.186.186 0 00-.186-.185h-2.118a.185.185 0 00-.185.185v1.888c0 .102.082.185.185.185m0 2.716h2.118a.187.187 0 00.186-.186V6.29a.186.186 0 00-.186-.185h-2.118a.185.185 0 00-.185.185v1.887c0 .102.082.186.185.186m-2.93 0h2.12a.186.186 0 00.184-.186V6.29a.185.185 0 00-.185-.185H8.1a.185.185 0 00-.185.185v1.887c0 .102.083.186.185.186m-2.964 0h2.119a.186.186 0 00.185-.186V6.29a.185.185 0 00-.185-.185H5.136a.186.186 0 00-.186.185v1.887c0 .102.084.186.186.186m5.893 2.715h2.118a.186.186 0 00.186-.186V9.006a.186.186 0 00-.186-.186h-2.118a.185.185 0 00-.185.185v1.888c0 .102.082.185.185.185m-2.929 0h2.119a.185.185 0 00.185-.186V9.006a.185.185 0 00-.185-.186h-2.119a.185.185 0 00-.185.185v1.888c0 .102.083.185.185.185m-2.964 0h2.119a.185.185 0 00.185-.186V9.006a.185.185 0 00-.184-.186h-2.12a.185.185 0 00-.185.185v1.888c0 .102.083.185.185.185m-2.928 0h2.119a.185.185 0 00.185-.186V9.006a.185.185 0 00-.185-.186H2.208a.186.186 0 00-.186.185v1.888c0 .102.083.185.186.185M23.99 11.23a1.007 1.007 0 00-.735-.468c-.68-.11-1.325.267-1.748.86-.41.57-.45 1.343-.45 2.113 0 .78.04 1.543.45 2.113.423.593 1.068.97 1.748.86.305-.05.59-.22.735-.468.146-.247.16-.54.16-.832v-3.348c0-.292-.014-.585-.16-.832M1.986 13.916c-.08-.014-.16-.02-.24-.02-1.07 0-1.746.852-1.746 1.902 0 1.05.676 1.903 1.746 1.903.08 0 .16-.007.24-.02.433 1.637 1.48 2.94 2.87 3.827 1.39.887 3.07 1.353 4.81 1.353 3.63 0 6.89-2.02 8.71-5.187.32-.56.55-1.167.68-1.793H1.986v-.005z"/>
+      <svg
+        role="img"
+        viewBox="0 0 24 24"
+        fill="currentColor"
+        className={className}
+      >
+        <path d="M13.983 11.078h2.119a.186.186 0 00.186-.185V9.006a.186.186 0 00-.186-.186h-2.119a.185.185 0 00-.185.185v1.888c0 .102.083.185.185.185m-2.954-5.43h2.118a.186.186 0 00.186-.186V3.574a.186.186 0 00-.186-.185h-2.118a.185.185 0 00-.185.185v1.888c0 .102.082.185.185.185m0 2.716h2.118a.187.187 0 00.186-.186V6.29a.186.186 0 00-.186-.185h-2.118a.185.185 0 00-.185.185v1.887c0 .102.082.186.185.186m-2.93 0h2.12a.186.186 0 00.184-.186V6.29a.185.185 0 00-.185-.185H8.1a.185.185 0 00-.185.185v1.887c0 .102.083.186.185.186m-2.964 0h2.119a.186.186 0 00.185-.186V6.29a.185.185 0 00-.185-.185H5.136a.186.186 0 00-.186.185v1.887c0 .102.084.186.186.186m5.893 2.715h2.118a.186.186 0 00.186-.186V9.006a.186.186 0 00-.186-.186h-2.118a.185.185 0 00-.185.185v1.888c0 .102.082.185.185.185m-2.929 0h2.119a.185.185 0 00.185-.186V9.006a.185.185 0 00-.185-.186h-2.119a.185.185 0 00-.185.185v1.888c0 .102.083.185.185.185m-2.964 0h2.119a.185.185 0 00.185-.186V9.006a.185.185 0 00-.184-.186h-2.12a.185.185 0 00-.185.185v1.888c0 .102.083.185.185.185m-2.928 0h2.119a.185.185 0 00.185-.186V9.006a.185.185 0 00-.185-.186H2.208a.186.186 0 00-.186.185v1.888c0 .102.083.185.186.185M23.99 11.23a1.007 1.007 0 00-.735-.468c-.68-.11-1.325.267-1.748.86-.41.57-.45 1.343-.45 2.113 0 .78.04 1.543.45 2.113.423.593 1.068.97 1.748.86.305-.05.59-.22.735-.468.146-.247.16-.54.16-.832v-3.348c0-.292-.014-.585-.16-.832M1.986 13.916c-.08-.014-.16-.02-.24-.02-1.07 0-1.746.852-1.746 1.902 0 1.05.676 1.903 1.746 1.903.08 0 .16-.007.24-.02.433 1.637 1.48 2.94 2.87 3.827 1.39.887 3.07 1.353 4.81 1.353 3.63 0 6.89-2.02 8.71-5.187.32-.56.55-1.167.68-1.793H1.986v-.005z" />
       </svg>
     );
   }
   if (norm.includes("redis")) {
     return (
-      <svg role="img" viewBox="0 0 24 24" fill="currentColor" className={className}>
-        <path d="M21.577 9.697l-9.014-4.717a1.23 1.23 0 00-1.126 0L2.423 9.697a1.182 1.182 0 00-.638 1.045v3.516c0 .432.235.828.618 1.033l9.014 4.841c.367.197.808.197 1.175 0l9.014-4.841c.383-.205.618-.601.618-1.033v-3.516a1.182 1.182 0 00-.647-1.045zM12 6.55l7.55 3.95-2.76 1.48-7.58-3.95 2.79-1.48zm-1.57 2.37l7.55 3.94-2.8 1.5-7.55-3.95 2.8-1.49zm-6.61 3.52l2.67-1.4 2.8 1.46-2.67 1.43-2.8-1.49zm8.18 8.95v-4.89l2.84 1.48-2.84 3.41zm-1.61-4.89v4.89l-2.84-3.41 2.84-1.48z"/>
+      <svg
+        role="img"
+        viewBox="0 0 24 24"
+        fill="currentColor"
+        className={className}
+      >
+        <path d="M21.577 9.697l-9.014-4.717a1.23 1.23 0 00-1.126 0L2.423 9.697a1.182 1.182 0 00-.638 1.045v3.516c0 .432.235.828.618 1.033l9.014 4.841c.367.197.808.197 1.175 0l9.014-4.841c.383-.205.618-.601.618-1.033v-3.516a1.182 1.182 0 00-.647-1.045zM12 6.55l7.55 3.95-2.76 1.48-7.58-3.95 2.79-1.48zm-1.57 2.37l7.55 3.94-2.8 1.5-7.55-3.95 2.8-1.49zm-6.61 3.52l2.67-1.4 2.8 1.46-2.67 1.43-2.8-1.49zm8.18 8.95v-4.89l2.84 1.48-2.84 3.41zm-1.61-4.89v4.89l-2.84-3.41 2.84-1.48z" />
       </svg>
     );
   }
   if (norm.includes("php")) {
     return (
-      <svg role="img" viewBox="0 0 24 24" fill="currentColor" className={className}>
-        <path d="M7.023 8.046H2.992c-.328 0-.616.208-.718.52L.037 15.11a.75.75 0 00.718.985h2.51l.836-2.617h1.922c2.183 0 3.73-1.42 4.195-3.03.48-1.662-.487-2.402-3.195-2.402zm-1.08 3.585h-1.46l.666-2.083h1.46c1.17 0 1.554.293 1.282 1.24-.265.926-.93 1.043-1.948 1.043zm15.065-3.585h-4.031c-.328 0-.616.208-.718.52L14.022 15.11a.75.75 0 00.718.985h2.51l.836-2.617h1.922c2.183 0 3.73-1.42 4.195-3.03.48-1.662-.487-2.402-3.195-2.402zm-1.08 3.585h-1.46l.666-2.083h1.46c1.17 0 1.554.293 1.282 1.24-.265.926-.93 1.043-1.948 1.043zM14.54 8.046h-2.528a.755.755 0 00-.718.52l-2.237 7.02c-.07.218.093.435.323.435h2.464a.755.755 0 00.718-.52l.668-2.096h2.247c.23 0 .393-.217.323-.435L15.26 8.566a.756.756 0 00-.72-.52zm-1.127 3.585h-.943l.564-1.767h.943l-.564 1.767z"/>
+      <svg
+        role="img"
+        viewBox="0 0 24 24"
+        fill="currentColor"
+        className={className}
+      >
+        <path d="M7.023 8.046H2.992c-.328 0-.616.208-.718.52L.037 15.11a.75.75 0 00.718.985h2.51l.836-2.617h1.922c2.183 0 3.73-1.42 4.195-3.03.48-1.662-.487-2.402-3.195-2.402zm-1.08 3.585h-1.46l.666-2.083h1.46c1.17 0 1.554.293 1.282 1.24-.265.926-.93 1.043-1.948 1.043zm15.065-3.585h-4.031c-.328 0-.616.208-.718.52L14.022 15.11a.75.75 0 00.718.985h2.51l.836-2.617h1.922c2.183 0 3.73-1.42 4.195-3.03.48-1.662-.487-2.402-3.195-2.402zm-1.08 3.585h-1.46l.666-2.083h1.46c1.17 0 1.554.293 1.282 1.24-.265.926-.93 1.043-1.948 1.043zM14.54 8.046h-2.528a.755.755 0 00-.718.52l-2.237 7.02c-.07.218.093.435.323.435h2.464a.755.755 0 00.718-.52l.668-2.096h2.247c.23 0 .393-.217.323-.435L15.26 8.566a.756.756 0 00-.72-.52zm-1.127 3.585h-.943l.564-1.767h.943l-.564 1.767z" />
       </svg>
     );
   }
   if (norm.includes("mysql")) {
     return (
-      <svg role="img" viewBox="0 0 24 24" fill="currentColor" className={className}>
-        <path d="M16.924 16.326c-.322.257-.745.385-1.27.385-.688 0-1.258-.225-1.71-.676-.453-.45-.679-1.055-.679-1.815 0-.78.23-1.403.69-1.87.46-.467 1.046-.7 1.758-.7.49 0 .894.116 1.211.348v4.328zm1.616-5.835v1.27c-.496-.345-1.077-.518-1.743-.518-1.144 0-2.08.384-2.809 1.151-.728.767-1.093 1.745-1.093 2.934 0 1.178.365 2.149 1.093 2.915.729.767 1.665 1.15 2.809 1.15.666 0 1.247-.172 1.743-.517v1.282h1.616V10.49h-1.616zm-7.618 6.743h1.615V10.49h-1.615v6.743zm-2.859-6.743l-1.328 4.25-1.327-4.25H3.69v6.743h1.497v-4.52l1.245 4.52h1.168l1.246-4.52v4.52h1.497V10.49H8.063z"/>
+      <svg
+        role="img"
+        viewBox="0 0 24 24"
+        fill="currentColor"
+        className={className}
+      >
+        <path d="M16.924 16.326c-.322.257-.745.385-1.27.385-.688 0-1.258-.225-1.71-.676-.453-.45-.679-1.055-.679-1.815 0-.78.23-1.403.69-1.87.46-.467 1.046-.7 1.758-.7.49 0 .894.116 1.211.348v4.328zm1.616-5.835v1.27c-.496-.345-1.077-.518-1.743-.518-1.144 0-2.08.384-2.809 1.151-.728.767-1.093 1.745-1.093 2.934 0 1.178.365 2.149 1.093 2.915.729.767 1.665 1.15 2.809 1.15.666 0 1.247-.172 1.743-.517v1.282h1.616V10.49h-1.616zm-7.618 6.743h1.615V10.49h-1.615v6.743zm-2.859-6.743l-1.328 4.25-1.327-4.25H3.69v6.743h1.497v-4.52l1.245 4.52h1.168l1.246-4.52v4.52h1.497V10.49H8.063z" />
       </svg>
     );
   }
@@ -109,6 +180,31 @@ function TechLogo({ name, className = "w-3.5 h-3.5" }) {
   if (norm.includes("rag") || norm.includes("ai") || norm.includes("llm")) {
     return <Sparkles className={className} />;
   }
+  if (
+    norm.includes("ci/cd") ||
+    norm.includes("cd") ||
+    norm.includes("pipeline")
+  ) {
+    return <GitBranch className={className} />;
+  }
+  if (
+    norm.includes("linux") ||
+    norm.includes("vps") ||
+    norm.includes("nginx")
+  ) {
+    return <Terminal className={className} />;
+  }
+  if (norm.includes("aws") || norm.includes("cloud") || norm.includes("s3")) {
+    return <Cloud className={className} />;
+  }
+  if (
+    norm.includes("docker") ||
+    norm.includes("container") ||
+    norm.includes("k8s")
+  ) {
+    return <Box className={className} />;
+  }
+
   // Default icon
   return <Layers className={className} />;
 }
@@ -118,202 +214,301 @@ const PROJECTS = [
   {
     id: "talentek",
     title: "TALENTek – Enterprise AI-HRM Platform",
-    tagline: "Multi-tenant SaaS with autonomous AI CV screening, pgvector search & ATS pipeline",
+    tagline:
+      "Multi-tenant SaaS with autonomous AI CV screening, pgvector search & ATS pipeline",
     category: "AI SaaS & ATS",
     categoryTag: "ai",
     status: "Live",
     metricsHighlight: "65% faster screening time with 1536-dim embeddings",
-    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80",
-    overview: "TALENTek is a production enterprise talent acquisition and HRM SaaS designed to eliminate manual recruiter bottlenecks. Built with a scalable multi-tenant architecture, it provides autonomous AI-driven CV parsing, pgvector semantic candidate matching, and an interactive Kanban ATS pipeline.",
+    image: "/images/talentek_img.png",
+    overview:
+      "TALENTek is a production enterprise talent acquisition and HRM SaaS designed to eliminate manual recruiter bottlenecks. Built with a scalable multi-tenant architecture, it provides autonomous AI-driven CV parsing, pgvector semantic candidate matching, and an interactive Kanban ATS pipeline.",
     keyFeatures: [
       "Autonomous CV parsing supporting PDF, DOCX, and unstructured resumes",
       "pgvector similarity indexing with OpenAI embeddings for instant job-candidate matching",
       "Chunked RAG assistant for rapid company policy retrieval and candidate screening queries",
       "Interactive real-time ATS Kanban board with drag-and-drop state management",
-      "Multi-tenant data isolation with role-based permissions (Admin, HR Manager, Recruiter)"
+      "Multi-tenant data isolation with role-based permissions (Admin, HR Manager, Recruiter)",
     ],
-    tech: ["Python", "Django", "DRF", "pgvector", "Next.js", "Redis", "Docker", "PostgreSQL"],
-    role: "Lead Full-Stack & AI Engineer",
-    challenges: "Parsing thousands of heterogeneous resume formats simultaneously without degrading the primary HTTP response cycle, alongside scaling high-dimensional vector similarity queries across large candidate databases.",
-    solution: "Engineered an asynchronous Celery task queue with Redis broker to offload heavy OCR and embedding generations. Structured pgvector with HNSW indexing, reducing candidate search latencies to under 120ms.",
+    tech: [
+      "Python",
+      "Django",
+      "DRF",
+      "pgvector",
+      "Next.js",
+      "Redis",
+      "Docker",
+      "PostgreSQL",
+      "OpenAI API",
+      "AWS",
+      "CI/CD",
+      "Linux VPS",
+      "Nginx",
+    ],
+    role: "Junior Software Developer(Full Stack+devops)",
+    challenges:
+      "Parsing thousands of heterogeneous resume formats simultaneously without degrading the primary HTTP response cycle, alongside scaling high-dimensional vector similarity queries across large candidate databases.",
+    solution:
+      "Engineered an asynchronous Celery task queue with Redis broker to offload heavy OCR and embedding generations. Structured pgvector with HNSW indexing, reducing candidate search latencies to under 120ms.",
     highlights: [
       "Cut recruiter candidate evaluation time by approximately 65%",
       "Reduced CI/CD container build and release pipeline from 4h to 30m via multi-stage Docker",
-      "Designed secure multi-tenant schema with automated SSLCommerz payment billing hooks"
+      "Designed secure multi-tenant schema with automated SSLCommerz payment billing hooks",
     ],
     liveUrl: "https://talentek.bd",
-    githubUrl: "https://github.com/salauddin85"
+    githubUrl: "https://github.com/salauddin85",
+  },
+  {
+    id: "talentracker",
+    title: "TalentTracker — ATS & Corporate Training Platform",
+    tagline:
+      "Enterprise applicant tracking system, talent marketplace, and B2B training solution",
+    category: "Recruitment & EdTech",
+    categoryTag: "enterprise",
+    status: "Live",
+    metricsHighlight:
+      "Production platform live at talentracker.net with 15+ domain micro-apps",
+    image: "/images/talentracker.png",
+    overview:
+      "A full-scale Applicant Tracking System (ATS) and B2B workforce solutions platform built for TalentTracker Ltd. Features end-to-end recruitment pipelines, normalized candidate dossiers (skills, employment history, compensation, binary resume streaming), corporate training catalogs, and dedicated portals for Candidates, Trainers, and Recruiters.",
+    keyFeatures: [
+      "End-to-End ATS Pipeline: Job taxonomy, applicant tracking stages (Pending, Reached, Accepted, Rejected), and secure binary resume streaming",
+      "Multi-Portal RBAC Governance: Role-based access control engine with granular permissions, OTP email verification, and Next.js Edge Middleware route guards",
+      "Corporate Training & Marketplace: Course catalog with curriculum details, enterprise quote requests, and verified instructor showcases",
+      "High-Throughput Audit Telemetry: Redis-buffered asynchronous activity logging with scheduled Celery Beat batch inserts and automated DB backups",
+      "Real-Time Health Monitoring: Diagnostic dashboard actively monitoring PostgreSQL, Redis, disk utilization, media storage I/O, and SMTP status",
+    ],
+    tech: [
+      "Django",
+      "Django REST Framework",
+      "Next.js",
+      "Celery & Celery Beat",
+      "Redis",
+      "PostgreSQL",
+      "Docker & Docker Compose",
+      "Zustand",
+      "TanStack Query",
+      "Tailwind CSS",
+    ],
+    role: "Junior Software Developer(Full Stack+DevOps)",
+    challenges:
+      "Eliminating relational database write-lock contention caused by high-frequency user telemetry, while enforcing strict, multi-tenant RBAC across three distinct user personas (Candidates, Trainers, and Staff) without exposing JWT tokens to client-side XSS vulnerabilities.",
+    solution:
+      "Engineered an asynchronous write-buffering pipeline using Redis list queues and Celery Beat bulk insertion (reducing database writes by up to 90%). Implemented HttpOnly cookie-based JWT authentication paired with an in-memory TTL permission cache within Next.js Edge Middleware for sub-millisecond route-guard evaluation.",
+    highlights: [
+      "Successfully launched in production at talentracker.net with a multi-container Docker Compose architecture",
+      "Engineered a comprehensive 4,500+ line OpenAPI 3.0 specification covering 15+ modular backend domains",
+      "Unified recruiter candidate screening, applicant status workflows, and B2B training procurement into a single platform",
+    ],
+    liveUrl: "https://talentracker.net",
+    githubUrl: "https://github.com/salauddin85",
+  },
+  {
+    id: "club-mgmt",
+    title: "Enterprise Club Member Management & ERP System",
+    tagline:
+      "Scalable, full-stack membership ERP, double-entry financial ledger & hospitality management platform",
+    category: "Enterprise ERP & Financial Systems",
+    categoryTag: "enterprise",
+    status: "Live",
+    metricsHighlight:
+      "Managing 1,000+ members, 14+ integrated sub-modules & automated ledger reconciliations",
+    image:
+      "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1200&q=80",
+    overview:
+      "A full-lifecycle Enterprise Resource Planning (ERP) platform architected for prestigious membership clubs. Engineered with a Next.js 14 App Router frontend and a decoupled Django REST Framework backend, the platform unifies member relationship management (family trees, ID transfers, lifecycle states), double-entry financial bookkeeping (invoicing, prepaid member accounts, overdue tracking), multi-outlet dining & POS checkouts, event ticketing, facility reservations, and multi-tenant bulk email delivery.",
+    keyFeatures: [
+      "Comprehensive Member Lifecycle: Multi-step registration wizard, family tree & dependent management, membership tier controls, ID transfer audit tracking, and soft-delete recycle bin with cascading cleanup services",
+      "Double-Entry Financial Ledger & Due Engine: Automated invoicing with real-time balance adjustments, prepaid member accounts with credit limits, overdue tracking, and automated receipt generation",
+      "Offline POS Excel Reconciliation Engine: Automated Pandas/OpenPyXL ingestion pipelines that parse daily lounge, restaurant, and bar sales spreadsheets to balance member accounts and dues automatically",
+      "Hospitality & Amenity Commerce: Multi-restaurant digital menu ordering, table/cart checkout, pro-shop merchandise inventory, and facility booking schedules (tennis, pool, banquet)",
+      "High-Throughput Audit Telemetry: Redis-buffered asynchronous activity logging flushed in batches every 10 minutes via Celery Beat to prevent database I/O bottlenecks",
+      "Granular Dynamic RBAC & Edge Routing: Role-based access control with in-memory Edge middleware permission caching (60s TTL) and secure HTTPOnly cookie-based JWT authentication with token rotation",
+      "Bulk Campaign Mailer Engine: Dynamic multi-SMTP configuration system with rich-text template composer, recipient grouping, and asynchronous Celery delivery with automatic retry handling",
+      "Automated Document Reporting: Server-side PDF profile generation via ReportLab/xhtml2pdf and bi-directional Excel data pipelines for administrative reporting",
+    ],
+    tech: [
+      "Next.js 14",
+      "React 18",
+      "TypeScript",
+      "Django 5",
+      "Django REST Framework",
+      "PostgreSQL",
+      "Celery",
+      "Redis",
+      "TanStack React Query",
+      "Zustand",
+      "Tailwind CSS",
+      "Pandas",
+      "Docker",
+    ],
+    role: "Lead Full-Stack Software Engineer",
+    challenges:
+      "Orchestrating complex cascading deletions across deeply nested relational data (member profiles, family relations, unpaid invoices, and event reservations), preventing database lock contention from synchronous telemetry logging, and bridging offline point-of-sale register spreadsheets with online ledger balances.",
+    solution:
+      "Engineered atomic Domain Service layers (MemberBulkDeleteActionService and InvoicePaymentService) using database transactions to preserve ACID compliance. Designed a high-throughput Redis FIFO buffer queue for activity telemetry that batches writes every 10 minutes via Celery Beat, and built robust Pandas ingestion utilities to automate offline register reconciliations into live member dues.",
+    highlights: [
+      "Architected 14+ cohesive operational micro-modules (MFM, Hospitality, Facilities, Events, Mailers, Identity)",
+      "Engineered edge-cached route authorization reducing permission-check roundtrips by over 80%",
+      "Built fault-tolerant asynchronous pipelines handling bulk email campaigns and automated daily audit cleanups",
+    ],
+    liveUrl: "https://pepoltek.com",
+    githubUrl: "https://github.com/salauddin85",
+  },
+  {
+    id: "ecommerce",
+    title: "Multi-Vendor Marketplace & Financial Settlement Engine",
+    tagline:
+      "Enterprise marketplace platform featuring parent-child split checkouts, 7-day escrow holds, and Redis-cached dynamic RBAC",
+    category: "Fintech & E-Commerce",
+    categoryTag: "fintech",
+    status: "Completed",
+    metricsHighlight:
+      "Sub-50ms API latency via Redis queue buffering & zero race-condition financial settlements",
+    image:
+      "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=1200&q=80",
+    overview:
+      "A full-stack, multi-tenant marketplace platform engineered for complex vendor ecosystems. Features parent-child multi-vendor order routing, automated commission calculations, a 7-day financial escrow holding period with merchant wallet payouts, SSLCommerz gateway integration with IPN validation, and 4 dedicated operational dashboards (Super Admin, Company Admin, Vendor, and Customer).",
+    keyFeatures: [
+      "Dynamic RBAC & Permission Caching: Granular role assignment (Super Admin, Company Admin, Vendor, Staff, Customer) backed by a 5-minute Redis-cached authorization layer to eliminate database JOIN overhead.",
+      "Parent-Child Order Splitting: Atomic checkout engine that partitions a unified shopping basket into vendor-isolated sub-orders with independent shipping fee matrices and status lifecycles.",
+      "Escrow & Multi-Vendor Wallet System: Automated 7-day platform holding period (PlatformHold) to mitigate chargeback/refund risks before releasing funds into store wallets for bank withdrawal.",
+      "Decoupled Asynchronous Audit Logging: High-throughput request auditing buffered through Redis queues (rpush/lpop) and bulk-inserted into PostgreSQL via Celery Beat workers to eliminate HTTP request latency.",
+      "Complex Attribute & Variant Matrix: Normalized schema managing multi-attribute product variations with independent SKU-level pricing, image galleries, and default variant selection.",
+      "Secure JWT with HTTP-Only Cookie Gateway: Dual-layer token rotation (SimpleJWT) using HttpOnly, Secure SameSite cookies bridged to DRF authorization via custom middleware to eliminate XSS token theft.",
+    ],
+    tech: [
+      "Django 5",
+      "Django REST Framework",
+      "Next.js 16 (App Router)",
+      "React 19",
+      "TypeScript",
+      "PostgreSQL",
+      "Redis",
+      "Celery & Celery Beat",
+      "Docker & Docker Compose",
+      "TailwindCSS 4",
+      "Zustand",
+      "SSLCommerz",
+    ],
+    role: "Full Stack Software Engineer & System Architect",
+    project_type: "Production-Grade System Architecture",
+    challenges:
+      "Orchestrating high-concurrency multi-vendor checkouts without race conditions, preventing financial loss from premature vendor payouts during return windows, and avoiding database write bottlenecks caused by high-frequency activity audit logging.",
+    solution:
+      "Implemented atomic PostgreSQL transactions with `select_for_update()` pessimistic row locks on wallet transactions and default address mutations. Built an escrow-style 7-day deferred settlement pipeline with Celery Beat schedulers, and engineered a producer-consumer logging pipeline that buffers request telemetry in Redis before executing periodic batch inserts (bulk_create) in worker processes.",
+    highlights: [
+      "Engineered an automated 7-day escrow hold pipeline with Celery Beat to protect the platform against customer disputes and return fraud.",
+      "Eliminated database write bottlenecks during peak traffic by buffering audit logs in Redis memory and batch-writing in chunks of 100.",
+      "Optimized query performance through composite B-Tree indexes on high-cardinality status and timestamp columns, verified via Django Silk query profiling.",
+      "Constructed 4 responsive, role-isolated portals (Admin, Company, Vendor, Customer) powered by Next.js 16 App Router, Shadcn/Radix UI, and Zustand state management.",
+    ],
+    liveUrl: "https://github.com/salauddin85",
+    githubUrl: "https://github.com/salauddin85",
   },
   {
     id: "zamara-pos",
     title: "Zamara POS & Merchandise Suite",
-    tagline: "All-in-one POS, real-time inventory engine, and multi-branch retail system",
+    tagline:
+      "All-in-one POS, real-time inventory engine, and multi-branch retail system",
     category: "POS & Retail System",
     categoryTag: "enterprise",
     status: "Live",
     metricsHighlight: "Sub-100ms item checkout lookup across 50,000+ SKUs",
-    image: "https://images.unsplash.com/photo-1556742049-0a67c5574f73?auto=format&fit=crop&w=1200&q=80",
-    overview: "Zamara POS is a high-speed retail checkout and merchandise system built for modern brick-and-mortar storefronts and multi-warehouse supply chains. It features instant barcode scanning, offline-first transaction resilience, thermal receipt printer integration, and automated inventory sync.",
+    image:
+      "https://images.unsplash.com/photo-1556742049-0a67c5574f73?auto=format&fit=crop&w=1200&q=80",
+    overview:
+      "Zamara POS is a high-speed retail checkout and merchandise system built for modern brick-and-mortar storefronts and multi-warehouse supply chains. It features instant barcode scanning, offline-first transaction resilience, thermal receipt printer integration, and automated inventory sync.",
     keyFeatures: [
       "Rapid item scanning & checkout engine optimized for touchscreens and barcode readers",
       "Multi-store inventory synchronization with automated low-stock reorder triggers",
       "Offline transactional resilience with background IndexedDB sync upon reconnect",
       "Detailed financial reporting: daily cash drawer reconciliation, profit margins, and GST/VAT tax audits",
-      "Employee shift management and permission control for cashier vs manager roles"
+      "Employee shift management and permission control for cashier vs manager roles",
     ],
     tech: ["React", "TypeScript", "Tailwind", "Django", "PostgreSQL", "Docker"],
-    role: "Full Stack Software Engineer",
-    challenges: "Handling spotty network connections in physical retail environments where dropped requests during checkout lead to duplicate charges or stranded customer queues.",
-    solution: "Architected a local-first queue using IndexedDB and Service Workers. Transactions are signed locally and reconciled via idempotent Django backend APIs the moment network connectivity resumes.",
+    role: "Junior Software Developer(Full Stack+DevOps)",
+    challenges:
+      "Handling spotty network connections in physical retail environments where dropped requests during checkout lead to duplicate charges or stranded customer queues.",
+    solution:
+      "Architected a local-first queue using IndexedDB and Service Workers. Transactions are signed locally and reconciled via idempotent Django backend APIs the moment network connectivity resumes.",
     highlights: [
       "Zero transaction drop rate across thousands of daily retail receipts",
       "Instant sub-100ms search across 50,000+ SKU catalogs using indexed PostgreSQL full-text search",
-      "Cross-platform responsive interface tailored for desktop terminals, tablets, and mobile handhelds"
+      "Cross-platform responsive interface tailored for desktop terminals, tablets, and mobile handhelds",
     ],
     liveUrl: "https://pepoltek.com",
-    githubUrl: "https://github.com/salauddin85"
+    githubUrl: "https://github.com/salauddin85",
   },
   {
     id: "purelube",
     title: "PureLube Lubricant GmbH",
-    tagline: "Corporate brand platform with global product catalog and distributor portal",
+    tagline:
+      "Corporate brand platform with global product catalog and distributor portal",
     category: "Brand Website",
     categoryTag: "web",
     status: "Live",
-    metricsHighlight: "100/100 Lighthouse performance with sub-second page loads",
-    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80",
-    overview: "Corporate web platform engineered for PureLube Lubricant GmbH, a premier German automotive and industrial lubricant brand. Built to showcase extensive technical product lineups, company certifications, and handle high-volume distributor inquiries across Europe, Asia, Africa, and the Americas.",
+    metricsHighlight:
+      "100/100 Lighthouse performance with sub-second page loads",
+    image:
+      "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80",
+    overview:
+      "Corporate web platform engineered for PureLube Lubricant GmbH, a premier German automotive and industrial lubricant brand. Built to showcase extensive technical product lineups, company certifications, and handle high-volume distributor inquiries across Europe, Asia, Africa, and the Americas.",
     keyFeatures: [
       "Dynamic interactive product catalog with fluid viscosity and engine-specification filters",
       "Multi-region distributor qualification pipeline with automated lead distribution",
       "International localization with lightning-fast static page generation",
       "Rich media gallery and interactive corporate timeline showcasing German manufacturing standards",
-      "Headless CMS integration enabling non-technical stakeholders to publish new spec sheets"
+      "Headless CMS integration enabling non-technical stakeholders to publish new spec sheets",
     ],
     tech: ["Next.js", "React", "TypeScript", "Tailwind", "Docker"],
     role: "Lead Frontend & Web Architect",
-    challenges: "Delivering heavy 4K product imagery, detailed oil specification sheets, and international branding assets without hurting mobile Core Web Vitals across emerging international markets.",
-    solution: "Implemented Next.js Incremental Static Regeneration (ISR) paired with Next/Image AVIF/WebP auto-compression and edge-cached Cloudflare CDN distribution.",
+    challenges:
+      "Delivering heavy 4K product imagery, detailed oil specification sheets, and international branding assets without hurting mobile Core Web Vitals across emerging international markets.",
+    solution:
+      "Implemented Next.js Incremental Static Regeneration (ISR) paired with Next/Image AVIF/WebP auto-compression and edge-cached Cloudflare CDN distribution.",
     highlights: [
       "Achieved flawless 100/100 performance, accessibility, and SEO scores on Google Lighthouse",
       "Streamlined global distributor lead capture, increasing international inquiry conversions by 40%",
-      "Engineered bespoke micro-interactions and smooth scroll ergonomics matching luxury German aesthetics"
+      "Engineered bespoke micro-interactions and smooth scroll ergonomics matching luxury German aesthetics",
     ],
     liveUrl: "https://pepoltek.com",
-    githubUrl: "https://github.com/salauddin85"
+    githubUrl: "https://github.com/salauddin85",
   },
-  {
-    id: "ecommerce",
-    title: "Multi-Vendor E-Commerce Platform",
-    tagline: "Scalable marketplace with atomic split-order checkout & 4-tier RBAC",
-    category: "Fintech & E-Commerce",
-    categoryTag: "fintech",
-    status: "Live",
-    metricsHighlight: "25% query latency reduction with zero-race condition checkouts",
-    image: "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=1200&q=80",
-    overview: "A comprehensive multi-vendor digital marketplace engineered for high transaction volume. Features split-order cart checkouts, automated commission payouts, merchant analytics dashboards, and end-to-end payment gateway integrations.",
-    keyFeatures: [
-      "4-Tier RBAC authorization (Super Admin, Vendor Store, Brand Representative, Customer)",
-      "Atomic cart & checkout system supporting multi-vendor orders in a single payment transaction",
-      "Secure SSLCommerz payment gateway integration with automated webhook verification",
-      "Real-time inventory deduction with row-level database locking preventing overselling",
-      "Merchant analytics portal with revenue graphs, order status pipelines, and refund processors"
-    ],
-    tech: ["Django", "DRF", "Next.js", "TypeScript", "PostgreSQL", "Docker", "Tailwind"],
-    role: "Backend Architect & Frontend Engineer",
-    challenges: "Managing concurrent checkouts during flash sales where multiple users attempt to purchase limited stock items simultaneously, risking race conditions and stock inconsistencies.",
-    solution: "Leveraged Django database transactions with `select_for_update` row locks on product variants, ensuring absolute inventory integrity during split-second checkout spikes.",
-    highlights: [
-      "25% database query speed improvement achieved through composite PostgreSQL indexing",
-      "Zero payment discrepancy records across production deployment",
-      "Responsive, mobile-optimized shopping flow with Zustand-powered persistent state"
-    ],
-    liveUrl: "https://github.com/salauddin85",
-    githubUrl: "https://github.com/salauddin85"
-  },
-  {
-    id: "club-mgmt",
-    title: "Club Member Management System",
-    tagline: "High-concurrency membership portal and event operations system",
-    category: "Enterprise ERP",
-    categoryTag: "enterprise",
-    status: "Live",
-    metricsHighlight: "Serving 1,000+ active enterprise members at PEPOLTEK",
-    image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1200&q=80",
-    overview: "Enterprise operations and member management platform deployed in production at PEPOLTEK. The system manages membership renewals, automated billing cycles, event registration with digital QR tickets, and administrative financial exports.",
-    keyFeatures: [
-      "Automated recurring membership subscriptions and digital membership card issuance",
-      "Event ticketing pipeline with real-time QR code check-in scanner for door attendants",
-      "Executive reporting dashboard with CSV/PDF ledger exports and dues tracking",
-      "Automated SMS/Email notification alerts for upcoming meetings and renewals",
-      "Granular role-based permissions protecting sensitive member personal data"
-    ],
-    tech: ["Django", "DRF", "TypeScript", "PostgreSQL", "Docker", "Tailwind"],
-    role: "Lead Backend Developer",
-    challenges: "Handling complex tier-based membership rules, member dues rollover, and high concurrency ticket reservations during annual executive summits.",
-    solution: "Built a finite state machine pattern for membership lifecycles and background scheduled billing workers using Celery Beat to guarantee reliable midnight invoice generations.",
-    highlights: [
-      "Active production deployment serving over 1,000 registered corporate members",
-      "Reduced administrative member on-boarding overhead from days to under 5 minutes",
-      "Seamless integration with secure PostgreSQL audit logs"
-    ],
-    liveUrl: "https://pepoltek.com",
-    githubUrl: "https://github.com/salauddin85"
-  },
-  {
-    id: "talentracker",
-    title: "TalentTracker Discovery Engine",
-    tagline: "Recruitment discovery engine and candidate indexing pipeline",
-    category: "Recruitment Tech",
-    categoryTag: "ai",
-    status: "Live",
-    metricsHighlight: "Live discovery platform deployed at talentracker.net",
-    image: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=1200&q=80",
-    overview: "A specialized talent discovery engine enabling headhunters and tech companies to search, categorize, and track qualified software engineers and executives with automated outreach scheduling.",
-    keyFeatures: [
-      "Structured search across skills, seniority, salary expectations, and tech stacks",
-      "Automated candidate profile enrichment and duplicate deduplication engine",
-      "Live recruitment pipeline with customizable stages and recruiter notes",
-      "Production VPS containerization with Nginx reverse proxy and SSL automation"
-    ],
-    tech: ["Django", "DRF", "Next.js", "Docker", "PostgreSQL", "Tailwind"],
-    role: "Full Stack Developer",
-    challenges: "Building a fast, faceted search engine that responds instantly as recruiters toggle combinations of experience years and niche tech frameworks.",
-    solution: "Optimized database schema with targeted GIN indices in PostgreSQL and implemented cached API response layers using Redis.",
-    highlights: [
-      "Successfully launched live at talentracker.net",
-      "Unified recruiter interface reducing time-to-hire workflows"
-    ],
-    liveUrl: "https://talentracker.net",
-    githubUrl: "https://github.com/salauddin85"
-  },
+
   {
     id: "pepoltek-corp",
     title: "PEPOLTEK Corporate Engineering Platform",
-    tagline: "Corporate presence with dynamic service matrix & client qualification",
+    tagline:
+      "Corporate presence with dynamic service matrix & client qualification",
     category: "Corporate Platform",
     categoryTag: "web",
     status: "Live",
-    metricsHighlight: "Sub-second TTFB with high-converting client lead pipelines",
-    image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=1200&q=80",
-    overview: "Official corporate platform for PEPOLTEK, showcasing engineering capabilities, client case studies, enterprise metrics, and interactive service qualification pipelines.",
+    metricsHighlight:
+      "Sub-second TTFB with high-converting client lead pipelines",
+    image:
+      "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=1200&q=80",
+    overview:
+      "Official corporate platform for PEPOLTEK, showcasing engineering capabilities, client case studies, enterprise metrics, and interactive service qualification pipelines.",
     keyFeatures: [
       "Interactive enterprise service catalog and architecture case study breakdown",
       "Interactive client inquiry qualifier with automated quotation estimates",
       "High performance Next.js server components with instant page transitions",
-      "Dark/Light theme support with modern glassmorphism aesthetics"
+      "Dark/Light theme support with modern glassmorphism aesthetics",
     ],
     tech: ["DRF", "Next.js", "TypeScript", "Tailwind", "Docker"],
     role: "Lead Frontend Engineer",
-    challenges: "Balancing rich interactive UI components, case study metrics, and branding animations while maintaining top-tier SEO rankings.",
-    solution: "Adopted hybrid rendering with Next.js App Router, streaming server-side generated content for search spiders while client components hydrate interactive widgets.",
+    challenges:
+      "Balancing rich interactive UI components, case study metrics, and branding animations while maintaining top-tier SEO rankings.",
+    solution:
+      "Adopted hybrid rendering with Next.js App Router, streaming server-side generated content for search spiders while client components hydrate interactive widgets.",
     highlights: [
       "Elevated PEPOLTEK's digital brand authority across global client prospects",
-      "Direct pipeline for corporate service discovery and RFP submissions"
+      "Direct pipeline for corporate service discovery and RFP submissions",
     ],
     liveUrl: "https://pepoltek.com",
-    githubUrl: "https://github.com/salauddin85"
-  }
+    githubUrl: "https://github.com/salauddin85",
+  },
 ];
 
 export default function Work() {
@@ -338,9 +533,10 @@ export default function Work() {
   const smoothHeaderX = useSpring(rawHeaderX, springConfig);
 
   // Filter logic
-  const filteredProjects = filter === "all"
-    ? PROJECTS
-    : PROJECTS.filter(p => p.categoryTag === filter);
+  const filteredProjects =
+    filter === "all"
+      ? PROJECTS
+      : PROJECTS.filter((p) => p.categoryTag === filter);
 
   // Handle ESC key to close modal
   useEffect(() => {
@@ -362,15 +558,15 @@ export default function Work() {
   }, [selectedProject]);
 
   return (
-    <section 
-      id="work" 
-      ref={sectionRef} 
+    <section
+      id="work"
+      ref={sectionRef}
       className="relative w-full py-20 sm:py-32 overflow-hidden bg-[var(--bg-deep)]"
     >
       {/* Background Section Title — Centered horizontally only */}
       <div className="absolute top-6 sm:top-8 left-0 w-full flex justify-center pointer-events-none select-none z-0 px-4 sm:px-8">
-        <motion.div 
-          style={{ x: smoothWatermarkX }} 
+        <motion.div
+          style={{ x: smoothWatermarkX }}
           className="font-display font-black uppercase tracking-tight whitespace-nowrap text-[clamp(26px,6vw,90px)] leading-none text-[var(--watermark-color)] [-webkit-text-stroke:var(--watermark-stroke,0px_transparent)] select-none text-center"
         >
           WORK
@@ -379,8 +575,8 @@ export default function Work() {
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header with scroll-linked animation matching Feedback, About Me, and Experience */}
-        <motion.div 
-          style={{ x: smoothHeaderX }} 
+        <motion.div
+          style={{ x: smoothHeaderX }}
           className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10 sm:mb-16"
         >
           <div className="flex flex-col items-start">
@@ -389,10 +585,13 @@ export default function Work() {
               <span className="font-extrabold opacity-90">FEATURED</span>
             </div>
             <h2 className="text-base sm:text-lg font-normal text-[var(--text-secondary)] max-w-2xl leading-relaxed">
-              Live products and private builds across web, AI, SaaS, and fintech.
+              Live products and private builds across web, AI, SaaS, and
+              fintech.
             </h2>
             <p className="mt-2.5 sm:mt-3 text-xs sm:text-sm text-[var(--text-secondary)] font-normal max-w-xl leading-relaxed">
-              Production systems built with modern architecture, rock-solid backends, and responsive user experiences. Click any project to inspect full case details.
+              Production systems built with modern architecture, rock-solid
+              backends, and responsive user experiences. Click any project to
+              inspect full case details.
             </p>
           </div>
 
@@ -512,7 +711,9 @@ export default function Work() {
                     {/* Key Technical Highlight Pill — Full text wrap without clipping */}
                     <div className="mt-3 inline-flex items-start sm:items-center gap-1.5 px-2.5 sm:px-3 py-1.5 rounded-lg text-[11px] sm:text-xs bg-[var(--bg-elevated)] border border-[var(--border-default)] text-[var(--text-primary)] font-medium max-w-full">
                       <Sparkles className="w-3.5 h-3.5 text-[var(--text-primary)] shrink-0 mt-0.5 sm:mt-0" />
-                      <span className="leading-snug break-words">{project.metricsHighlight}</span>
+                      <span className="leading-snug break-words">
+                        {project.metricsHighlight}
+                      </span>
                     </div>
                   </div>
 
@@ -530,7 +731,10 @@ export default function Work() {
                         key={techName}
                         className="inline-flex items-center gap-1 sm:gap-1.5 px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-md text-[11px] sm:text-xs font-mono bg-[var(--bg-deep)] border border-[var(--border-default)] text-[var(--text-secondary)] group-hover:text-[var(--text-primary)] transition-colors"
                       >
-                        <TechLogo name={techName} className="w-3 h-3 sm:w-3.5 sm:h-3.5 shrink-0" />
+                        <TechLogo
+                          name={techName}
+                          className="w-3 h-3 sm:w-3.5 sm:h-3.5 shrink-0"
+                        />
                         <span>{techName}</span>
                       </span>
                     ))}
@@ -551,7 +755,10 @@ export default function Work() {
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-4 p-4 sm:p-6 rounded-2xl border border-[var(--border-default)] bg-[var(--bg-surface)] text-xs text-[var(--text-secondary)] font-mono">
           <div className="flex items-center gap-2">
             <Terminal className="w-4 h-4 text-[var(--text-primary)] shrink-0" />
-            <span className="leading-relaxed">Architecture: Production CI/CD, Containerized Micro-services & Multi-tenant DB Schemas</span>
+            <span className="leading-relaxed">
+              Architecture: Production CI/CD, Containerized Micro-services &
+              Multi-tenant DB Schemas
+            </span>
           </div>
           <a
             href="https://github.com/salauddin85"
@@ -621,10 +828,8 @@ export default function Work() {
 
               {/* Modal Scrollable Body */}
               <div className="overflow-y-auto p-6 sm:p-8 space-y-10 custom-scrollbar">
-                
                 {/* Hero Showcase Grid: Left Image, Right Info (Screenshot 2) */}
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-                  
                   {/* Left Side: Large Project Showcase Image */}
                   <div className="lg:col-span-7 rounded-2xl bg-neutral-100 dark:bg-neutral-900 border border-[var(--border-default)] p-3 sm:p-4 overflow-hidden shadow-xs">
                     <div className="relative w-full aspect-16/10 rounded-xl overflow-hidden shadow-md">
@@ -704,7 +909,10 @@ export default function Work() {
                                 key={t}
                                 className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-xs font-mono bg-[var(--bg-elevated)] border border-[var(--border-default)] text-[var(--text-primary)]"
                               >
-                                <TechLogo name={t} className="w-3.5 h-3.5 text-[var(--text-primary)]" />
+                                <TechLogo
+                                  name={t}
+                                  className="w-3.5 h-3.5 text-[var(--text-primary)]"
+                                />
                                 <span>{t}</span>
                               </span>
                             ))}
@@ -725,7 +933,7 @@ export default function Work() {
                         <ArrowUpRight className="w-4 h-4" />
                       </a>
 
-                      <a
+                      {/* <a
                         href={selectedProject.githubUrl}
                         target="_blank"
                         rel="noopener noreferrer"
@@ -733,14 +941,13 @@ export default function Work() {
                       >
                         <FolderGit2 className="w-4 h-4" />
                         <span>Codebase</span>
-                      </a>
+                      </a> */}
                     </div>
                   </div>
                 </div>
 
                 {/* Deep Dive Breakdown: Key Features, Challenges, and Solutions */}
                 <div className="border-t border-[var(--border-default)] pt-8 grid grid-cols-1 md:grid-cols-2 gap-8">
-                  
                   {/* Left: Key Features & Engineering Contributions */}
                   <div className="space-y-6">
                     <div>
@@ -750,7 +957,10 @@ export default function Work() {
                       </h4>
                       <ul className="space-y-2.5">
                         {selectedProject.keyFeatures.map((feat, idx) => (
-                          <li key={idx} className="flex items-start gap-2.5 text-xs sm:text-sm text-[var(--text-secondary)] leading-relaxed">
+                          <li
+                            key={idx}
+                            className="flex items-start gap-2.5 text-xs sm:text-sm text-[var(--text-secondary)] leading-relaxed"
+                          >
                             <span className="w-1.5 h-1.5 rounded-full bg-[var(--text-primary)] shrink-0 mt-2" />
                             <span>{feat}</span>
                           </li>
@@ -816,36 +1026,37 @@ export default function Work() {
 
                   {/* Horizontal Scroll of other projects */}
                   <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                    {PROJECTS.filter(p => p.id !== selectedProject.id).slice(0, 3).map((item) => (
-                      <div
-                        key={item.id}
-                        onClick={() => setSelectedProject(item)}
-                        className="group/mini p-3 rounded-2xl border border-[var(--border-default)] bg-[var(--bg-elevated)] hover:border-black dark:hover:border-white transition-all cursor-pointer flex flex-col justify-between"
-                      >
-                        <div className="relative w-full aspect-16/9 rounded-xl overflow-hidden mb-2.5">
-                          <img
-                            src={item.image}
-                            alt={item.title}
-                            className="w-full h-full object-cover group-hover/mini:scale-105 transition-transform duration-300"
-                          />
-                          <div className="absolute top-1.5 left-1.5 px-2 py-0.5 rounded-full text-[9px] font-mono bg-black/80 text-white">
-                            • {item.status}
+                    {PROJECTS.filter((p) => p.id !== selectedProject.id)
+                      .slice(0, 3)
+                      .map((item) => (
+                        <div
+                          key={item.id}
+                          onClick={() => setSelectedProject(item)}
+                          className="group/mini p-3 rounded-2xl border border-[var(--border-default)] bg-[var(--bg-elevated)] hover:border-black dark:hover:border-white transition-all cursor-pointer flex flex-col justify-between"
+                        >
+                          <div className="relative w-full aspect-16/9 rounded-xl overflow-hidden mb-2.5">
+                            <img
+                              src={item.image}
+                              alt={item.title}
+                              className="w-full h-full object-cover group-hover/mini:scale-105 transition-transform duration-300"
+                            />
+                            <div className="absolute top-1.5 left-1.5 px-2 py-0.5 rounded-full text-[9px] font-mono bg-black/80 text-white">
+                              • {item.status}
+                            </div>
+                          </div>
+
+                          <div>
+                            <h5 className="text-xs font-bold text-[var(--text-primary)] group-hover/mini:opacity-80 transition-opacity truncate">
+                              {item.title}
+                            </h5>
+                            <p className="text-[11px] text-[var(--text-secondary)] truncate">
+                              {item.category}
+                            </p>
                           </div>
                         </div>
-
-                        <div>
-                          <h5 className="text-xs font-bold text-[var(--text-primary)] group-hover/mini:opacity-80 transition-opacity truncate">
-                            {item.title}
-                          </h5>
-                          <p className="text-[11px] text-[var(--text-secondary)] truncate">
-                            {item.category}
-                          </p>
-                        </div>
-                      </div>
-                    ))}
+                      ))}
                   </div>
                 </div>
-
               </div>
             </motion.div>
           </div>
