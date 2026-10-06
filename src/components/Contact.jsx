@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useRef, useEffect } from "react";
-import { Mail, Phone, MapPin, Send, ChevronDown, CheckCircle2 } from "lucide-react";
+import { Mail, Phone, MapPin, Send, ChevronDown, CheckCircle2, AlertCircle } from "lucide-react";
 
 function GithubIcon({ className = "w-4 h-4" }) {
   return (
@@ -37,6 +37,7 @@ export default function Contact() {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
   const dropdownRef = useRef(null);
 
   // Close dropdown when clicking outside
@@ -52,13 +53,31 @@ export default function Contact() {
     };
   }, []);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-    setTimeout(() => {
-      setLoading(false);
+    setErrorMessage("");
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        throw new Error(data.error || "Failed to send message. Please try again.");
+      }
+
       setSubmitted(true);
-    }, 600);
+    } catch (err) {
+      setErrorMessage(err.message || "Failed to send message. Please try again later.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -191,6 +210,7 @@ export default function Contact() {
                   <button
                     onClick={() => {
                       setSubmitted(false);
+                      setErrorMessage("");
                       setFormData({ name: "", email: "", projectType: "", message: "" });
                     }}
                     className="px-6 py-2.5 rounded-full text-xs font-semibold bg-[#141416] text-white hover:bg-neutral-800 transition-colors cursor-pointer"
@@ -288,15 +308,32 @@ export default function Contact() {
                     />
                   </div>
 
+                  {/* Error Notification */}
+                  {errorMessage && (
+                    <div className="p-3.5 rounded-2xl bg-red-50 border border-red-200 text-red-600 text-xs sm:text-sm font-medium flex items-center gap-2.5">
+                      <AlertCircle className="w-4 h-4 shrink-0 text-red-500" />
+                      <span>{errorMessage}</span>
+                    </div>
+                  )}
+
                   {/* Submit Button with Send icon matching Screenshot */}
                   <div className="pt-2">
                     <button
                       type="submit"
                       disabled={loading}
-                      className="w-full py-3.5 sm:py-4 px-6 rounded-full bg-[#141416] text-white text-sm font-semibold hover:bg-neutral-800 transition-all flex items-center justify-center gap-2 shadow-sm cursor-pointer disabled:opacity-60"
+                      className="w-full py-3.5 sm:py-4 px-6 rounded-full bg-[#141416] text-white text-sm font-semibold hover:bg-neutral-800 transition-all flex items-center justify-center gap-2 shadow-sm cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed"
                     >
-                      <span>{loading ? "Sending..." : "Send Message"}</span>
-                      <Send className="w-4 h-4 ml-1" />
+                      {loading ? (
+                        <>
+                          <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                          <span>Sending...</span>
+                        </>
+                      ) : (
+                        <>
+                          <span>Send Message</span>
+                          <Send className="w-4 h-4 ml-1" />
+                        </>
+                      )}
                     </button>
                   </div>
                 </form>
