@@ -32,6 +32,20 @@ function LinkedinIcon({ className = "w-4 h-4" }) {
   );
 }
 
+function WhatsAppIcon({ className = "w-4 h-4" }) {
+  return (
+    <svg
+      role="img"
+      viewBox="0 0 24 24"
+      fill="currentColor"
+      className={className}
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91C2.13 13.66 2.59 15.36 3.45 16.86L2.05 22L7.3 20.62C8.75 21.41 10.38 21.83 12.04 21.83C17.5 21.83 21.95 17.38 21.95 11.92C21.95 9.27 20.92 6.78 19.05 4.91C17.18 3.04 14.69 2 12.04 2M12.05 3.67C14.25 3.67 16.31 4.53 17.87 6.09C19.42 7.65 20.28 9.72 20.28 11.92C20.28 16.46 16.58 20.15 12.04 20.15C10.56 20.15 9.11 19.76 7.85 19L7.55 18.83L4.43 19.65L5.26 16.61L5.06 16.29C4.24 15 3.8 13.47 3.8 11.91C3.81 7.37 7.5 3.67 12.05 3.67M8.53 7.33C8.37 7.33 8.1 7.39 7.87 7.64C7.65 7.89 7.02 8.48 7.02 9.69C7.02 10.9 7.9 12.06 8.02 12.23C8.15 12.4 9.74 14.86 12.18 15.91C12.76 16.16 13.21 16.31 13.57 16.42C14.15 16.61 14.68 16.58 15.1 16.52C15.57 16.45 16.55 15.93 16.75 15.35C16.96 14.77 16.96 14.28 16.89 14.17C16.83 14.07 16.67 14.01 16.42 13.88C16.17 13.76 14.95 13.16 14.72 13.08C14.5 13 14.33 12.96 14.17 13.21C14 13.46 13.53 14.01 13.38 14.17C13.24 14.34 13.1 14.36 12.85 14.24C12.6 14.11 11.8 13.85 10.85 13C10.11 12.34 9.61 11.53 9.47 11.28C9.32 11.03 9.45 10.9 9.58 10.77C9.69 10.66 9.83 10.48 9.96 10.33C10.08 10.18 10.12 10.08 10.21 9.91C10.29 9.74 10.25 9.6 10.19 9.47C10.13 9.35 9.63 8.12 9.43 7.63C9.23 7.15 9.03 7.22 8.87 7.21C8.72 7.21 8.55 7.21 8.53 7.33Z" />
+    </svg>
+  );
+}
+
 export default function Footer() {
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -114,31 +128,38 @@ export default function Footer() {
             <h4 className="text-xs font-mono uppercase tracking-wider text-[var(--text-primary)] font-bold mb-4">
               CONNECT
             </h4>
-            <div className="flex flex-col gap-2.5">
+            <div className="flex flex-col items-start gap-2.5">
               <a
                 href="https://github.com/salauddin85"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 text-xs sm:text-sm hover:text-[var(--text-primary)] transition-colors"
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-[var(--border-default)] bg-[var(--bg-surface)] text-xs sm:text-sm font-medium text-[var(--text-primary)] shadow-xs hover:bg-black hover:text-white hover:border-black dark:hover:bg-white dark:hover:text-black dark:hover:border-white transition-all duration-200 cursor-pointer"
               >
-                <GithubIcon className="w-4 h-4" />
+                <GithubIcon className="w-4 h-4 shrink-0" />
                 <span>GitHub</span>
               </a>
               <a
                 href="https://linkedin.com/in/salauddinahmed85"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 text-xs sm:text-sm hover:text-[var(--text-primary)] transition-colors"
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-[var(--border-default)] bg-[var(--bg-surface)] text-xs sm:text-sm font-medium text-[var(--text-primary)] shadow-xs hover:bg-black hover:text-white hover:border-black dark:hover:bg-white dark:hover:text-black dark:hover:border-white transition-all duration-200 cursor-pointer"
               >
-                <LinkedinIcon className="w-4 h-4" />
+                <LinkedinIcon className="w-4 h-4 shrink-0" />
                 <span>LinkedIn</span>
               </a>
               <a
                 href="mailto:ahmedsalauddin677785@gmail.com"
-                className="inline-flex items-center gap-2 text-xs sm:text-sm hover:text-[var(--text-primary)] transition-colors"
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-[var(--border-default)] bg-[var(--bg-surface)] text-xs sm:text-sm font-medium text-[var(--text-primary)] shadow-xs hover:bg-black hover:text-white hover:border-black dark:hover:bg-white dark:hover:text-black dark:hover:border-white transition-all duration-200 cursor-pointer"
               >
-                <Mail className="w-4 h-4" />
+                <Mail className="w-4 h-4 shrink-0" />
                 <span>Email</span>
+              </a>
+              <a
+                href="https://wa.me/8801902061020"
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-[var(--border-default)] bg-[var(--bg-surface)] text-xs sm:text-sm font-medium text-[var(--text-primary)] shadow-xs hover:bg-black hover:text-white hover:border-black dark:hover:bg-white dark:hover:text-black dark:hover:border-white transition-all duration-200 cursor-pointer"
+              >
+                <WhatsAppIcon className="w-4 h-4 shrink-0" />
+                <span>WhatsApp</span>
               </a>
             </div>
           </div>
