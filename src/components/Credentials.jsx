@@ -1,8 +1,21 @@
 "use client";
 
 import React, { useRef, useState } from "react";
-import { motion, AnimatePresence, useScroll, useTransform, useSpring } from "framer-motion";
-import { ExternalLink, X, Award, CheckCircle2, ShieldCheck, Sparkles } from "lucide-react";
+import {
+  motion,
+  AnimatePresence,
+  useScroll,
+  useTransform,
+  useSpring,
+} from "framer-motion";
+import {
+  ExternalLink,
+  X,
+  Award,
+  CheckCircle2,
+  ShieldCheck,
+  Sparkles,
+} from "lucide-react";
 
 // Placeholder IT Certificates (Auto-scrolls Right to Left)
 // You can replace image URLs with local paths like "/images/certificates/my-cert.png"
@@ -12,93 +25,96 @@ const IT_CERTIFICATES = [
     title: "Backend Web Development (Django & DRF)",
     issuer: "Phitron",
     category: "Technical Cert",
-    image: "https://images.unsplash.com/photo-1589330694653-ded6df03f754?auto=format&fit=crop&w=700&q=80",
-    credentialUrl: "https://drive.google.com"
+    image: "/images/certificates/phitron_certificate.jpeg",
+    credentialUrl: "https://drive.google.com",
   },
   {
     id: "it-2",
-    title: "DevOps & Cloud (Docker, CI/CD, Nginx)",
+    title: "DevOps & Cloud (AWS , Docker, CI/CD, Nginx)",
     issuer: "Ostad",
     category: "Technical Cert II",
-    image: "https://images.unsplash.com/photo-1579783902614-a3fb3927b675?auto=format&fit=crop&w=700&q=80",
-    credentialUrl: "https://drive.google.com"
+    image: "/images/certificates/ostad_devops_certificate.jpeg",
+    credentialUrl: "https://drive.google.com",
   },
   {
     id: "it-3",
-    title: "Full-Stack System Architecture Recognition",
-    issuer: "PEPOLTEK LTD",
-    category: "Technical Cert III",
-    image: "https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=700&q=80",
-    credentialUrl: "https://drive.google.com"
+    title: "Git for Freshers",
+    issuer: "Omar Faruk",
+    category: "Technical Certification",
+    image: "/images/certificates/git_for_fresher.jpeg",
+    credentialUrl: "https://drive.google.com",
   },
   {
-    id: "it-4",
-    title: "Algorithmic Problem Solving & Data Structures",
-    issuer: "HackerRank & LeetCode",
-    category: "Technical Cert IV",
-    image: "https://images.unsplash.com/photo-1606326608606-aa0b62935f2b?auto=format&fit=crop&w=700&q=80",
-    credentialUrl: "https://drive.google.com"
+    id: "AC89E6F98FF0",
+    title: "Python (Basic)",
+    issuer: "HackerRank",
+    category: "Technical Certification",
+    image: "/images/certificates/python_certificate.png",
+    credentialUrl: "https://drive.google.com",
   },
-  {
-    id: "it-5",
-    title: "Relational Database Design & PostgreSQL",
-    issuer: "Phitron",
-    category: "Technical Cert V",
-    image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=700&q=80",
-    credentialUrl: "https://drive.google.com"
-  },
+  // {
+  //   id: "it-5",
+  //   title: "Relational Database Design & PostgreSQL",
+  //   issuer: "Phitron",
+  //   category: "Technical Cert V",
+  //   image:
+  //     "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=700&q=80",
+  //   credentialUrl: "https://drive.google.com",
+  // },
   {
     id: "it-6",
     title: "Next.js 15 & React Frontend Engineering",
     issuer: "Vercel Ecosystem Training",
     category: "Technical Cert VI",
-    image: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=700&q=80",
-    credentialUrl: "https://drive.google.com"
-  }
+    image: "/images/certificates/react_nextjs_certificate.png",
+    credentialUrl: "https://drive.google.com",
+  },
 ];
 
 // Placeholder Non-IT Certificates (Auto-scrolls Left to Right)
 const NON_IT_CERTIFICATES = [
   {
     id: "non-it-1",
-    title: "Mock Job Interview Cert",
-    issuer: "Guidance & Career Development",
+    title: "COMMUNICATION SECRETS",
+    issuer: "10 Minute School",
     category: "Professional Development",
-    image: "https://images.unsplash.com/photo-1568602471122-7832951cc4c5?auto=format&fit=crop&w=700&q=80",
-    credentialUrl: "https://drive.google.com"
+    image: "/images/certificates/communication_certificate.png",
+    credentialUrl: "https://drive.google.com",
   },
   {
     id: "non-it-2",
-    title: "Workplace Etiquette Cert",
-    issuer: "Corporate Career Readiness",
-    category: "Professional Etiquette",
-    image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=700&q=80",
-    credentialUrl: "https://drive.google.com"
+    title: "LEADERSHIP EXCELLENCE",
+    issuer: "10 Minute School",
+    category: "Professional Development",
+    image:
+      "/images/certificates/leadership_certificate.jpeg",
+    credentialUrl: "https://drive.google.com",
   },
-  {
-    id: "non-it-3",
-    title: "Career Pathing & Leadership Cert",
-    issuer: "Youth Development Center",
-    category: "Career Guidance",
-    image: "https://images.unsplash.com/photo-1589330694653-ded6df03f754?auto=format&fit=crop&w=700&q=80",
-    credentialUrl: "https://drive.google.com"
-  },
+  // {
+  //   id: "non-it-3",
+  //   title: "Career Pathing & Leadership Cert",
+  //   issuer: "Youth Development Center",
+  //   category: "Career Guidance",
+  //   image:
+  //     "https://images.unsplash.com/photo-1589330694653-ded6df03f754?auto=format&fit=crop&w=700&q=80",
+  //   credentialUrl: "https://drive.google.com",
+  // },
   {
     id: "non-it-4",
     title: "Professional Spoken English Training",
     issuer: "3-Month Intensive Program",
     category: "Communication",
-    image: "https://images.unsplash.com/photo-1579783902614-a3fb3927b675?auto=format&fit=crop&w=700&q=80",
-    credentialUrl: "https://drive.google.com"
+    image: "/images/certificates/spoken_certificate.jpeg",
+    credentialUrl: "https://drive.google.com",
   },
   {
     id: "non-it-5",
     title: "Academic Honors Recognition (CGPA 3.51)",
     issuer: "Brahmanbaria Govt. Polytechnic",
     category: "Academic Distinction",
-    image: "https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=700&q=80",
-    credentialUrl: "https://drive.google.com"
-  }
+    image: "/images/certificates/diploma_certificate.jpeg",
+    credentialUrl: "https://drive.google.com",
+  },
 ];
 
 export default function Credentials() {
@@ -122,13 +138,21 @@ export default function Credentials() {
   const smoothHeaderX = useSpring(rawHeaderX, springConfig);
 
   // Duplicate arrays for 100% seamless infinite marquee
-  const itMarquee = [...IT_CERTIFICATES, ...IT_CERTIFICATES, ...IT_CERTIFICATES];
-  const nonItMarquee = [...NON_IT_CERTIFICATES, ...NON_IT_CERTIFICATES, ...NON_IT_CERTIFICATES];
+  const itMarquee = [
+    ...IT_CERTIFICATES,
+    ...IT_CERTIFICATES,
+    ...IT_CERTIFICATES,
+  ];
+  const nonItMarquee = [
+    ...NON_IT_CERTIFICATES,
+    ...NON_IT_CERTIFICATES,
+    ...NON_IT_CERTIFICATES,
+  ];
 
   return (
-    <section 
-      id="credentials" 
-      ref={sectionRef} 
+    <section
+      id="credentials"
+      ref={sectionRef}
       className="relative w-full py-24 sm:py-32 overflow-hidden bg-[var(--bg-deep)]"
     >
       {/* Background Section Title — Centered horizontally only */}
@@ -143,8 +167,8 @@ export default function Credentials() {
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header: Scroll-linked continuous leftward movement matching Screenshot 1 */}
-        <motion.div 
-          style={{ x: smoothHeaderX }} 
+        <motion.div
+          style={{ x: smoothHeaderX }}
           className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12 sm:mb-16"
         >
           <div className="flex flex-col items-start">
@@ -173,7 +197,6 @@ export default function Credentials() {
           2. Auto-Scroll Rows (Continuous Marquees with smooth pause-on-hover)
         */}
         <div className="space-y-10 sm:space-y-12">
-          
           {/* Row 1: IT Field Certificates (Auto-scrolls Right to Left) */}
           <div>
             <div className="flex items-center gap-2 text-xs font-mono tracking-widest uppercase font-medium text-[var(--text-muted)] mb-4 px-1">
@@ -229,7 +252,9 @@ export default function Credentials() {
           {/* Row 2: Non-IT Field Certificates (Auto-scrolls Left to Right) */}
           <div>
             <div className="flex items-center gap-2 text-xs font-mono tracking-widest uppercase font-medium text-[var(--text-muted)] mb-4 px-1">
-              <span>NON-IT FIELD · {NON_IT_CERTIFICATES.length} CERTIFICATES</span>
+              <span>
+                NON-IT FIELD · {NON_IT_CERTIFICATES.length} CERTIFICATES
+              </span>
             </div>
 
             <div className="relative w-full overflow-hidden py-2 select-none group/row2">
@@ -277,9 +302,7 @@ export default function Credentials() {
               </motion.div>
             </div>
           </div>
-
         </div>
-
       </div>
 
       {/* Lightbox / Modal View when a certificate is clicked */}

@@ -5,51 +5,94 @@ import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 import { Award } from "lucide-react";
 
 // Placeholder award data matching the reference screenshots
+// const AWARDS = [
+//   {
+//     id: "system-developer",
+//     title: "System Developer",
+//     issuer: "SAINT COLUMBAN COLLEGE",
+//     year: "2024",
+//     desc: "Recognized as System Developer for outstanding contribution as lead developer on the capstone project."
+//   },
+//   {
+//     id: "web-developer",
+//     title: "Web Developer",
+//     issuer: "DEPARTMENT OF TRADE & INDUSTRY",
+//     year: "2024",
+//     desc: "Recognized for outstanding participation as a Web Developer in partnership with DTI, Saint Columban College, and industry partners."
+//   },
+//   {
+//     id: "byte-president",
+//     title: "BYTE President",
+//     issuer: "COLLEGE OF COMPUTING STUDIES",
+//     year: "2024",
+//     desc: "Served as President of the BYTE Organization, demonstrating leadership and commitment to the computing studies community."
+//   },
+//   {
+//     id: "deans-lister",
+//     title: "Dean's Lister",
+//     issuer: "SAINT COLUMBAN COLLEGE",
+//     year: "2021 to 2025",
+//     desc: "Academic excellence with a GPA of 1.50 while completing Bachelor of Science in Information Technology."
+//   },
+//   {
+//     id: "cert-recognition",
+//     title: "Certificate of Recognition",
+//     issuer: "SIBUGAY TECHNICAL INSTITUTE INC.",
+//     year: "2021",
+//     desc: "Graduated With Honors and Best in Research from the STEM senior high school program (GPA 1.75)."
+//   },
+//   {
+//     id: "computer-literacy",
+//     title: "Computer Literacy",
+//     issuer: "DEPARTMENT OF EDUCATION | ALS",
+//     year: "2017",
+//     desc: "Completed a basic computer literacy program under the Department of Education Alternative Learning System."
+//   }
+// ];
 const AWARDS = [
   {
-    id: "system-developer",
-    title: "System Developer",
-    issuer: "SAINT COLUMBAN COLLEGE",
+    id: "academic-honors-polytechnic",
+    title: "Academic Honors Recognition",
+    issuer: "Brahmanbaria Govt. Polytechnic",
     year: "2024",
-    desc: "Recognized as System Developer for outstanding contribution as lead developer on the capstone project."
+    desc: "Achieved Academic Honors recognition with a CGPA of 3.51 for excellence in Diploma Engineering studies."
   },
   {
-    id: "web-developer",
-    title: "Web Developer",
-    issuer: "DEPARTMENT OF TRADE & INDUSTRY",
-    year: "2024",
-    desc: "Recognized for outstanding participation as a Web Developer in partnership with DTI, Saint Columban College, and industry partners."
+    id: "devops-cloud-engineering",
+    title: "DevOps & Cloud Specialization",
+    issuer: "Ostad",
+    year: "2025",
+    desc: "Recognized for mastering containerization, CI/CD pipelines, AWS infrastructure, and Nginx reverse proxy management."
   },
   {
-    id: "byte-president",
-    title: "BYTE President",
-    issuer: "COLLEGE OF COMPUTING STUDIES",
-    year: "2024",
-    desc: "Served as President of the BYTE Organization, demonstrating leadership and commitment to the computing studies community."
+    id: "backend-web-development",
+    title: "Backend Engineering Distinction",
+    issuer: "Phitron",
+    year: "2023",
+    desc: "Honored for successfully completing rigorous backend curriculum specializing in Django, DRF, and complex database architectures."
   },
   {
-    id: "deans-lister",
-    title: "Dean's Lister",
-    issuer: "SAINT COLUMBAN COLLEGE",
-    year: "2021 to 2025",
-    desc: "Academic excellence with a GPA of 1.50 while completing Bachelor of Science in Information Technology."
+    id: "frontend-engineering-vercel",
+    title: "Next.js & React Frontend Engineering",
+    issuer: "Vercel Ecosystem Training",
+    year: "2026",
+    desc: "Credentialed for advanced client-server architecture, modern rendering patterns, and scalable React application engineering."
   },
   {
-    id: "cert-recognition",
-    title: "Certificate of Recognition",
-    issuer: "SIBUGAY TECHNICAL INSTITUTE INC.",
+    id: "leadership-excellence-award",
+    title: "Leadership Excellence Award",
+    issuer: "10 Minute School",
+    year: "2022",
+    desc: "Recognized for outstanding team coordination, leadership principles, and professional soft-skill development."
+  },
+  {
+    id: "python-problem-solving",
+    title: "Python Problem Solving Certificate",
+    issuer: "HackerRank",
     year: "2021",
-    desc: "Graduated With Honors and Best in Research from the STEM senior high school program (GPA 1.75)."
-  },
-  {
-    id: "computer-literacy",
-    title: "Computer Literacy",
-    issuer: "DEPARTMENT OF EDUCATION | ALS",
-    year: "2017",
-    desc: "Completed a basic computer literacy program under the Department of Education Alternative Learning System."
+    desc: "Certified for algorithmic proficiency, data structure implementation, and core Python language mastery."
   }
 ];
-
 export default function Awards() {
   const sectionRef = useRef(null);
 

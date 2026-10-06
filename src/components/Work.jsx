@@ -406,109 +406,104 @@ const PROJECTS = [
     liveUrl: "https://github.com/salauddin85",
     githubUrl: "https://github.com/salauddin85",
   },
-  {
-    id: "zamara-pos",
-    title: "Zamara POS & Merchandise Suite",
-    tagline:
-      "All-in-one POS, real-time inventory engine, and multi-branch retail system",
-    category: "POS & Retail System",
-    categoryTag: "enterprise",
-    status: "Live",
-    metricsHighlight: "Sub-100ms item checkout lookup across 50,000+ SKUs",
-    image:
-      "https://images.unsplash.com/photo-1556742049-0a67c5574f73?auto=format&fit=crop&w=1200&q=80",
-    overview:
-      "Zamara POS is a high-speed retail checkout and merchandise system built for modern brick-and-mortar storefronts and multi-warehouse supply chains. It features instant barcode scanning, offline-first transaction resilience, thermal receipt printer integration, and automated inventory sync.",
-    keyFeatures: [
-      "Rapid item scanning & checkout engine optimized for touchscreens and barcode readers",
-      "Multi-store inventory synchronization with automated low-stock reorder triggers",
-      "Offline transactional resilience with background IndexedDB sync upon reconnect",
-      "Detailed financial reporting: daily cash drawer reconciliation, profit margins, and GST/VAT tax audits",
-      "Employee shift management and permission control for cashier vs manager roles",
-    ],
-    tech: ["React", "TypeScript", "Tailwind", "Django", "PostgreSQL", "Docker"],
-    role: "Junior Software Developer(Full Stack+DevOps)",
-    challenges:
-      "Handling spotty network connections in physical retail environments where dropped requests during checkout lead to duplicate charges or stranded customer queues.",
-    solution:
-      "Architected a local-first queue using IndexedDB and Service Workers. Transactions are signed locally and reconciled via idempotent Django backend APIs the moment network connectivity resumes.",
-    highlights: [
-      "Zero transaction drop rate across thousands of daily retail receipts",
-      "Instant sub-100ms search across 50,000+ SKU catalogs using indexed PostgreSQL full-text search",
-      "Cross-platform responsive interface tailored for desktop terminals, tablets, and mobile handhelds",
-    ],
-    liveUrl: "https://pepoltek.com",
-    githubUrl: "https://github.com/salauddin85",
-  },
-  {
-    id: "purelube",
-    title: "PureLube Lubricant GmbH",
-    tagline:
-      "Corporate brand platform with global product catalog and distributor portal",
-    category: "Brand Website",
-    categoryTag: "web",
-    status: "Live",
-    metricsHighlight:
-      "100/100 Lighthouse performance with sub-second page loads",
-    image:
-      "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80",
-    overview:
-      "Corporate web platform engineered for PureLube Lubricant GmbH, a premier German automotive and industrial lubricant brand. Built to showcase extensive technical product lineups, company certifications, and handle high-volume distributor inquiries across Europe, Asia, Africa, and the Americas.",
-    keyFeatures: [
-      "Dynamic interactive product catalog with fluid viscosity and engine-specification filters",
-      "Multi-region distributor qualification pipeline with automated lead distribution",
-      "International localization with lightning-fast static page generation",
-      "Rich media gallery and interactive corporate timeline showcasing German manufacturing standards",
-      "Headless CMS integration enabling non-technical stakeholders to publish new spec sheets",
-    ],
-    tech: ["Next.js", "React", "TypeScript", "Tailwind", "Docker"],
-    role: "Lead Frontend & Web Architect",
-    challenges:
-      "Delivering heavy 4K product imagery, detailed oil specification sheets, and international branding assets without hurting mobile Core Web Vitals across emerging international markets.",
-    solution:
-      "Implemented Next.js Incremental Static Regeneration (ISR) paired with Next/Image AVIF/WebP auto-compression and edge-cached Cloudflare CDN distribution.",
-    highlights: [
-      "Achieved flawless 100/100 performance, accessibility, and SEO scores on Google Lighthouse",
-      "Streamlined global distributor lead capture, increasing international inquiry conversions by 40%",
-      "Engineered bespoke micro-interactions and smooth scroll ergonomics matching luxury German aesthetics",
-    ],
-    liveUrl: "https://pepoltek.com",
-    githubUrl: "https://github.com/salauddin85",
-  },
+  
+  
 
   {
-    id: "pepoltek-corp",
-    title: "PEPOLTEK Corporate Engineering Platform",
+    id: "pepoltek-enterprise-platform",
+    title: "PEPOLTEK Enterprise Talent & Staffing Infrastructure",
     tagline:
-      "Corporate presence with dynamic service matrix & client qualification",
-    category: "Corporate Platform",
+      "Full-stack IT talent acquisition platform with dynamic RBAC & async event-buffered telemetry",
+    category: "Enterprise Full-Stack Platform",
     categoryTag: "web",
     status: "Live",
     metricsHighlight:
-      "Sub-second TTFB with high-converting client lead pipelines",
+      "Zero DB lock contention via Redis write-buffering; <10ms RBAC evaluation via cache-aside memoization",
     image:
-      "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=1200&q=80",
+      "/images/pepoltek.png",
     overview:
-      "Official corporate platform for PEPOLTEK, showcasing engineering capabilities, client case studies, enterprise metrics, and interactive service qualification pipelines.",
+      "Architected and engineered the end-to-end digital infrastructure for PEPOLTEK—a dual-faceted enterprise solution featuring a public-facing technical talent portal, an automated candidate evaluation pipeline, and an administrative command center with dynamic RBAC and deep system health observability.",
     keyFeatures: [
-      "Interactive enterprise service catalog and architecture case study breakdown",
-      "Interactive client inquiry qualifier with automated quotation estimates",
-      "High performance Next.js server components with instant page transitions",
-      "Dark/Light theme support with modern glassmorphism aesthetics",
+      "Dynamic custom Role-Based Access Control (RBAC) engine with fine-grained permission assignment and automated Redis cache invalidation",
+      "High-throughput candidate intake pipeline supporting direct job applications and multi-step talent pool profile indexing (domain skills, salary expectations, relocation, and vetting metadata)",
+      "Decoupled asynchronous activity logging utilizing a Redis queue buffer and Celery Beat scheduled micro-batch inserts (`bulk_create`)",
+      "Enterprise client engagement suite with automated service quote generation and multi-channel staffing matrix discovery",
+      "Real-time infrastructure health probe subsystem evaluating SQL query latency, Redis cache consistency, disk thresholds, and SMTP connectivity",
     ],
-    tech: ["DRF", "Next.js", "TypeScript", "Tailwind", "Docker"],
-    role: "Lead Frontend Engineer",
+    tech: [
+      "Next.js 14",
+      "React",
+      "Django REST Framework",
+      "Celery",
+      "Redis",
+      "Zustand",
+      "Tailwind CSS",
+      "SimpleJWT",
+      "Gunicorn/Systemd",
+    ],
+    role: "Junior Software Developer (Full Stack + DevOps)",
     challenges:
-      "Balancing rich interactive UI components, case study metrics, and branding animations while maintaining top-tier SEO rankings.",
+      "Eliminating database write contention caused by synchronous user activity audit logging, resolving permission-tree join latency on protected routes, and bridging Next.js App Router cookie sessions seamlessly with stateless JWT backend microservices.",
     solution:
-      "Adopted hybrid rendering with Next.js App Router, streaming server-side generated content for search spiders while client components hydrate interactive widgets.",
+      "Engineered an asynchronous write-behind caching pattern that buffers audit events in Redis for scheduled batch insertion; implemented Redis cache-aside memoization for user permissions; and established a Next.js Server Action BFF layer paired with backend JWT cookie-to-bearer middleware for secure, friction-free authorization.",
     highlights: [
-      "Elevated PEPOLTEK's digital brand authority across global client prospects",
-      "Direct pipeline for corporate service discovery and RFP submissions",
+      "Scaled platform to seamlessly process high-volume talent submissions without blocking primary API query paths",
+      "Empowered enterprise administrators with instantaneous role-assignment updates and end-to-end auditability across the entire candidate lifecycle",
     ],
     liveUrl: "https://pepoltek.com",
     githubUrl: "https://github.com/salauddin85",
   },
+  {
+  id: "meditek-saas-his-platform",
+  title: "MEDITek — Multi-Tenant Cloud Hospital Information System & EMR",
+  tagline:
+    "Enterprise multi-tenant HIS & EMR with double-entry financial ledger, blind cash drawer reconciliation, and Celery async telemetry",
+  category: "Enterprise SaaS / HealthTech / ERP",
+  categoryTag: "web",
+  status: "Live",
+  metricsHighlight:
+    "Zero financial leakage via blind cash drawer reconciliation; <30ms multi-branch query isolation; 100% async offloaded reporting (PDF/XLSX) via Celery",
+  image:
+    "/images/meditek.png",
+  overview:
+    "Architected and engineered the end-to-end digital infrastructure for MEDITek—an enterprise-grade, multi-tenant SaaS Hospital Information System (HIS) and Electronic Medical Record (EMR) platform designed for hospital networks, specialized clinics, and diagnostic centers. Spanning 15 decoupled functional modules, the platform delivers a multi-branch clinical command center, automated regulatory compliance (DGHS, BMDC, DGDA), an append-only double-entry financial engine, shift-based cash drawer reconciliation, and an unblockable emergency care override protocol.",
+  keyFeatures: [
+    "Multi-tenant dual-plane architecture with strict tenant/branch data isolation, dynamic tenant branding theming, and an automated 6-step hospital onboarding and document verification pipeline",
+    "Comprehensive clinical EMR workspace with structured SOAP notes, continuous vitals trending, ICD-10 diagnostic indexing, and an audited 'Break-Glass' emergency chart access mechanism",
+    "Intelligent prescription management engine integrated with the DGDA national drug formulary, real-time drug-drug interaction alerts (low to contraindicated), and pediatric/renal dose adjustments",
+    "Full-lifecycle laboratory diagnostic subsystem managing specimen accessioning, barcode tracking, multi-parameter reference ranges, critical value alerts, and vector PDF report release",
+    "Immutable double-entry General Ledger and blind cash drawer reconciliation system with supervisor variance approvals, multi-tender split payments (Cash, Card, MFS), and fiscal period closing controls",
+    "Universal asynchronous reporting and export pipeline powered by Celery and Redis, processing high-volume multi-branch analytics (PDF, Excel, CSV) with zero HTTP request thread blocking",
+    "Patient self-service portal with passwordless OTP verification, appointment self-scheduling, and digital prescription/lab report downloads",
+  ],
+  tech: [
+    "Next.js 16 (App Router)",
+    "React 19",
+    "Django 5.2",
+    "Django REST Framework",
+    "PostgreSQL",
+    "Celery",
+    "Redis",
+    "Zustand",
+    "Tailwind CSS",
+    "Radix UI",
+    "ReportLab",
+    "OpenPyXL",
+    "SimpleJWT (HttpOnly)",
+    "SSLCommerz",
+  ],
+  role: "Junior Software Developer (Full Stack + DevOps)+ Backend Architect",
+  challenges:
+    "Eliminating financial discrepancies at high-velocity counter shifts, preventing cross-tenant data bleed across complex multi-branch joins, guaranteeing continuous access for emergency clinical care during subscription lockouts, and offloading heavy tabular exports without degrading primary OLTP query throughput.",
+  solution:
+    "Engineered a shift-based blind reconciliation workflow linked directly to an append-only General Ledger; designed branch- and tenant-scoped manager querysets (`BranchScopedQuerySet`) and resolution middleware; implemented a hardcoded emergency bypass layer that unconditionally circumvents quota and subscription locks; and built an asynchronous Celery task pipeline with dedicated worker queues, client-side polling, and authenticated binary stream delivery for report artifacts.",
+  highlights: [
+    "Engineered a zero-variance financial ledger and cash drawer settlement subsystem processing multi-tender transactions with full double-entry auditability",
+    "Architected an asynchronous worker-driven reporting infrastructure that reliably processes 100k+ record datasets across PDF, Excel, and CSV formats while maintaining strict PHI compliance logging",
+  ],
+  liveUrl: "https://meditek-frontend-cpy.vercel.app/",
+  githubUrl: "https://github.com/salauddin85",
+}
 ];
 
 export default function Work() {

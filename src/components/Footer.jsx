@@ -43,17 +43,17 @@ export default function Footer() {
         {/* Top Section (Screenshot 7) */}
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 pb-14 border-b border-[var(--border-default)]">
           <div className="flex items-center gap-3">
-            <div className="relative w-10 h-10 rounded-xl overflow-hidden border border-[var(--border-default)] bg-[var(--bg-surface)] p-0.5 shadow-xs">
+            {/* <div className="relative w-10 h-10 rounded-xl overflow-hidden border border-[var(--border-default)] bg-[var(--bg-surface)] p-0.5 shadow-xs">
               <Image
-                src="/images/portfolio.png"
+                src="/images/salauddin_portfolio_logo.jpeg"
                 alt="MD. Salauddin"
                 width={40}
                 height={40}
                 className="object-cover w-full h-full rounded-lg"
               />
-            </div>
+            </div> */}
             <div>
-              <h3 className="text-xl font-bold tracking-tight text-[var(--text-primary)]">
+              <h3 className="text-3xl font-bold tracking-tight text-[var(--text-primary)]">
                 MD. Salauddin
               </h3>
               <p className="text-xs text-[var(--text-muted)] mt-0.5">

@@ -24,7 +24,7 @@ const SERVICES = [
   {
     id: "custom-systems",
     title: "CUSTOM SYSTEMS",
-    desc: "Billing, inventory, CRM, and office tools built around how you work.",
+    desc: "E-commerce,Billing,inventory,HRM,CRM,and office tools built around how you work.",
     tags: ["Full-Stack", "Enterprise ERP", "Zustand", "PostgreSQL"],
     image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=700&q=80"
   },
@@ -42,12 +42,19 @@ const SERVICES = [
     tags: ["Django REST", "Webhooks", "SSLCommerz", "JWT Security"],
     image: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=700&q=80"
   },
-  {
-    id: "mobile-dev",
-    title: "MOBILE DEVELOPMENT",
-    desc: "One codebase, both iOS and Android, built with Flutter or React Native.",
-    tags: ["React Native", "Flutter", "Cross-Platform", "PWA"],
-    image: "https://images.unsplash.com/photo-1555774698-0b77e0d5fac6?auto=format&fit=crop&w=700&q=80"
+  // {
+  //   id: "mobile-dev",
+  //   title: "MOBILE DEVELOPMENT",
+  //   desc: "One codebase, both iOS and Android, built with Flutter or React Native.",
+  //   tags: ["React Native", "Flutter", "Cross-Platform", "PWA"],
+  //   image: "https://images.unsplash.com/photo-1555774698-0b77e0d5fac6?auto=format&fit=crop&w=700&q=80"
+  // },
+   {
+    id: "ai-chatbot-integration",
+    title: "AI & CHATBOT INTEGRATION",
+    desc: "Intelligent conversational agents, workflow automation, and custom LLM integrations tailored to your business.",
+    tags: ["OpenAI API", "LangChain", "RAG", "Botpress"],
+    image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=700&q=80"
   },
   {
     id: "maintenance",
