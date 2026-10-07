@@ -36,7 +36,7 @@ const KNOWLEDGE_BASE = [
   },
   {
     keywords: ["experience", "years", "pepoltek", "work"],
-    answer: "Salauddin has nearly 2 years of professional software engineering experience at PEPOLTEK LTD (Dec 2024 – Sep 2026), delivering enterprise platforms including AI-HRM TalenTEK, Multi-Vendor E-Commerce, and Club Management Systems."
+    answer: "Salauddin has  2+ years of professional software engineering experience at PEPOLTEK LTD (Dec 2024 – Sep 2026), delivering enterprise platforms including AI-HRM TalenTEK, Multi-Vendor E-Commerce, and Club Management Systems."
   },
   {
     keywords: ["salary", "rate", "compensation"],
@@ -90,7 +90,7 @@ export default function ChatWidget() {
 
       const responseText = matched
         ? matched.answer
-        : "Salauddin is a Full-Stack Software Engineer with nearly 2 years of experience in Django, Next.js, Docker, and AI/RAG integrations. For specific requirements, feel free to drop him a line at ahmedsalauddin677785@gmail.com!";
+        : "Salauddin is a Full-Stack Software Engineer with 2+ years of experience in Django, Next.js, Docker, and AI/RAG integrations. For specific requirements, feel free to drop him a line at ahmedsalauddin677785@gmail.com!";
 
       setMessages((prev) => [
         ...prev,

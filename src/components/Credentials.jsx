@@ -33,7 +33,7 @@ const IT_CERTIFICATES = [
     title: "DevOps & Cloud (AWS , Docker, CI/CD, Nginx)",
     issuer: "Ostad",
     category: "Technical Cert II",
-    image: "/images/certificates/ostad_devops_certificate.jpeg",
+    image: "/images/certificates/ostad_certificate.jpeg",
     credentialUrl: "https://drive.google.com",
   },
   {

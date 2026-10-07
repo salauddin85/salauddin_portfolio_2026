@@ -90,7 +90,7 @@ export default function About() {
               </h3>
               <div className="space-y-4 text-sm sm:text-base text-[var(--text-secondary)] leading-relaxed font-normal">
                 <p>
-                  I&apos;m <span className="font-semibold text-[var(--text-primary)]">MD. Salauddin</span>, a Full-Stack Software Engineer with nearly 2 years of production experience delivering maintainable software systems across the full SDLC at <span className="font-semibold text-[var(--text-primary)]">PEPOLTEK LTD</span>.
+                  I&apos;m <span className="font-semibold text-[var(--text-primary)]">MD. Salauddin</span>, a Full-Stack Software Engineer with 2+ years of production experience delivering maintainable software systems across the full SDLC at <span className="font-semibold text-[var(--text-primary)]">PEPOLTEK LTD</span>.
                 </p>
                 <p>
                   My engineering journey began with a hands-on Diploma in Computer Science & Technology from Brahmanbaria Polytechnic (graduating with a 3.51 GPA), and I am currently pursuing my B.Sc. in Computer Science & Engineering at Northern University Bangladesh.

@@ -516,7 +516,7 @@ const PROJECTS = [
     "Architected an asynchronous worker-driven reporting infrastructure that reliably processes 100k+ record datasets across PDF, Excel, and CSV formats while maintaining strict PHI compliance logging",
   ],
   liveUrl: "https://meditek-frontend-cpy.vercel.app/",
-  // githubUrl: "https://github.com/salauddin85", // Optional: uncomment if public repository is available
+  githubUrl: "https://github.com/salauddin85/meditek_frontend", // Optional: uncomment if public repository is available
 }
 ];
 
